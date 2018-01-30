@@ -6,7 +6,7 @@ using System.Text;
 namespace CBLib.Entities
 {
     /// <summary>
-    /// Project is for 1 bot.
+    /// Bot's project.
     /// </summary>
     [Table("Projects")]
     public class TheProject
