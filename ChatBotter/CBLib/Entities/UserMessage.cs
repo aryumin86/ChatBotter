@@ -17,14 +17,10 @@ namespace CBLib.Entities
         public string[] MessageTextAsTokensArr { get; set; }
 
         /// <summary>
-        /// Id of user who sended the message to the bot.
+        /// User chat bot talks with.
         /// </summary>
-        public int UserId { get; set; }
-
-        /// <summary>
-        /// The name of the user who sended this message to bot.
-        /// </summary>
-        public string UserName { get; set; }
+        /// <value>The user.</value>
+        public TheUser TheUser { get; set; }
 
         /// <summary>
         /// This is a project for which this message was sent from user.
