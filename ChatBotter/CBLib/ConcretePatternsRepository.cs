@@ -49,9 +49,9 @@ namespace CBLib
             throw new NotImplementedException();
         }
 
-        public override List<Context> GetActualContexts(TheProject prj, string[] terms)
+        public override List<Context> GetActualContexts(int prjId, string[] terms)
         {
-            return _index.GetContextsForTerms(terms, prj);
+            return _index.GetContextsForTerms(terms, prjId);
         }
 
         public override void AddBotResponseToPattern(Context context, BotResponse botResponse)

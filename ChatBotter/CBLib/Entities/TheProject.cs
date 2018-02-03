@@ -20,5 +20,17 @@ namespace CBLib.Entities
         public int OwnerId { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
+        /// <summary>
+        /// Greeting of the user.
+        /// </summary>
+        /// <value>The greeting.</value>
+        public string Greeting { get; set; }
+
+        /// <summary>
+        /// Goodbye words.
+        /// </summary>
+        /// <value>The farewell.</value>
+        public string Farewell { get; set; }
     }
 }

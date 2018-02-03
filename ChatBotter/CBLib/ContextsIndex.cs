@@ -46,7 +46,7 @@ namespace CBLib
             throw new NotImplementedException();
         }
 
-        public List<Context> GetContextsForTerms(string[] tokens, TheProject prj)
+        public List<Context> GetContextsForTerms(string[] tokens, int prjId)
         {
             throw new NotImplementedException();
         }

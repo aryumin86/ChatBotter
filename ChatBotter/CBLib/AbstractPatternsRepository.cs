@@ -16,7 +16,7 @@ namespace CBLib
         protected List<Context> _contexts;
 
         /// <summary>
-        /// Gets all patterns from db.
+        /// Gets all patterns from db and adds them to contexts index.
         /// </summary>
         public abstract void Init();
 
@@ -26,7 +26,7 @@ namespace CBLib
 
         public abstract bool UpdateContext(Context context);
 
-        public abstract List<Context> GetActualContexts(TheProject prj, string[] terms);
+        public abstract List<Context> GetActualContexts(int prjId, string[] terms);
 
         public abstract void AddBotResponseToPattern(Context context, BotResponse botResponse);
 
