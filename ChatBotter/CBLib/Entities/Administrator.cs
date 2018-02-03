@@ -5,9 +5,9 @@ using System.Text;
 namespace CBLib.Entities
 {
     /// <summary>
-    /// User of service (and may be ARM too).
+    /// ARM admin.
     /// </summary>
-    public class TheUser
+    public class Administrator
     {
         public int Id { get; set; }
 
