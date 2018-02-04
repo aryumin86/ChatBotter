@@ -20,7 +20,7 @@ namespace CBLib
         /// </summary>
         public abstract void Init();
 
-        public abstract bool AddContext(Context context);
+        public abstract bool AddContext(out Context context);
 
         public abstract bool DeleteContext(Context context);
 
@@ -35,5 +35,7 @@ namespace CBLib
         public abstract void UpdateBotResponseToPattern(Context context, BotResponse botResponse);
 
         public abstract List<BotResponse> GetBotResponsesToPattern(Context context);
+
+        public abstract bool CreateContextWithResponses(out Context context, out List<BotResponse> responses);
     }
 }

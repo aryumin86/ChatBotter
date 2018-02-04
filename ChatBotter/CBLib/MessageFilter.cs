@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using CBLib.Entities;
 using SamplesToTextsMatcher;
 
 namespace CBLib
@@ -15,6 +16,9 @@ namespace CBLib
 
         public string Title { get; set; }
 
-        public Context Context { get; set; }
+        /// <summary>
+        /// Tuple: projectId, context for matching the user message, response of bot if matched. 
+        /// </summary>
+        List<Tuple<int, Context, BotResponse>> filterBehavior = new List<Tuple<int, Context, BotResponse>>();
     }
 }

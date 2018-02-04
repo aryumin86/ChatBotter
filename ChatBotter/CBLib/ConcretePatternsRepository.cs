@@ -21,7 +21,7 @@ namespace CBLib
             _index = new ContextsIndex(_contexts);
         }
 
-        public override bool AddContext(Context context)
+        public override bool AddContext(out Context context)
         {
             try
             {
