@@ -24,6 +24,9 @@ namespace CBLib.Entities
         [Column("ProjectId")]
         public int ProjectId { get; set; }
 
+        [ForeignKey("ProjectId")]
+        public TheProject TheProject { get; set; }
+
         [Column("Priority")]
         public int Priority { get; set; }
 

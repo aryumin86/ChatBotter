@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
@@ -11,26 +12,23 @@ namespace CBLib.Entities
     [Table("Projects")]
     public class TheProject
     {
+        [Key]
+        [Column("Id")]
         public int Id { get; set; }
 
+        [Column("ProjectTitle")]
         public string ProjectTitle { get; set; }
 
+        [Column("ProjectDescription")]
         public string ProjectDescription { get; set; }
 
+        [Column("OwnerId")]
         public int OwnerId { get; set; }
 
+        [ForeignKey("OwnerId")]
+        public TheUser TheUser { get; set; }
+
+        [Column("CreatedAt")]
         public DateTime CreatedAt { get; set; }
-
-        /// <summary>
-        /// Greeting of the user.
-        /// </summary>
-        /// <value>The greeting.</value>
-        public string Greeting { get; set; }
-
-        /// <summary>
-        /// Goodbye words.
-        /// </summary>
-        /// <value>The farewell.</value>
-        public string Farewell { get; set; }
     }
 }

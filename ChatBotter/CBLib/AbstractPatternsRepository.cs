@@ -13,6 +13,12 @@ namespace CBLib
     /// </summary>
     public abstract class AbstractPatternsRepository
     {
+        protected ChatBotContext _chatBotContext;
+
+        public AbstractPatternsRepository(ChatBotContext chatBotContext){
+            this._chatBotContext = chatBotContext;
+        }
+
         protected List<Context> _contexts;
 
         /// <summary>
@@ -20,7 +26,7 @@ namespace CBLib
         /// </summary>
         public abstract void Init();
 
-        public abstract bool AddContext(out Context context);
+        public abstract bool AddContext(Context context);
 
         public abstract bool DeleteContext(Context context);
 

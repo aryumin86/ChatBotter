@@ -9,25 +9,28 @@ namespace CBLib
 {
     public class ConcretePatternsRepository : AbstractPatternsRepository
     {
+        public ConcretePatternsRepository(ChatBotContext chatBotContext) : base(chatBotContext){
+            
+        }
+
         private ContextsIndex _index;
         private string _connectionString;
-        private ChatBotContext _chatBotContext;
         //private Logger
 
         public override void Init()
         {
-            _chatBotContext = new ChatBotContext();
             _contexts = _chatBotContext.Contexts.ToList<Context>();
             _index = new ContextsIndex(_contexts);
         }
 
-        public override bool AddContext(out Context context)
+        public override bool AddContext(Context context)
         {
             try
             {
                 _chatBotContext.Contexts.Add(context);
-                if (_index.AddContext(context))
+                if (_index.AddContext(context)){
                     return true;
+                }
             }
             catch (Exception ex)
             {
@@ -70,6 +73,11 @@ namespace CBLib
         }
 
         public override void UpdateBotResponseToPattern(Context context, BotResponse botResponse)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool CreateContextWithResponses(out Context context, out List<BotResponse> responses)
         {
             throw new NotImplementedException();
         }
