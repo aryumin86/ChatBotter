@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using CBLib;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -26,7 +28,14 @@ namespace ChatBotterWebApi
         {
             services.AddMvc();
 
-            services.AddDbContext<ChatBotContext>(options => options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+
+            //configuring sql connection
+            IConfiguration config = builder.Build();
+            var connString = config["ConnectionStrings[subsection:chatbotter_mysql_conn]"];
+            services.AddDbContext<ChatBotContext>(options => options.UseMySql(connString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
