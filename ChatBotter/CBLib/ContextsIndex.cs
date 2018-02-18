@@ -26,22 +26,22 @@ namespace CBLib
         /// terms
         /// </summary>
         /// <param name="contexts"></param>
-        public ContextsIndex(IEnumerable<Context> contexts)
+        public ContextsIndex(IEnumerable<ContextWrapper> contexts)
         {
 
         }
 
-        public bool AddContext(Context context)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool DeleteContext(Context context)
+        public bool AddContext(ContextWrapper context)
         {
             throw new NotImplementedException();
         }
 
-        public bool UpdateContext(Context context)
+        public bool DeleteContext(ContextWrapper context)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool UpdateContext(ContextWrapper context)
         {
             throw new NotImplementedException();
         }

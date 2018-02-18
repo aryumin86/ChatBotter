@@ -19,11 +19,10 @@ namespace CBLib
 
         public override void Init()
         {
-            _contexts = _chatBotContext.Contexts.ToList<Context>();
-            _index = new ContextsIndex(_contexts);
+            _index = new ContextsIndex(_chatBotContext.Contexts);
         }
 
-        public override bool AddContext(Context context)
+        public override bool AddContext(ContextWrapper context)
         {
             try
             {
@@ -40,13 +39,13 @@ namespace CBLib
             return false;
         }
 
-        public override bool DeleteContext(Context context)
+        public override bool DeleteContext(ContextWrapper context)
         {
             _index.DeleteContext(context);
             throw new NotImplementedException();
         }
 
-        public override bool UpdateContext(Context context)
+        public override bool UpdateContext(ContextWrapper context)
         {
             _index.UpdateContext(context);
             throw new NotImplementedException();
@@ -57,27 +56,27 @@ namespace CBLib
             return _index.GetContextsForTerms(terms, prjId);
         }
 
-        public override void AddBotResponseToPattern(Context context, BotResponse botResponse)
+        public override void AddBotResponseToPattern(ContextWrapper context, BotResponse botResponse)
         {
             throw new NotImplementedException();
         }
 
-        public override void DeleteBotResponseToPattern(Context context, BotResponse botResponse)
+        public override void DeleteBotResponseToPattern(ContextWrapper context, BotResponse botResponse)
         {
             throw new NotImplementedException();
         }
 
-        public override List<BotResponse> GetBotResponsesToPattern(Context context)
+        public override List<BotResponse> GetBotResponsesToPattern(ContextWrapper context)
         {
             throw new NotImplementedException();
         }
 
-        public override void UpdateBotResponseToPattern(Context context, BotResponse botResponse)
+        public override void UpdateBotResponseToPattern(ContextWrapper context, BotResponse botResponse)
         {
             throw new NotImplementedException();
         }
 
-        public override bool CreateContextWithResponses(out Context context, out List<BotResponse> responses)
+        public override bool CreateContextWithResponses(out ContextWrapper context, out List<BotResponse> responses)
         {
             throw new NotImplementedException();
         }
