@@ -20,18 +20,18 @@ namespace CBLib
         public DbSet<BotResponse> BotResponses { get; set; }
         public DbSet<ContextWrapper> Contexts { get; set; }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-            
-            //var builder = new ConfigurationBuilder()
-            //    .SetBasePath(Directory.GetCurrentDirectory())
-            //    .AddJsonFile("appsettings.json");
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
 
-            //IConfiguration config = builder.Build();
-            //var connString = config["ConnectionStrings[subsection:chatbotter_mysql_conn]"];
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
 
-            //optionsBuilder.UseMySql(connString);
-            
-        //}
+            IConfiguration config = builder.Build();
+            var connString = config["ConnectionStrings[subsection:chatbotter_mysql_conn]"];
+
+            optionsBuilder.UseMySql(connString);
+
+        }
     }
 }

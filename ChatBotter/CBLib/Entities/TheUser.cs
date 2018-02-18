@@ -9,7 +9,7 @@ namespace CBLib.Entities
     /// </summary>
     public class TheUser
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string Login { get; set; }
 
