@@ -14,6 +14,8 @@ namespace ChatBotterWebApi.Controllers
     [Route("api/Greetings")]
     public class GreetingsController : Controller
     {
+        //TODO Inject db context
+
         [Route("GetAllProjectGreetings")]
         [HttpGet]
         [AllowAnonymous]
