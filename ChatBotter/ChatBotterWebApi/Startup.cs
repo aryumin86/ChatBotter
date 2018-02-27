@@ -27,15 +27,12 @@ namespace ChatBotterWebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddDbContext<ChatBotContext>(x => x.UseMySql(Configuration.GetConnectionString("chatbotter_mysql_conn")));
 
             //var builder = new ConfigurationBuilder()
             //    .SetBasePath(Directory.GetCurrentDirectory())
             //    .AddJsonFile("appsettings.json");
             //IConfiguration config = builder.Build();
-
-            ////configuring sql connection
-            //var connString = config["ConnectionStrings[subsection:chatbotter_mysql_conn]"];
-            //services.AddDbContext<ChatBotContext>(options => options.UseMySql(connString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

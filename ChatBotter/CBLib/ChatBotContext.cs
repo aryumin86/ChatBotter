@@ -11,15 +11,19 @@ namespace CBLib
 {
     public class ChatBotContext : DbContext
     {
+        public ChatBotContext(DbContextOptions options) : base(options) {
+
+        }
+
         public DbSet<TheProject> TheProjects { get; set; }
         public DbSet<BotResponse> BotResponses { get; set; }
         public DbSet<ContextWrapper> Contexts { get; set; }
         public DbSet<Greeting> Greetings { get; set; }
         public DbSet<Farewell> Farewells { get; set; }
 
+        /*
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-
             var builder = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
@@ -30,5 +34,6 @@ namespace CBLib
             optionsBuilder.UseMySql(connString);
 
         }
+        */
     }
 }
