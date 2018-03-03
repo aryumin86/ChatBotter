@@ -20,6 +20,7 @@ namespace CBLib
         public DbSet<ContextWrapper> Contexts { get; set; }
         public DbSet<Greeting> Greetings { get; set; }
         public DbSet<Farewell> Farewells { get; set; }
+        public DbSet<User> Users { get; set; }
 
         /*
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

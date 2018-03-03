@@ -7,32 +7,38 @@ using CBLib.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ChatBotterWebApi.Controllers
 {
+    [Authorize]
     [Produces("application/json")]
     [Route("api/Greetings")]
     public class GreetingsController : Controller
     {
         private ChatBotContext _dbContext;
 
+        private UserAccessForProjectVerifier _accessVerifier;
+
         public GreetingsController(ChatBotContext dbContext){
             this._dbContext = dbContext;
+            this._accessVerifier = new UserAccessForProjectVerifier();
         }
 
         [Route("GetAllProjectGreetings")]
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult GetAllProjectGreetings(int projectId){
-            return Ok(_dbContext.Greetings.Where(g => g.ProjectId == projectId));
+        public async Task<IActionResult> GetAllProjectGreetings(int projectId){
+            var res = await _dbContext.Greetings.Where(g => g.ProjectId == projectId).ToListAsync();
+            return Ok(res);
         }
 
         [Route("GetGreeting")]
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult GetGreeting(int id, int projectId)
+        public async Task<IActionResult> GetGreeting(int id, int projectId)
         {
-            var res = _dbContext.Greetings.Where(g => g.Id == id).FirstOrDefault();
+            var res = await _dbContext.Greetings.FirstOrDefaultAsync(g => g.Id == id);
             if (res != null)
                 return Ok(res);
             else
@@ -42,9 +48,9 @@ namespace ChatBotterWebApi.Controllers
         [HttpGet]
         [Route("GetRandomGreeting")]
         [AllowAnonymous]
-        public IActionResult GetRandomGreeting(int projectId){
+        public async Task<IActionResult> GetRandomGreeting(int projectId){
             Random rand = new Random();
-            var prjGreetings = _dbContext.Greetings.Where(g => g.ProjectId == projectId);
+            var prjGreetings = await _dbContext.Greetings.Where(g => g.ProjectId == projectId).ToListAsync();
 
             if (prjGreetings.Count() > 0)
                 return Ok(prjGreetings.ToArray()[rand.Next(prjGreetings.Count() - 1)]);
@@ -54,34 +60,43 @@ namespace ChatBotterWebApi.Controllers
 
         [HttpPost]
         [Route("AddGreeting")]
-        public void AddGreeting(Greeting greeting, int projectId){
-            _dbContext.Greetings.Add(greeting);
-            _dbContext.SaveChanges();
+        public async Task<IActionResult> AddGreeting(Greeting greeting, int projectId){
+            //if (_accessVerifier.Verify())
+            //    return BadRequest();
+
+            try{
+                _dbContext.Greetings.Add(greeting);
+                await _dbContext.SaveChangesAsync();
+                return Ok();
+            }
+            catch(Exception ex){
+                return BadRequest();
+            }
         }
 
         [HttpGet]
         [Route("RemoveGreeting")]
-        public IActionResult RemoveGreeting(int greetingId){
-            var gr = _dbContext.Greetings.Where(g => g.Id == greetingId).FirstOrDefault();
+        public async Task<IActionResult>  RemoveGreeting(int greetingId){
+            var gr =  await _dbContext.Greetings.Where(g => g.Id == greetingId).FirstOrDefaultAsync();
             if (gr == null)
                 return NotFound();
             else{
                 _dbContext.Greetings.Remove(gr);
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
                 return Ok();
             }
         }
 
         [HttpPost]
         [Route("UpdateGreeting")]
-        public IActionResult UpdateGreeting(Greeting greeting)
+        public async Task<IActionResult> UpdateGreeting(Greeting greeting)
         {
-            var gr = _dbContext.Greetings.Where(g => g.Id == greeting.Id).FirstOrDefault();
+            var gr = await _dbContext.Greetings.Where(g => g.Id == greeting.Id).FirstOrDefaultAsync();
             if (gr == null)
                 return NotFound();
             else{
                 gr.MainGreeting = greeting.MainGreeting;
-                _dbContext.SaveChanges();
+                await _dbContext.SaveChangesAsync();
                 return Ok();
             }
         }

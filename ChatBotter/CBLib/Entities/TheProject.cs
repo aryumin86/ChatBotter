@@ -23,7 +23,7 @@ namespace CBLib.Entities
         public string ProjectDescription { get; set; }
 
         [Column("OwnerId")]
-        public string OwnerId { get; set; }
+        public int OwnerId { get; set; }
 
         //[ForeignKey("OwnerId")]
         //public TheUser TheUser { get; set; }
