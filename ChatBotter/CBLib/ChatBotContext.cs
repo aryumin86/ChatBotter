@@ -21,20 +21,5 @@ namespace CBLib
         public DbSet<Greeting> Greetings { get; set; }
         public DbSet<Farewell> Farewells { get; set; }
         public DbSet<User> Users { get; set; }
-
-        /*
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true);
-
-            IConfiguration config = builder.Build();
-            var connString = config.GetConnectionString("chatbotter_mysql_conn");
-
-            optionsBuilder.UseMySql(connString);
-
-        }
-        */
     }
 }

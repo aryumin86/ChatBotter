@@ -43,5 +43,7 @@ namespace CBLib
         public abstract List<BotResponse> GetBotResponsesToPattern(ContextWrapper context);
 
         public abstract bool CreateContextWithResponses(out ContextWrapper context, out List<BotResponse> responses);
+
+        public abstract bool AddManyContexts(List<ContextWrapper> contexts);
     }
 }

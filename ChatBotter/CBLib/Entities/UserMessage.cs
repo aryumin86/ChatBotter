@@ -20,7 +20,7 @@ namespace CBLib.Entities
         /// User chat bot talks with.
         /// </summary>
         /// <value>The user.</value>
-        public TheUser TheUser { get; set; }
+        public User TheUser { get; set; }
 
         /// <summary>
         /// This is a project for which this message was sent from user.

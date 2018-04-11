@@ -7,10 +7,13 @@ using System.Text;
 namespace CBLib
 {
     /// <summary>
-    /// Inverted index of contexts
+    /// Inverted index of contexts. 
+    /// One index for each bot.
     /// </summary>
     public class ContextsIndex
     {
+        public int ProjectId { get; set; }
+
         /// <summary>
         /// Dict of context. Key is context id.
         /// </summary>

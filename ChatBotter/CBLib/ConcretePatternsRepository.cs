@@ -9,17 +9,20 @@ namespace CBLib
 {
     public class ConcretePatternsRepository : AbstractPatternsRepository
     {
+        ChatBotContext _chatBotContext;
+
         public ConcretePatternsRepository(ChatBotContext chatBotContext) : base(chatBotContext){
-            
+            this._chatBotContext = chatBotContext;
         }
 
-        private ContextsIndex _index;
-        private string _connectionString;
-        //private Logger
+        /// <summary>
+        /// All indexes of APP. key is a project id.
+        /// </summary>
+        private Dictionary<int, ContextsIndex> _indexes;
 
         public override void Init()
         {
-            _index = new ContextsIndex(_chatBotContext.Contexts);
+            _indexes = new Dictionary<int, ContextsIndex>();
         }
 
         public override bool AddContext(ContextWrapper context)
@@ -27,7 +30,7 @@ namespace CBLib
             try
             {
                 _chatBotContext.Contexts.Add(context);
-                if (_index.AddContext(context)){
+                if (_indexes.Where(i => i.Key == context.ProjectId).First().Value.AddContext(context)){
                     return true;
                 }
             }
@@ -41,19 +44,23 @@ namespace CBLib
 
         public override bool DeleteContext(ContextWrapper context)
         {
-            _index.DeleteContext(context);
-            throw new NotImplementedException();
+            if (_indexes.Where(i => i.Key == context.ProjectId).First().Value.DeleteContext(context))
+                return true;
+
+            return false;
         }
 
         public override bool UpdateContext(ContextWrapper context)
         {
-            _index.UpdateContext(context);
-            throw new NotImplementedException();
+            if(_indexes.Where(i => i.Key == context.ProjectId).First().Value.UpdateContext(context))
+                return true;
+
+            return false; ;
         }
 
         public override List<Context> GetActualContexts(int prjId, string[] terms)
         {
-            return _index.GetContextsForTerms(terms, prjId);
+            throw new NotImplementedException();
         }
 
         public override void AddBotResponseToPattern(ContextWrapper context, BotResponse botResponse)
@@ -77,6 +84,11 @@ namespace CBLib
         }
 
         public override bool CreateContextWithResponses(out ContextWrapper context, out List<BotResponse> responses)
+        {
+            throw new NotImplementedException();
+        }
+
+        public override bool AddManyContexts(List<ContextWrapper> contexts)
         {
             throw new NotImplementedException();
         }
