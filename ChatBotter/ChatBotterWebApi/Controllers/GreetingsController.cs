@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using CBLib;
 using CBLib.Entities;
@@ -18,11 +19,8 @@ namespace ChatBotterWebApi.Controllers
     {
         private ChatBotContext _dbContext;
 
-        private UserAccessForProjectVerifier _accessVerifier;
-
         public GreetingsController(ChatBotContext dbContext){
             this._dbContext = dbContext;
-            this._accessVerifier = new UserAccessForProjectVerifier();
         }
 
         [Route("GetAllProjectGreetings")]
@@ -61,10 +59,12 @@ namespace ChatBotterWebApi.Controllers
         [HttpPost]
         [Route("AddGreeting")]
         public async Task<IActionResult> AddGreeting(Greeting greeting, int projectId){
-            //if (_accessVerifier.Verify())
-            //    return BadRequest();
+            if (!VerifyUser(_dbContext.TheProjects.Where(p => p.Id == projectId).First().OwnerId))
+                return BadRequest();
 
-            try{
+            try
+
+            {
                 _dbContext.Greetings.Add(greeting);
                 await _dbContext.SaveChangesAsync();
                 return Ok();
@@ -99,6 +99,18 @@ namespace ChatBotterWebApi.Controllers
                 await _dbContext.SaveChangesAsync();
                 return Ok();
             }
+        }
+
+        /// <summary>
+        /// Check if user has rights for the action
+        /// (compares id's of 2 users -  current user and id of user as method parameter).
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        private bool VerifyUser(int userId)
+        {
+            int currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            return userId == currentUserId;
         }
     }
 }

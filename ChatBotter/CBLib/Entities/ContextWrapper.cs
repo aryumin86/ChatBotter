@@ -30,6 +30,9 @@ namespace CBLib.Entities
         [Column("Priority")]
         public int Priority { get; set; }
 
+        [Column("IsActive")]
+        public bool IsActive { get; set; }
+
         /// <summary>
         /// Manually formed pattern.
         /// </summary>
