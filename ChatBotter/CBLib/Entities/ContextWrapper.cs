@@ -31,7 +31,7 @@ namespace CBLib.Entities
         public int Priority { get; set; }
 
         [Column("IsActive")]
-        public bool IsActive { get; set; }
+        public bool IsActive { get; set; } 
 
         /// <summary>
         /// Manually formed pattern.
