@@ -24,7 +24,7 @@ namespace ChatBotterWebApi.Controllers
             _repo = repo;
         }
 
-        [HttpPost("register")]
+        [HttpPost("register")] 
         public async Task<IActionResult> Register([FromBody]UserForRegisterDTO userForRegisterDTO)
         {
             userForRegisterDTO.Username = userForRegisterDTO.Username.ToLower();
