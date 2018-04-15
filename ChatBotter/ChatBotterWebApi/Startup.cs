@@ -15,6 +15,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using AutoMapper;
 
 namespace ChatBotterWebApi
 {
@@ -32,7 +33,9 @@ namespace ChatBotterWebApi
         {
             var key = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
             services.AddMvc();
+            services.AddAutoMapper();
             services.AddDbContext<ChatBotContext>(x => x.UseMySql(Configuration.GetConnectionString("chatbotter_mysql_conn")));
+            services.AddTransient<Seed>();
             services.AddCors();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -48,13 +51,14 @@ namespace ChatBotterWebApi
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, Seed seeder)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
+            seeder.SeedUSers();
             app.UseMvc();
         }
     }
