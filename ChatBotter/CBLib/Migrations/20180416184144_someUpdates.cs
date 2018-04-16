@@ -9,6 +9,7 @@ namespace CBLib.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            
             migrationBuilder.AlterColumn<int>(
                 name: "OwnerId",
                 table: "Projects",
@@ -123,6 +124,7 @@ namespace CBLib.Migrations
                 nullable: false,
                 oldClrType: typeof(int))
                 .OldAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-        }
+
+}
     }
 }
