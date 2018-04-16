@@ -25,7 +25,7 @@ namespace ChatBotterWebApi.Controllers
 
         [Route("GetAllProjectGreetings")]
         [HttpGet]
-        [AllowAnonymous]
+        //[AllowAnonymous]
         public async Task<IActionResult> GetAllProjectGreetings(int projectId){
             var res = await _dbContext.Greetings.Where(g => g.ProjectId == projectId).ToListAsync();
             return Ok(res);
