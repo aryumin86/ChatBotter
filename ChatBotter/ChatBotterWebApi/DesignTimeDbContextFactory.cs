@@ -17,7 +17,8 @@ namespace ChatBotterWebApi
                 .Build();
             var builder = new DbContextOptionsBuilder<ChatBotContext>();
             var connectionString = configuration.GetConnectionString("chatbotter_mysql_conn");
-            builder.UseSqlServer(connectionString);
+            //builder.UseSqlServer(connectionString);
+            builder.UseMySql(connectionString);
             return new ChatBotContext(builder.Options);
         }
     }

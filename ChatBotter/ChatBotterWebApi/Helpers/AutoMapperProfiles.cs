@@ -7,10 +7,12 @@ namespace ChatBotterWebApi.Helpers
 {
     public class AutoMapperProfiles : Profile
     {
+        
         public AutoMapperProfiles()
         {
             CreateMap<User, UserForDetailedDto>();
             CreateMap<UserForUpdateDto, User>();
         }
+
     }
 }

@@ -11,15 +11,15 @@ using System;
 namespace CBLib.Migrations
 {
     [DbContext(typeof(ChatBotContext))]
-    [Migration("20180416184144_someUpdates")]
-    partial class someUpdates
+    [Migration("20180417185554_fst")]
+    partial class fst
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.0.1-rtm-125")
-                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                .HasAnnotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn)
+                .HasAnnotation("ProductVersion", "2.0.1-rtm-125");
 
             modelBuilder.Entity("CBLib.Entities.BotResponse", b =>
                 {
@@ -137,21 +137,28 @@ namespace CBLib.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("OwnerId");
+
                     b.ToTable("Projects");
                 });
 
             modelBuilder.Entity("CBLib.Entities.User", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd();
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("Id");
 
-                    b.Property<bool>("AppAdmin");
+                    b.Property<bool>("AppAdmin")
+                        .HasColumnName("AppAdmin");
 
-                    b.Property<byte[]>("PasswordHash");
+                    b.Property<byte[]>("PasswordHash")
+                        .HasColumnName("PasswordHash");
 
-                    b.Property<byte[]>("PasswordSalt");
+                    b.Property<byte[]>("PasswordSalt")
+                        .HasColumnName("PasswordSalt");
 
-                    b.Property<string>("UserName");
+                    b.Property<string>("UserName")
+                        .HasColumnName("UserName");
 
                     b.HasKey("Id");
 
@@ -192,6 +199,14 @@ namespace CBLib.Migrations
                     b.HasOne("CBLib.Entities.TheProject", "TheProject")
                         .WithMany()
                         .HasForeignKey("ProjectId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("CBLib.Entities.TheProject", b =>
+                {
+                    b.HasOne("CBLib.Entities.User", "Owner")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

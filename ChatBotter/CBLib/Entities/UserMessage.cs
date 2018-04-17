@@ -17,12 +17,6 @@ namespace CBLib.Entities
         public string[] MessageTextAsTokensArr { get; set; }
 
         /// <summary>
-        /// User chat bot talks with.
-        /// </summary>
-        /// <value>The user.</value>
-        public User TheUser { get; set; }
-
-        /// <summary>
         /// This is a project for which this message was sent from user.
         /// </summary>
         public int ProjectId { get; set; }

@@ -25,8 +25,8 @@ namespace CBLib.Entities
         [Column("OwnerId")]
         public int OwnerId { get; set; }
 
-        //[ForeignKey("OwnerId")]
-        //public TheUser TheUser { get; set; }
+        [ForeignKey("OwnerId")]
+        public User Owner { get; set; }
 
         [Column("CreatedAt")]
         public DateTime CreatedAt { get; set; }
