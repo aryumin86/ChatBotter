@@ -28,7 +28,7 @@ namespace ChatBotterWebApi.Controllers
         [HttpPost("register")] 
         public async Task<IActionResult> Register([FromBody]UserForRegisterDTO userForRegisterDTO)
         {
-            if (bool.Parse(_config.GetSection("AppSettings:Token").Value) == false)
+            if (bool.Parse(_config.GetSection("AppSettings:AllowRegistration").Value) == false)
                 return BadRequest("Registration is not allowed accoring to app settings");
 
             userForRegisterDTO.Username = userForRegisterDTO.Username.ToLower();

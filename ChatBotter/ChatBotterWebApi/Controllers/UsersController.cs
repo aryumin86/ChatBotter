@@ -29,7 +29,6 @@ namespace ChatBotterWebApi.Controllers
             _context = context;
         }
 
-
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUser(int id)
         {
@@ -67,6 +66,19 @@ namespace ChatBotterWebApi.Controllers
             await _context.SaveChangesAsync();
 
             return Ok();
+        }
+
+        public async Task<IActionResult> RemoveUser(int userId)
+        {
+            int currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            if (_context.Users.First(u => u.Id == currentUserId).AppAdmin == false)
+                return BadRequest("You are not allowed to remove users");
+
+            var user = await _context.Users.FirstAsync(u => u.Id == userId);
+            _context.Entry(user).State = EntityState.Deleted;
+            var res = await _context.SaveChangesAsync();
+
+            return Ok("User was removed");            
         }
     }
 }
