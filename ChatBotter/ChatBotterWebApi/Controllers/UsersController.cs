@@ -11,12 +11,13 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using ChatBotterWebApi.DTO;
 using System.Security.Claims;
+using ChatBotterWebApi.Helpers;
 
 namespace ChatBotterWebApi.Controllers
 {
     [Authorize]
     [Route("api/[controller]")]
-    public class UsersController : Controller
+    public class UsersController : Controller, IAccessVerifier
     {
         private readonly ChatBotContext _context;
 
@@ -37,6 +38,12 @@ namespace ChatBotterWebApi.Controllers
             var userToReturn = _mapper.Map<UserForDetailedDto>(user);
 
             return Ok(userToReturn);
+        }
+
+        public bool HasAccess(int userId)
+        {
+            int currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            return userId == currentUserId;
         }
 
         [HttpPut("{id}")]

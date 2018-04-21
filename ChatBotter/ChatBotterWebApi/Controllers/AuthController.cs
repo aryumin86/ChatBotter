@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CBLib.Entities;
 using ChatBotterWebApi.Data;
 using ChatBotterWebApi.DTO;
+using ChatBotterWebApi.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
@@ -13,7 +14,7 @@ using Microsoft.IdentityModel.Tokens;
 namespace ChatBotterWebApi.Controllers
 {
     [Route("api/[controller]")]
-    public class AuthController : Controller
+    public class AuthController : Controller, IAccessVerifier
     {
         private IAuthRepository _repo;
         private IConfiguration _config { get; }
@@ -27,6 +28,9 @@ namespace ChatBotterWebApi.Controllers
         [HttpPost("register")] 
         public async Task<IActionResult> Register([FromBody]UserForRegisterDTO userForRegisterDTO)
         {
+            if (bool.Parse(_config.GetSection("AppSettings:Token").Value) == false)
+                return BadRequest("Registration is not allowed accoring to app settings");
+
             userForRegisterDTO.Username = userForRegisterDTO.Username.ToLower();
 
             if (await _repo.UserExists(userForRegisterDTO.Username))
@@ -70,6 +74,12 @@ namespace ChatBotterWebApi.Controllers
             var token = tokenHandler.CreateToken(tokenDescriptor);
             var tokenString = tokenHandler.WriteToken(token);
             return Ok(new { tokenString });
+        }
+
+        public bool HasAccess(int userId)
+        {
+            int currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            return userId == currentUserId;
         }
     }
 }
