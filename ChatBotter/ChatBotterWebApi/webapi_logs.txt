@@ -1,0 +1,16 @@
+22.04.2018 19:25:46 Request starting HTTP/1.1 GET http://localhost:56032/  
+22.04.2018 19:25:46 Request finished in 101.3234ms 404 
+22.04.2018 19:26:06 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetAllProjectGreetings  
+22.04.2018 19:26:06 Executing action method ChatBotterWebApi.Controllers.GreetingsController.GetAllProjectGreetings (ChatBotterWebApi) with arguments (0) - ModelState is Valid
+22.04.2018 19:26:06 GetAllProjectGreetings(0). All project greetings were requested
+22.04.2018 19:26:06 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+22.04.2018 19:26:06 Executed DbCommand (42ms) [Parameters=[@__projectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__projectId_0
+LIMIT 1
+22.04.2018 19:26:06 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+22.04.2018 19:26:06 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetAllProjectGreetings (ChatBotterWebApi) in 726.9095ms
+22.04.2018 19:26:06 Request finished in 851.0216ms 404 application/json; charset=utf-8
+22.04.2018 19:26:06 Request starting HTTP/1.1 GET http://localhost:56032/favicon.ico  
+22.04.2018 19:26:06 Request finished in 48.6143ms 404 

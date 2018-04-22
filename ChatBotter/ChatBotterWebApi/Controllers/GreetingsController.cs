@@ -30,6 +30,9 @@ namespace ChatBotterWebApi.Controllers
         [HttpGet]
         [AllowAnonymous]
         public async Task<IActionResult> GetAllProjectGreetings(int projectId){
+
+            _logger.LogInformation("GetAllProjectGreetings({projectId}). All project greetings were requested", projectId);
+
             var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == projectId);
             if (prj == null)
                 return NotFound("There is no such project in db");
@@ -37,9 +40,7 @@ namespace ChatBotterWebApi.Controllers
             if (!VerifyUser(prj.OwnerId))
                 return StatusCode(403); 
 
-            var res = await _dbContext.Greetings.Where(g => g.ProjectId == projectId).ToListAsync();
-
-            _logger.LogInformation("GetAllProjectGreetings({projectId}). All project greetings were requested", projectId);
+            var res = await _dbContext.Greetings.Where(g => g.ProjectId == projectId).ToListAsync();            
             return Ok(res);
         }
 
@@ -48,8 +49,16 @@ namespace ChatBotterWebApi.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> GetGreeting(int id, int projectId)
         {
-            var res = await _dbContext.Greetings.FirstOrDefaultAsync(g => g.Id == id);
             _logger.LogInformation("Greeting with id ({id}) was requested", id);
+
+            var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == projectId);
+            if (prj == null)
+                return NotFound("There is no such project in db");
+
+            if (!VerifyUser(prj.OwnerId))
+                return StatusCode(403);
+
+            var res = await _dbContext.Greetings.FirstOrDefaultAsync(g => g.Id == id);
 
             if (res != null)
                 return Ok(res);
@@ -61,6 +70,16 @@ namespace ChatBotterWebApi.Controllers
         [Route("GetRandomGreeting")]
         [AllowAnonymous]
         public async Task<IActionResult> GetRandomGreeting(int projectId){
+
+            _logger.LogInformation("GetRandomGreeting({projectId}). Random greeting was requested", projectId);
+
+            var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == projectId);
+            if (prj == null)
+                return NotFound("There is no such project in db");
+
+            if (!VerifyUser(prj.OwnerId))
+                return StatusCode(403);
+
             Random rand = new Random();
             var prjGreetings = await _dbContext.Greetings.Where(g => g.ProjectId == projectId).ToListAsync();
 
@@ -73,9 +92,14 @@ namespace ChatBotterWebApi.Controllers
         [HttpPost]
         [Route("AddGreeting")]
         public async Task<IActionResult> AddGreeting(Greeting greeting, int projectId){
+            _logger.LogInformation("AddGreeting({greeting},{projectId}). Adding greeting", greeting, projectId);
+
             var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == projectId);
             if (prj == null)
                 return NotFound("There is no such project in db");
+
+            if (!VerifyUser(prj.OwnerId))
+                return StatusCode(403);
 
             try {
                 _dbContext.Greetings.Add(greeting);
@@ -83,6 +107,7 @@ namespace ChatBotterWebApi.Controllers
                 return Ok();
             }
             catch(Exception ex){
+                _logger.LogError(ex, "Cant't add greeting to project ({projectId})", projectId);
                 return BadRequest();
             }
         }
@@ -90,28 +115,55 @@ namespace ChatBotterWebApi.Controllers
         [HttpGet]
         [Route("RemoveGreeting")]
         public async Task<IActionResult> RemoveGreeting(int greetingId){
-            var gr =  await _dbContext.Greetings.Where(g => g.Id == greetingId).FirstOrDefaultAsync();
+            _logger.LogInformation("RemoveGreeting({greetingId}). Removing greeting", greetingId);
+
+            var gr = await _dbContext.Greetings.Where(g => g.Id == greetingId).FirstOrDefaultAsync();
             if (gr == null)
                 return NotFound();
-            else{
+
+            var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == gr.ProjectId);
+            if (!VerifyUser(prj.OwnerId))
+                return StatusCode(403);
+            try
+            {
                 _dbContext.Greetings.Remove(gr);
                 await _dbContext.SaveChangesAsync();
                 return Ok();
             }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex, "Cant't remove greeting with ID ({greetingId})", greetingId);
+                return BadRequest();
+            }
+            
         }
 
         [HttpPost]
         [Route("UpdateGreeting")]
         public async Task<IActionResult> UpdateGreeting(Greeting greeting)
         {
+            _logger.LogInformation("UpdateGreeting({greeting.Id}). Updating greeting", greeting.Id);
+
             var gr = await _dbContext.Greetings.Where(g => g.Id == greeting.Id).FirstOrDefaultAsync();
             if (gr == null)
                 return NotFound();
-            else{
-                gr.MainGreeting = greeting.MainGreeting;
+
+            var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == gr.ProjectId);
+            if (!VerifyUser(prj.OwnerId))
+                return StatusCode(403);
+
+            try
+            {
+                _dbContext.Entry(gr).CurrentValues.SetValues(greeting);
                 await _dbContext.SaveChangesAsync();
                 return Ok();
             }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex, "Cant't update greeting with ID ({greeting.Id})", greeting.Id);
+                return BadRequest();
+            }
+
         }
 
         /// <summary>
