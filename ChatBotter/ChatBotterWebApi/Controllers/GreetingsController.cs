@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using CBLib;
 using CBLib.Entities;
+using ChatBotterWebApi.Data;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -19,11 +20,14 @@ namespace ChatBotterWebApi.Controllers
     public class GreetingsController : Controller
     {
         private ChatBotContext _dbContext;
-        private ILogger _logger;
+        private readonly ILogger _logger;
+        private readonly IGreetingsRepository _greetingsRepo;
 
-        public GreetingsController(ChatBotContext dbContext, ILogger<GreetingsController> logger){
+        public GreetingsController(ChatBotContext dbContext, ILogger<GreetingsController> logger, IGreetingsRepository greetingsRepo)
+        {
             _dbContext = dbContext;
             _logger = logger;
+            _greetingsRepo = greetingsRepo;
         }
 
         [Route("GetAllProjectGreetings")]
@@ -32,15 +36,26 @@ namespace ChatBotterWebApi.Controllers
         public async Task<IActionResult> GetAllProjectGreetings(int projectId){
 
             _logger.LogInformation("GetAllProjectGreetings({projectId}). All project greetings were requested", projectId);
-
             var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == projectId);
             if (prj == null)
                 return NotFound("There is no such project in db");
 
             if (!VerifyUser(prj.OwnerId))
-                return StatusCode(403); 
+                return StatusCode(403);
 
-            var res = await _dbContext.Greetings.Where(g => g.ProjectId == projectId).ToListAsync();            
+            //var res = await _dbContext.Greetings.Where(g => g.ProjectId == projectId).ToListAsync();  
+
+            var res = await _greetingsRepo.GetAllProjectGreetingsAsync(projectId);
+            return Ok(res);
+        }
+
+        [Route("GetAllAppGreetings")]
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<IActionResult> GetAllAppGreetings()
+        {
+            _logger.LogInformation("GetAllAppGreetings(). All app greetings were requested");
+            var res = await _greetingsRepo.GetAllAppGreetingsAsync();
             return Ok(res);
         }
 
