@@ -2,6 +2,7 @@
 using CBLib.Entities;
 using ChatBotterWebApi.Controllers;
 using ChatBotterWebApi.Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Moq;
 using System;
@@ -19,16 +20,22 @@ namespace ChatBotterWebApiTests.Controllers
         {
             //Arrange
             var mockGreetingRepo = new Mock<IGreetingsRepository>();
+            ILoggerFactory loggerFactory = new LoggerFactory();
+            var logger = loggerFactory.CreateLogger<GreetingsController>();
+
             mockGreetingRepo.Setup(repo => repo.GetAllAppGreetingsAsync())
                 .Returns(Task.FromResult(GetFakeGreetings()));
-            var controller = new GreetingsController(null, null, mockGreetingRepo.Object);
+            var controller = new GreetingsController(null, logger, mockGreetingRepo.Object);
 
             //Act
             var res = await controller.GetAllAppGreetings();
 
             //Assert
-            Assert.Equal(3, res.ExecuteResultAsync().
+            //Assert.Equal(3, res.ExecuteResultAsync().
 
+            //var iActionRes = Assert.IsType<ActionResult>(res);
+            //var model = Assert.IsAssignableFrom<IEnumerable<Greeting>>(iActionRes.ExecuteResultAsync().)
+            //var a = 1;
         }
 
         private IEnumerable<Greeting> GetFakeGreetings()
