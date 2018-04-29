@@ -7,11 +7,11 @@ using System.Text;
 
 namespace CBLib
 {
-    public class ConcretePatternsRepository : AbstractPatternsRepository
+    public class ConcretePatternsRepository : IPatternsRepository
     {
         ChatBotContext _chatBotContext;
 
-        public ConcretePatternsRepository(ChatBotContext chatBotContext) : base(chatBotContext){
+        public ConcretePatternsRepository(ChatBotContext chatBotContext){
             this._chatBotContext = chatBotContext;
         }
 
