@@ -178,7 +178,6 @@ namespace ChatBotterWebApi.Controllers
                 _logger.LogError(ex, "Cant't update greeting with ID ({greeting.Id})", greeting.Id);
                 return BadRequest();
             }
-
         }
 
         /// <summary>

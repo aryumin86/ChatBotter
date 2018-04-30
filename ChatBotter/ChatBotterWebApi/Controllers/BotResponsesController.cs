@@ -5,12 +5,16 @@ using System.Threading.Tasks;
 using CBLib;
 using CBLib.Entities;
 using ChatBotterWebApi.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
 namespace ChatBotterWebApi.Controllers
 {
+    [Authorize]
+    [Produces("application/json")]
+    [Route("api/BotResponses")]
     public class BotResponsesController : Controller, IAccessVerifier
     {
         private ChatBotContext _dbContext;

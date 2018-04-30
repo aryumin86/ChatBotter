@@ -3,11 +3,15 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using CBLib;
 using ChatBotterWebApi.Helpers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
 namespace ChatBotterWebApi.Controllers
 {
+    [Authorize]
+    [Produces("application/json")]
+    [Route("api/ContextWrappers")]
     public class ContextWrappersController : Controller, IAccessVerifier
     {
 

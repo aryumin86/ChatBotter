@@ -26,16 +26,24 @@ namespace CBLib
 
         List<Context> GetActualContexts(int prjId, string[] terms);
 
-        void AddBotResponseToPattern(ContextWrapper context, BotResponse botResponse);
+        bool AddBotResponseToPattern(BotResponse botResponse);
 
-        void DeleteBotResponseToPattern(ContextWrapper context, BotResponse botResponse);
+        bool DeleteBotResponseToPattern(BotResponse botResponse);
 
-        void UpdateBotResponseToPattern(ContextWrapper context, BotResponse botResponse);
+        bool UpdateBotResponseToPattern(BotResponse botResponse);
 
-        List<BotResponse> GetBotResponsesToPattern(ContextWrapper context);
+        List<BotResponse> GetBotResponsesToPattern(int contextId);
 
-        bool CreateContextWithResponses(out ContextWrapper context, out List<BotResponse> responses);
+        bool CreateContextWithResponses(ContextWrapper context, IEnumerable<BotResponse> responses);
 
         bool AddManyContexts(List<ContextWrapper> contexts);
+
+        /// <summary>
+        /// Get response of bot for user message.
+        /// </summary>
+        /// <param name="message"></param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        bool GetReponseToUserMessage(string message, int projectId);
     }
 }
