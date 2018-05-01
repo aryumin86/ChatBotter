@@ -3,6 +3,7 @@ using SamplesToTextsMatcher;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CBLib
 {
@@ -44,6 +45,6 @@ namespace CBLib
         /// <param name="message"></param>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        bool GetReponseToUserMessage(string message, int projectId);
+        Task<string> GetReponseToUserMessage(UserMessage message);
     }
 }

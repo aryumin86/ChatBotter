@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CBLib
 {
@@ -195,7 +196,7 @@ namespace CBLib
         /// <param name="message"></param>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public bool GetReponseToUserMessage(string message, int projectId)
+        public Task<string> GetReponseToUserMessage(UserMessage message)
         {
             throw new NotImplementedException();
         }

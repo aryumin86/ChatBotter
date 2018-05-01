@@ -19,11 +19,13 @@ namespace ChatBotterWebApi.Controllers
     {
         private ChatBotContext _dbContext;
         private readonly ILogger _logger;
+        private IPatternsRepository _patternRepo;
 
-        public BotResponsesController(ChatBotContext ctx, ILogger logger)
+        public BotResponsesController(ChatBotContext ctx, ILogger logger, IPatternsRepository patternRepo)
         {
             _dbContext = ctx;
             _logger = logger;
+            _patternRepo = patternRepo;
         }
 
         [HttpGet]
@@ -126,6 +128,13 @@ namespace ChatBotterWebApi.Controllers
                 _logger.LogError(ex, "Cant't remove response with ID ({prjId})", respId);
                 return BadRequest();
             }
+        }
+
+        [HttpPost]
+        [Route("GetResponseToUserMessage")]
+        public async Task<string> GetResponseToUserMessage([FromBody]UserMessage message)
+        {
+            return await _patternRepo.GetReponseToUserMessage(message);
         }
 
 
