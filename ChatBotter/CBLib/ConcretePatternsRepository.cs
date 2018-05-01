@@ -207,9 +207,9 @@ namespace CBLib
                 var respFromDb = _chatBotContext.BotResponses.First(r => r.Id == botResponse.Id);
                 _chatBotContext.Entry(respFromDb).CurrentValues.SetValues(botResponse);
                 _chatBotContext.SaveChanges();
-                _contextsResponses[botResponse.PatternId]
-                    .Where(r => r.Id == botResponse.Id)
-                    .First() = botResponse;
+                var ctxResps = _contextsResponses[botResponse.PatternId];
+                var ind = ctxResps.FindIndex(r => r.Id == botResponse.Id);
+                ctxResps[ind] = botResponse;
 
                 return true;
             }
@@ -227,6 +227,11 @@ namespace CBLib
                 var ctxFromDb = _chatBotContext.Contexts.First(r => r.Id == context.Id);
                 _chatBotContext.Entry(ctxFromDb).CurrentValues.SetValues(context);
                 _chatBotContext.SaveChanges();
+
+                var projectContexts = _projectsContexts[context.ProjectId];
+                var indexOfContext = projectContexts.FindIndex(c => c.Id == context.Id);
+                projectContexts[indexOfContext] = context;
+
                 return true;
             }
             catch (Exception ex)
