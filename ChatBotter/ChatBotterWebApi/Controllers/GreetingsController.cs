@@ -32,10 +32,8 @@ namespace ChatBotterWebApi.Controllers
 
         [Route("GetAllProjectGreetings/{projectId}")]
         [HttpGet]
-        [AllowAnonymous]
-        public async Task<IActionResult> GetAllProjectGreetings(int projectId){
-
-            _logger.LogInformation("GetAllProjectGreetings({projectId}). All project greetings were requested", projectId);
+        public async Task<IActionResult> GetAllProjectGreetings(int projectId)
+        {
             var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == projectId);
             if (prj == null)
                 return NotFound("There is no such project in db");
@@ -51,21 +49,16 @@ namespace ChatBotterWebApi.Controllers
 
         [Route("GetAllAppGreetings")]
         [HttpGet]
-        [AllowAnonymous]
         public async Task<IActionResult> GetAllAppGreetings()
         {
-            _logger.LogInformation("GetAllAppGreetings(). All app greetings were requested");
             var res = await _greetingsRepo.GetAllAppGreetingsAsync();
             return Ok(res);
         }
 
         [Route("GetGreeting")]
         [HttpGet]
-        [AllowAnonymous]
         public async Task<IActionResult> GetGreeting(int id, int projectId)
         {
-            _logger.LogInformation("Greeting with id ({id}) was requested", id);
-
             var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == projectId);
             if (prj == null)
                 return NotFound("There is no such project in db");
@@ -83,11 +76,8 @@ namespace ChatBotterWebApi.Controllers
 
         [HttpGet]
         [Route("GetRandomGreeting/{projectId")]
-        [AllowAnonymous]
-        public async Task<IActionResult> GetRandomGreeting(int projectId){
-
-            _logger.LogInformation("GetRandomGreeting({projectId}). Random greeting was requested", projectId);
-
+        public async Task<IActionResult> GetRandomGreeting(int projectId)
+        {
             var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == projectId);
             if (prj == null)
                 return NotFound("There is no such project in db");
