@@ -19,6 +19,10 @@ namespace CBLib
         /// </summary>
         void Init();
 
+        ContextWrapper GetContextAsync(int contextId);
+
+        IEnumerable<ContextWrapper> GetAllProjectContextsAsync(int projectId);
+
         bool AddContext(ContextWrapper context);
 
         bool DeleteContext(ContextWrapper context);

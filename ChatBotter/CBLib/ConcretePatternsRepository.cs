@@ -1,4 +1,5 @@
 ﻿using CBLib.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SamplesToTextsMatcher;
 using System;
@@ -240,6 +241,18 @@ namespace CBLib
                 _logger.LogError(ex, "can't update context");
                 return false;
             }
+        }
+
+        public async Task<ContextWrapper> GetContextAsync(int contextId)
+        {
+            var res = await _chatBotContext.Contexts.FirstAsync(c => c.Id == contextId);
+            return res;
+            //return _chatBotContext.Contexts.First(c => c.Id == contextId);
+        }
+
+        public async Task<IEnumerable<ContextWrapper>> GetAllProjectContextsAsync(int projectId)
+        {
+            return await _chatBotContext.Contexts.Where(c => c.ProjectId == projectId).ToListAsync();
         }
     }
 }
