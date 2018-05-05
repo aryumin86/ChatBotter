@@ -19,29 +19,29 @@ namespace CBLib
         /// </summary>
         void Init();
 
-        ContextWrapper GetContextAsync(int contextId);
+        Task<ContextWrapper> GetContextAsync(int contextId);
 
-        IEnumerable<ContextWrapper> GetAllProjectContextsAsync(int projectId);
+        Task<IEnumerable<ContextWrapper>> GetAllProjectContextsAsync(int projectId);
 
-        bool AddContext(ContextWrapper context);
+        Task AddContextAsync(ContextWrapper context);
 
-        bool DeleteContext(ContextWrapper context);
+        Task DeleteContextAsync(ContextWrapper context);
 
-        bool UpdateContext(ContextWrapper context);
+        Task UpdateContextAsync(ContextWrapper context);
 
-        List<Context> GetActualContexts(int prjId, string[] terms);
+        Task<IEnumerable<Context>> GetActualContextsAsync(int prjId, string[] terms);
 
-        bool AddBotResponseToPattern(BotResponse botResponse);
+        Task AddBotResponseToPatternAsync(BotResponse botResponse);
 
-        bool DeleteBotResponseToPattern(BotResponse botResponse);
+        Task DeleteBotResponseToPatternAsync(BotResponse botResponse);
 
-        bool UpdateBotResponseToPattern(BotResponse botResponse);
+        Task UpdateBotResponseToPatternAsync(BotResponse botResponse);
 
-        List<BotResponse> GetBotResponsesToPattern(int contextId);
+        IEnumerable<BotResponse> GetBotResponsesToPatternAsync(int contextId);
 
-        bool CreateContextWithResponses(ContextWrapper context, IEnumerable<BotResponse> responses);
+        Task CreateContextWithResponsesAsync(ContextWrapper context, IEnumerable<BotResponse> responses);
 
-        bool AddManyContexts(List<ContextWrapper> contexts);
+        Task AddManyContextsAsync(List<ContextWrapper> contexts);
 
         /// <summary>
         /// Get response of bot for user message.
@@ -49,6 +49,6 @@ namespace CBLib
         /// <param name="message"></param>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        Task<string> GetReponseToUserMessage(UserMessage message);
+        BotResponse GetReponseToUserMessageAsync(UserMessage message);
     }
 }

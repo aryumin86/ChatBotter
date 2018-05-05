@@ -19,6 +19,7 @@ namespace CBLib
         private ILogger _logger;
         private ConcreteMorfDictionary _morfDict;
         private ConcretePatternParser _parser;
+        private AbstractMorfDictionary _dict;
 
         /// <summary>
         /// All projects contexts. Key is a project Id and value - List of contexts.
@@ -35,6 +36,7 @@ namespace CBLib
             _logger = logger;
             _morfDict = new ConcreteMorfDictionary();
             _parser = new ConcretePatternParser();
+            _dict = new ConcreteMorfDictionary();
         }        
 
         public void Init()
@@ -62,69 +64,77 @@ namespace CBLib
                     CtxId = gr.Key,
                     Responses = gr
                 })
-                .ToDictionary(r => r.CtxId, r => r.Responses.OrderBy(x => x.Priority).ToList());
+                .ToDictionary(r => r.CtxId, r => r.Responses.OrderBy(x => x.Priority)
+                .ToList());
         }
 
-        public bool AddBotResponseToPattern(BotResponse botResponse)
+        public async Task AddBotResponseToPatternAsync(BotResponse botResponse)
         {
             try
             {
                 _chatBotContext.BotResponses.Add(botResponse);
-                _chatBotContext.SaveChanges();
+                var res = await _chatBotContext.SaveChangesAsync();
                 _contextsResponses[botResponse.PatternId].Add(botResponse);
-
-                return true;
             }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "can't add response to pattern");
-                return false;
             }
         }
 
-        public bool AddContext(ContextWrapper context)
+        public async Task AddContextAsync(ContextWrapper context)
         {
             try
             {
+                context.InitNewContext(context.ExpressionRawStr, _parser, _dict, 
+                    shouldWorkWithTermsForms: true, tokenFormsMaxNumberForAsterix: 30);
+
                 _chatBotContext.Contexts.Add(context);
-                _chatBotContext.SaveChanges();
+                await _chatBotContext.SaveChangesAsync();
                 _projectsContexts[context.ProjectId].Add(context);
-                return true;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "can't add context");
-                return false;
             }
         }
 
-        public bool AddManyContexts(List<ContextWrapper> contexts)
+        public async Task AddManyContextsAsync(List<ContextWrapper> contexts)
         {
-            foreach(var context in contexts)
+            try
             {
-                _chatBotContext.Contexts.Add(context);
-                _projectsContexts[context.ProjectId].Add(context);
+                foreach (var context in contexts)
+                {
+                    context.InitNewContext(context.ExpressionRawStr, _parser, _dict,
+                        shouldWorkWithTermsForms: true, tokenFormsMaxNumberForAsterix: 30);
+                    _chatBotContext.Contexts.Add(context);
+                    _projectsContexts[context.ProjectId].Add(context);
+                }
             }
+            catch(Exception ex)
+            {
+                _logger.LogError(ex, "can't init contexts");
+            }            
 
             try
             {
-                _chatBotContext.SaveChanges();
+                await _chatBotContext.SaveChangesAsync();
                 Init();
-                return true;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "can't add contexts");
-                return false;
+                _logger.LogError(ex, "can't add contexts to db");
             }
         }
 
-        public bool CreateContextWithResponses(ContextWrapper context, IEnumerable<BotResponse> responses)
+        public async Task CreateContextWithResponsesAsync(ContextWrapper context, IEnumerable<BotResponse> responses)
         {
             try
             {
+                context.InitNewContext(context.ExpressionRawStr, _parser, _dict,
+                        shouldWorkWithTermsForms: true, tokenFormsMaxNumberForAsterix: 30);
                 _chatBotContext.Contexts.Add(context);
-                _chatBotContext.SaveChanges();
+                await _chatBotContext.SaveChangesAsync();
                 _projectsContexts[context.ProjectId].Add(context);
 
                 for (int i = 0; i < responses.Count(); i++)
@@ -135,111 +145,107 @@ namespace CBLib
                     _contextsResponses[responses.ElementAt(i).PatternId].Add(responses.ElementAt(i));
                 }
 
-                _chatBotContext.SaveChanges();
-                return true;
+                await _chatBotContext.SaveChangesAsync();
             }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "can't add context with responses");
-                return false;
             }
         }
 
-        public bool DeleteBotResponseToPattern(BotResponse botResponse)
+        public async Task DeleteBotResponseToPatternAsync(BotResponse botResponse)
         {
             try
             {
                 _chatBotContext.BotResponses.Remove(botResponse);
-                _chatBotContext.SaveChanges();
+                await _chatBotContext.SaveChangesAsync();
                 var respToRemove = _contextsResponses[botResponse.PatternId]
                     .Where(r => r.Id == botResponse.Id).First();
                 _contextsResponses[botResponse.PatternId].Remove(respToRemove);
-                return true;
             }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "can't remove response");
-                return false;
             }
         }
 
-        public bool DeleteContext(ContextWrapper context)
+        public async Task DeleteContextAsync(ContextWrapper context)
         {
             try
             {
                 _chatBotContext.Contexts.Remove(context);
-                _chatBotContext.SaveChanges();
+                await _chatBotContext.SaveChangesAsync();
                 var contextToRemove = _projectsContexts[context.ProjectId]
                     .Where(ctx => ctx.Id == context.Id).First();
                 _projectsContexts[context.ProjectId].Remove(contextToRemove);
-                return true;
             }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "can't remove context");
-                return false;
             }
         }
 
-        public List<Context> GetActualContexts(int prjId, string[] terms)
+        /// <summary>
+        /// No need here. Simple implementation of repo. withot index.
+        /// </summary>
+        /// <param name="prjId"></param>
+        /// <param name="terms"></param>
+        /// <returns></returns>
+        public Task<IEnumerable<Context>> GetActualContextsAsync(int prjId, string[] terms)
         {
             throw new NotImplementedException();
         }
 
-        public List<BotResponse> GetBotResponsesToPattern(int contextId)
+        public IEnumerable<BotResponse> GetBotResponsesToPatternAsync(int contextId)
         {
             return _contextsResponses[contextId];
         }
 
-        /// <summary>
-        /// Most important method!!!!
-        /// </summary>
-        /// <param name="message"></param>
-        /// <param name="projectId"></param>
-        /// <returns></returns>
-        public Task<string> GetReponseToUserMessage(UserMessage message)
+        public BotResponse GetReponseToUserMessageAsync(UserMessage message)
         {
-            throw new NotImplementedException();
+            var tpp = new TextsPreProcessor();
+            var clearedTextAsTokens = tpp.SimpleUserMessagePrepocessing(message.MessageText);
+
+            foreach (var pa in _projectsContexts[message.ProjectId])
+            {
+                if (pa.Ctx.MatchPatternToString(clearedTextAsTokens))
+                    return _contextsResponses[pa.Id].OrderBy(r => r.Priority).First();
+            }
+            return null;
         }
 
-        public bool UpdateBotResponseToPattern(BotResponse botResponse)
+        public async Task UpdateBotResponseToPatternAsync(BotResponse botResponse)
         {
             try
             {
                 var respFromDb = _chatBotContext.BotResponses.First(r => r.Id == botResponse.Id);
                 _chatBotContext.Entry(respFromDb).CurrentValues.SetValues(botResponse);
-                _chatBotContext.SaveChanges();
+                await _chatBotContext.SaveChangesAsync();
                 var ctxResps = _contextsResponses[botResponse.PatternId];
                 var ind = ctxResps.FindIndex(r => r.Id == botResponse.Id);
                 ctxResps[ind] = botResponse;
-
-                return true;
             }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "can't update response");
-                return false;
             }
         }
 
-        public bool UpdateContext(ContextWrapper context)
+        public async Task UpdateContextAsync(ContextWrapper context)
         {
             try
             {
                 var ctxFromDb = _chatBotContext.Contexts.First(r => r.Id == context.Id);
                 _chatBotContext.Entry(ctxFromDb).CurrentValues.SetValues(context);
-                _chatBotContext.SaveChanges();
+                await _chatBotContext.SaveChangesAsync();
 
                 var projectContexts = _projectsContexts[context.ProjectId];
                 var indexOfContext = projectContexts.FindIndex(c => c.Id == context.Id);
                 projectContexts[indexOfContext] = context;
-
-                return true;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "can't update context");
-                return false;
             }
         }
 
