@@ -33,15 +33,17 @@ namespace ChatBotterWebApi.Controllers
         [Route("GetContextWrapper/{contextId}")]
         public async Task<IActionResult> GetContextWrapper(int contextId)
         {
-            var res = await _patternRepo.GetContextAsync(contextId);
-            return Ok();
+            //var res = await _patternRepo.GetContextAsync(contextId);
+            var res = await _dbContext.Contexts.FindAsync(contextId);
+            return Ok(res);
         }
 
         [HttpGet]
         [Route("GetAllProjectContextWrappers")]
-        public IActionResult GetAllProjectContextWrappers(int projectId)
+        public async Task<IActionResult> GetAllProjectContextWrappers(int projectId)
         {
-            return Ok(_patternRepo.GetAllProjectContextsAsync(projectId);
+            var res = await _patternRepo.GetAllProjectContextsAsync(projectId);
+            return Ok(res);
         }
 
         [HttpPost]

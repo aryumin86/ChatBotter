@@ -243,16 +243,16 @@ namespace CBLib
             }
         }
 
-        public async Task<ContextWrapper> GetContextAsync(int contextId)
+        public Task<ContextWrapper> GetContextAsync(int contextId)
         {
-            var res = await _chatBotContext.Contexts.FirstAsync(c => c.Id == contextId);
-            return res;
+            return Task.Run(() => _chatBotContext.Contexts.FindAsync(contextId));
             //return _chatBotContext.Contexts.First(c => c.Id == contextId);
         }
 
         public async Task<IEnumerable<ContextWrapper>> GetAllProjectContextsAsync(int projectId)
         {
-            return await _chatBotContext.Contexts.Where(c => c.ProjectId == projectId).ToListAsync();
+            var res = await _chatBotContext.Contexts.Where(c => c.ProjectId == projectId).ToListAsync();
+            return res;
         }
     }
 }
