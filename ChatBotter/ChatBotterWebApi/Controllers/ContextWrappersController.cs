@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 using CBLib.Entities;
+using ChatBotterWebApi.DTO;
 
 namespace ChatBotterWebApi.Controllers
 {
@@ -33,8 +34,7 @@ namespace ChatBotterWebApi.Controllers
         [Route("GetContextWrapper/{contextId}")]
         public async Task<IActionResult> GetContextWrapper(int contextId)
         {
-            //var res = await _patternRepo.GetContextAsync(contextId);
-            var res = await _dbContext.Contexts.FindAsync(contextId);
+            var res = await _patternRepo.GetContextAsync(contextId);
             return Ok(res);
         }
 
@@ -48,21 +48,22 @@ namespace ChatBotterWebApi.Controllers
 
         [HttpPost]
         [Route("AddContextWrapper")]
-        public async IActionResult AddContextWrapper()
+        public async IActionResult AddContextWrapper([FromBody]ContextDto context)
         {
-
+            await _patternRepo.AddContextAsync();
+            return Ok();
         }
 
         [HttpPost]
         [Route("UpdateContextWrapepr")]
-        public async IActionResult UpdateContextWrapepr()
+        public async IActionResult UpdateContextWrapepr([FromBody]ContextDto context)
         {
 
         }
 
         [HttpGet]
         [Route("RemoveContextWrapepr")]
-        public async IActionResult RemoveContextWrapper()
+        public async IActionResult RemoveContextWrapper(int contextId)
         {
 
         }

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using CBLib;
 using CBLib.Entities;
+using ChatBotterWebApi.DTO;
 using ChatBotterWebApi.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -65,8 +68,18 @@ namespace ChatBotterWebApi.Controllers
 
         [HttpPost]
         [Route("AddBotResponse")]
-        public async Task<IActionResult> AddBotResponse([FromBody] BotResponse resp)
+        public async Task<IActionResult> AddBotResponse([FromBody] BotResponseDto resp)
         {
+            if (resp == null)
+                return BadRequest();
+
+            var validationContext = new ValidationContext(resp, null, null);
+            var validationResults = new List<ValidationResult>();
+            Validator.TryValidateObject(resp, validationContext, validationResults, true);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             try
             {
                 _dbContext.BotResponses.Add(resp);
@@ -82,7 +95,7 @@ namespace ChatBotterWebApi.Controllers
 
         [HttpPost]
         [Route("UpdateBotResponse")]
-        public async Task<IActionResult> UpdateBotResponse([FromBody] BotResponse resp)
+        public async Task<IActionResult> UpdateBotResponse([FromBody] BotResponseDto resp)
         {
             var respFromDb = await _dbContext.BotResponses.FirstOrDefaultAsync(r => r.Id == resp.Id);
 

@@ -34,6 +34,7 @@ namespace ChatBotterWebApi
         {
             var key = Encoding.ASCII.GetBytes(Configuration.GetSection("AppSettings:Token").Value);
             services.AddMvc();
+            services.AddMvcCore().AddDataAnnotations();
             services.AddAutoMapper();
             services.AddDbContext<ChatBotContext>(x => x.UseMySql(Configuration.GetConnectionString("chatbotter_mysql_conn")));
             services.AddTransient<Seed>();
