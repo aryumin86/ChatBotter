@@ -37,6 +37,8 @@ namespace CBLib
             _morfDict = new ConcreteMorfDictionary();
             _parser = new ConcretePatternParser();
             _dict = new ConcreteMorfDictionary();
+
+            Init();
         }        
 
         public void Init()
