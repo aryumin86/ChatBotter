@@ -158,7 +158,7 @@ namespace ChatBotterWebApi.Controllers
 
         [HttpPost]
         [Route("UpdateGreeting")]
-        public async Task<IActionResult> UpdateGreeting(Greeting greeting)
+        public async Task<IActionResult> UpdateGreeting(GreetingDto greeting)
         {
             _logger.LogInformation("UpdateGreeting({greeting.Id}). Updating greeting", greeting.Id);
 
@@ -179,7 +179,8 @@ namespace ChatBotterWebApi.Controllers
 
             try
             {
-                _dbContext.Entry(gr).CurrentValues.SetValues(greeting);
+                var greetObj = _mapper.Map<Greeting>(greeting);
+                _dbContext.Entry(gr).CurrentValues.SetValues(greetObj);
                 await _dbContext.SaveChangesAsync();
                 return Ok();
             }

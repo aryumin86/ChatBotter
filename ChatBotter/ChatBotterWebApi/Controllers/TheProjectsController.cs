@@ -1,9 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
 using CBLib;
 using CBLib.Entities;
+using ChatBotterWebApi.DTO;
 using ChatBotterWebApi.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -20,12 +24,14 @@ namespace ChatBotterWebApi.Controllers
         private ChatBotContext _dbContext;
         private readonly ILogger _logger;
         private readonly IPatternsRepository _patternRepo;
+        private readonly IMapper _mapper;
 
-        public TheProjectsController(ChatBotContext ctx, ILogger logger, IPatternsRepository patternRepo)
+        public TheProjectsController(ChatBotContext ctx, ILogger logger, IPatternsRepository patternRepo, IMapper mapper)
         {
             _dbContext = ctx;
             _logger = logger;
             _patternRepo = patternRepo;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -62,7 +68,7 @@ namespace ChatBotterWebApi.Controllers
 
         [HttpPost]
         [Route("UpdateProject")]
-        public async Task<IActionResult> UpdateProject([FromBody] TheProject prj)
+        public async Task<IActionResult> UpdateProject([FromBody] TheProjectDto prj)
         {
             if(!HasAccess(prj.OwnerId))
                 return StatusCode(403);
@@ -72,9 +78,17 @@ namespace ChatBotterWebApi.Controllers
             if (prjFromDb == null)
                 return NotFound("No such project in database");
 
+            var validationContext = new System.ComponentModel.DataAnnotations.ValidationContext(prj, null, null);
+            var validationResults = new List<ValidationResult>();
+            Validator.TryValidateObject(prj, validationContext, validationResults, true);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             try
             {
-                _dbContext.Entry(prjFromDb).CurrentValues.SetValues(prj);
+                var prjObj = _mapper.Map<TheProject>(prj);
+                _dbContext.Entry(prjFromDb).CurrentValues.SetValues(prjObj);
                 await _dbContext.SaveChangesAsync();
                 return Ok();
             }
@@ -113,11 +127,19 @@ namespace ChatBotterWebApi.Controllers
 
         [HttpPost]
         [Route("AddProject")]
-        public async Task<IActionResult> AddProject([FromBody] TheProject prj)
+        public async Task<IActionResult> AddProject([FromBody] TheProjectDto prj)
         {
+            var validationContext = new System.ComponentModel.DataAnnotations.ValidationContext(prj, null, null);
+            var validationResults = new List<ValidationResult>();
+            Validator.TryValidateObject(prj, validationContext, validationResults, true);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             try
             {
-                _dbContext.TheProjects.Add(prj);
+                var prjObj = _mapper.Map<TheProject>(prj);
+                _dbContext.TheProjects.Add(prjObj);
                 await _dbContext.SaveChangesAsync();
                 _patternRepo.OnProjectDeleted();
                 return Ok();
