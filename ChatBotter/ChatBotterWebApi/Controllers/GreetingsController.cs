@@ -82,7 +82,8 @@ namespace ChatBotterWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("GetRandomGreeting/{projectId")]
+        [AllowAnonymous]
+        [Route("GetRandomGreeting/{projectId}")]
         public async Task<IActionResult> GetRandomGreeting(int projectId)
         {
             var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == projectId);
@@ -131,7 +132,7 @@ namespace ChatBotterWebApi.Controllers
         }
 
         [HttpGet]
-        [Route("RemoveGreeting/{greetingId")]
+        [Route("RemoveGreeting/{greetingId}")]
         public async Task<IActionResult> RemoveGreeting(int greetingId){
             _logger.LogInformation("RemoveGreeting({greetingId}). Removing greeting", greetingId);
 

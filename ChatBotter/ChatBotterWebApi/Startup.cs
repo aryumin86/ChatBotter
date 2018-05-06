@@ -41,7 +41,7 @@ namespace ChatBotterWebApi
             services.AddCors();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IGreetingsRepository, GreetingsRepository>();
-            services.AddScoped<IPatternsRepository, ConcretePatternsRepository>();
+            services.AddSingleton<IPatternsRepository, ConcretePatternsRepository>();
             services.AddScoped<IValidationHelperRepository, ValidationHelperRepository>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -73,6 +73,7 @@ namespace ChatBotterWebApi
             }
 
             seeder.SeedUSers();
+            app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials());
             app.UseMvc();
         }
     }

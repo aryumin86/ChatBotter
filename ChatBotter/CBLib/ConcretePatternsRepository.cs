@@ -66,6 +66,16 @@ namespace CBLib
                 })
                 .ToDictionary(r => r.CtxId, r => r.Responses.OrderBy(x => x.Priority)
                 .ToList());
+
+            _projectsContexts = _chatBotContext.Contexts
+                .GroupBy(c => c.ProjectId)
+                .Select(gr => new
+                {
+                    PrjId = gr.Key,
+                    Contexts = gr
+                })
+                .ToDictionary(r => r.PrjId, r => r.Contexts.OrderBy(x => x.Priority)
+                .ToList());
         }
 
         public async Task AddBotResponseToPatternAsync(BotResponse botResponse)

@@ -16,3 +16,228 @@ LIMIT 1
 22.04.2018 19:26:06 Request finished in 48.6143ms 404 
 04/24/2018 10:25:28 Request starting HTTP/1.1 GET http://localhost:5000/api/values  
 04/24/2018 10:25:29 Request finished in 223.906ms 404 
+06.05.2018 14:01:20 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+06.05.2018 14:01:20 Request starting HTTP/1.1 GET http://localhost:56032/  
+06.05.2018 14:01:20 Request finished in 137.2576ms 200 
+06.05.2018 14:01:20 An unhandled exception has occurred while executing the request
+06.05.2018 14:01:20 Request finished in 318.8078ms 500 text/html; charset=utf-8
+06.05.2018 14:01:20 Request starting HTTP/1.1 GET http://localhost:56032/favicon.ico  
+06.05.2018 14:01:21 An unhandled exception has occurred while executing the request
+06.05.2018 14:01:21 Request finished in 77.8829ms 500 text/html; charset=utf-8
+06.05.2018 14:02:24 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+06.05.2018 14:02:24 Request starting HTTP/1.1 GET http://localhost:56032/  
+06.05.2018 14:02:24 Request finished in 124.4769ms 200 
+06.05.2018 14:02:24 An unhandled exception has occurred while executing the request
+06.05.2018 14:02:24 Request finished in 279.5016ms 500 text/html; charset=utf-8
+06.05.2018 14:02:24 Request starting HTTP/1.1 GET http://localhost:56032/favicon.ico  
+06.05.2018 14:02:24 An unhandled exception has occurred while executing the request
+06.05.2018 14:02:24 Request finished in 129.9907ms 500 text/html; charset=utf-8
+06.05.2018 14:02:51 Request starting HTTP/1.1 GET http://localhost:56032/  
+06.05.2018 14:02:51 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+06.05.2018 14:02:51 Request finished in 159.6897ms 200 
+06.05.2018 14:02:51 Request finished in 225.927ms 404 
+06.05.2018 14:03:03 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/get  
+06.05.2018 14:03:03 Request finished in 34.0438ms 404 
+06.05.2018 14:03:22 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetAllProjectGreetings/1  
+06.05.2018 14:03:22 Authorization failed for user: (null).
+06.05.2018 14:03:22 Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+06.05.2018 14:03:22 Executing ChallengeResult with authentication schemes ().
+06.05.2018 14:03:22 AuthenticationScheme: Bearer was challenged.
+06.05.2018 14:03:22 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetAllProjectGreetings (ChatBotterWebApi) in 204.7779ms
+06.05.2018 14:03:22 Request finished in 351.8221ms 401 
+06.05.2018 14:03:32 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetAllProjectGreetings/1  
+06.05.2018 14:03:32 Authorization failed for user: (null).
+06.05.2018 14:03:32 Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+06.05.2018 14:03:32 Executing ChallengeResult with authentication schemes ().
+06.05.2018 14:03:32 AuthenticationScheme: Bearer was challenged.
+06.05.2018 14:03:32 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetAllProjectGreetings (ChatBotterWebApi) in 109.9585ms
+06.05.2018 14:03:32 Request finished in 154.8182ms 401 
+06.05.2018 14:03:49 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetAllProjectGreetings/1  
+06.05.2018 14:03:49 Authorization failed for user: (null).
+06.05.2018 14:03:49 Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+06.05.2018 14:03:49 Executing ChallengeResult with authentication schemes ().
+06.05.2018 14:03:49 AuthenticationScheme: Bearer was challenged.
+06.05.2018 14:03:49 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetAllProjectGreetings (ChatBotterWebApi) in 65.7293ms
+06.05.2018 14:03:49 Request finished in 142.7265ms 401 
+06.05.2018 14:04:03 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+06.05.2018 14:04:03 Request starting HTTP/1.1 GET http://localhost:56032/  
+06.05.2018 14:04:03 Request finished in 131.2892ms 200 
+06.05.2018 14:04:03 Request finished in 199.77ms 404 
+06.05.2018 14:04:09 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetAllProjectGreetings?projectId=0  
+06.05.2018 14:04:09 Request finished in 13.1398ms 404 
+06.05.2018 14:06:24 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+06.05.2018 14:06:24 Request starting HTTP/1.1 GET http://localhost:56032/  
+06.05.2018 14:06:24 Request finished in 129.7245ms 200 
+06.05.2018 14:06:25 Request finished in 218.6495ms 404 
+06.05.2018 14:06:32 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetAllProjectGreetings?projectId=0  
+06.05.2018 14:06:32 Request finished in 13.0261ms 404 
+06.05.2018 14:07:36 Request starting HTTP/1.1 GET http://localhost:56032/  
+06.05.2018 14:07:36 Request finished in 68.6012ms 404 
+06.05.2018 14:07:40 Request starting HTTP/1.1 GET http://localhost:56032/  
+06.05.2018 14:07:40 Request finished in 54.4563ms 404 
+06.05.2018 14:09:05 Request starting HTTP/1.1 GET http://localhost:56032/  
+06.05.2018 14:09:05 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+06.05.2018 14:09:05 Request finished in 154.8937ms 200 
+06.05.2018 14:09:05 Request finished in 243.0631ms 404 
+06.05.2018 14:09:12 Request starting HTTP/1.1 GET http://localhost:56032/  
+06.05.2018 14:09:12 Request finished in 16.4667ms 404 
+06.05.2018 14:10:19 Request starting HTTP/1.1 GET http://localhost:56032/  
+06.05.2018 14:10:19 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+06.05.2018 14:10:19 Request finished in 142.202ms 200 
+06.05.2018 14:10:19 Request finished in 231.892ms 404 
+06.05.2018 14:10:52 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetAllProjectGreetings/1  
+06.05.2018 14:11:09 Heartbeat took longer than "00:00:01" at "05/06/2018 11:11:06 +00:00".
+06.05.2018 14:11:40 Authorization failed for user: (null).
+06.05.2018 14:11:43 Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+06.05.2018 14:11:44 Executing ChallengeResult with authentication schemes ().
+06.05.2018 14:11:46 AuthenticationScheme: Bearer was challenged.
+06.05.2018 14:11:46 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetAllProjectGreetings (ChatBotterWebApi) in 53804.0219ms
+06.05.2018 14:11:46 Request finished in 53947.7159ms 401 
+06.05.2018 14:16:50 Request starting HTTP/1.1 GET http://localhost:56032/api/auth/login  
+06.05.2018 14:16:50 Request finished in 32.5917ms 404 
+06.05.2018 14:17:30 Request starting HTTP/1.1 POST http://localhost:56032/api/auth/login  0
+06.05.2018 14:17:30 Executing HttpStatusCodeResult, setting HTTP status code 415
+06.05.2018 14:17:30 Executed action ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) in 47.4555ms
+06.05.2018 14:17:30 Request finished in 85.6894ms 415 
+06.05.2018 14:19:12 Request starting HTTP/1.1 POST http://localhost:56032/api/auth/login application/json 47
+06.05.2018 14:19:12 Executing action method ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.UserForLoginDTO) - ModelState is Valid
+06.05.2018 14:19:13 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+06.05.2018 14:19:13 Executed DbCommand (50ms) [Parameters=[@__login_0='?' (Size = 8000)], CommandType='Text', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`AppAdmin`, `x`.`PasswordHash`, `x`.`PasswordSalt`, `x`.`UserName`
+FROM `Users` AS `x`
+WHERE `x`.`UserName` = @__login_0
+LIMIT 1
+06.05.2018 14:19:13 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+06.05.2018 14:19:13 Executed action ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) in 1009.077ms
+06.05.2018 14:19:13 Request finished in 1072.8388ms 200 application/json; charset=utf-8
+06.05.2018 14:20:34 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetAllProjectGreetings/1  
+06.05.2018 14:20:34 Authorization failed for user: (null).
+06.05.2018 14:20:34 Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+06.05.2018 14:20:34 Executing ChallengeResult with authentication schemes ().
+06.05.2018 14:20:34 Successfully validated the token.
+06.05.2018 14:20:34 AuthenticationScheme: Bearer was challenged.
+06.05.2018 14:20:34 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetAllProjectGreetings (ChatBotterWebApi) in 124.7113ms
+06.05.2018 14:20:34 Request finished in 186.2443ms 401 
+06.05.2018 14:21:11 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetAllProjectGreetings/1  
+06.05.2018 14:21:11 Authorization failed for user: (null).
+06.05.2018 14:21:11 Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+06.05.2018 14:21:11 Executing ChallengeResult with authentication schemes ().
+06.05.2018 14:21:11 Successfully validated the token.
+06.05.2018 14:21:11 AuthenticationScheme: Bearer was challenged.
+06.05.2018 14:21:11 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetAllProjectGreetings (ChatBotterWebApi) in 92.4172ms
+06.05.2018 14:21:11 Request finished in 129.6996ms 401 
+06.05.2018 14:23:05 Request starting HTTP/1.1 POST http://localhost:56032/api/auth/login application/json 47
+06.05.2018 14:23:05 Executing action method ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.UserForLoginDTO) - ModelState is Valid
+06.05.2018 14:23:05 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+06.05.2018 14:23:05 Executed DbCommand (7ms) [Parameters=[@__login_0='?' (Size = 8000)], CommandType='Text', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`AppAdmin`, `x`.`PasswordHash`, `x`.`PasswordSalt`, `x`.`UserName`
+FROM `Users` AS `x`
+WHERE `x`.`UserName` = @__login_0
+LIMIT 1
+06.05.2018 14:23:05 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+06.05.2018 14:23:05 Executed action ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) in 157.1244ms
+06.05.2018 14:23:05 Request finished in 197.0669ms 200 application/json; charset=utf-8
+06.05.2018 14:24:04 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetAllProjectGreetings/1  
+06.05.2018 14:24:04 Authorization failed for user: (null).
+06.05.2018 14:24:04 Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+06.05.2018 14:24:04 Executing ChallengeResult with authentication schemes ().
+06.05.2018 14:24:04 Successfully validated the token.
+06.05.2018 14:24:04 AuthenticationScheme: Bearer was challenged.
+06.05.2018 14:24:04 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetAllProjectGreetings (ChatBotterWebApi) in 132.9645ms
+06.05.2018 14:24:04 Request finished in 191.6879ms 401 
+06.05.2018 14:31:24 Request starting HTTP/1.1 GET http://localhost:56032/  
+06.05.2018 14:31:24 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+06.05.2018 14:31:24 Request finished in 140.5486ms 200 
+06.05.2018 14:31:24 Request finished in 221.53ms 404 
+06.05.2018 14:31:39 Request starting HTTP/1.1 POST http://localhost:56032/api/auth/login application/json 47
+06.05.2018 14:31:39 Executing action method ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.UserForLoginDTO) - ModelState is Valid
+06.05.2018 14:31:39 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+06.05.2018 14:31:39 Executed DbCommand (49ms) [Parameters=[@__login_0='?' (Size = 8000)], CommandType='Text', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`AppAdmin`, `x`.`PasswordHash`, `x`.`PasswordSalt`, `x`.`UserName`
+FROM `Users` AS `x`
+WHERE `x`.`UserName` = @__login_0
+LIMIT 1
+06.05.2018 14:31:40 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+06.05.2018 14:31:40 Executed action ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) in 1027.4222ms
+06.05.2018 14:31:40 Request finished in 1185.5008ms 200 application/json; charset=utf-8
+06.05.2018 14:32:09 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetAllProjectGreetings/1  
+06.05.2018 14:32:09 Authorization failed for user: (null).
+06.05.2018 14:32:09 Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+06.05.2018 14:32:09 Executing ChallengeResult with authentication schemes ().
+06.05.2018 14:32:09 Successfully validated the token.
+06.05.2018 14:32:09 AuthenticationScheme: Bearer was challenged.
+06.05.2018 14:32:09 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetAllProjectGreetings (ChatBotterWebApi) in 210.963ms
+06.05.2018 14:32:09 Request finished in 249.9317ms 401 
+06.05.2018 14:37:58 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+06.05.2018 14:37:58 Request starting HTTP/1.1 GET http://localhost:56032/  
+06.05.2018 14:37:58 Request finished in 212.5889ms 200 
+06.05.2018 14:37:58 Request finished in 297.0935ms 404 
+06.05.2018 14:38:02 Request starting HTTP/1.1 POST http://localhost:56032/api/auth/login application/json 47
+06.05.2018 14:38:02 Executing action method ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.UserForLoginDTO) - ModelState is Valid
+06.05.2018 14:38:02 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+06.05.2018 14:38:03 Executed DbCommand (49ms) [Parameters=[@__login_0='?' (Size = 8000)], CommandType='Text', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`AppAdmin`, `x`.`PasswordHash`, `x`.`PasswordSalt`, `x`.`UserName`
+FROM `Users` AS `x`
+WHERE `x`.`UserName` = @__login_0
+LIMIT 1
+06.05.2018 14:38:03 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+06.05.2018 14:38:03 Executed action ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) in 938.8695ms
+06.05.2018 14:38:03 Request finished in 1100.073ms 200 application/json; charset=utf-8
+06.05.2018 14:38:24 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetAllProjectGreetings?projectId=1  
+06.05.2018 14:38:24 Request finished in 31.4861ms 404 
+06.05.2018 14:38:26 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetAllProjectGreetings?projectId=1  
+06.05.2018 14:38:26 Request finished in 12.3004ms 404 
+06.05.2018 14:38:44 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetAllProjectGreetings?projectId=1  
+06.05.2018 14:38:44 Request finished in 13.807ms 404 
+06.05.2018 14:39:24 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetAllProjectGreetings/1  
+06.05.2018 14:39:24 Authorization failed for user: (null).
+06.05.2018 14:39:24 Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+06.05.2018 14:39:24 Executing ChallengeResult with authentication schemes ().
+06.05.2018 14:39:24 Successfully validated the token.
+06.05.2018 14:39:24 AuthenticationScheme: Bearer was challenged.
+06.05.2018 14:39:24 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetAllProjectGreetings (ChatBotterWebApi) in 180.5356ms
+06.05.2018 14:39:24 Request finished in 246.2967ms 401 
+06.05.2018 14:39:46 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetRandomGreeting/1  
+06.05.2018 14:39:46 Authorization failed for user: (null).
+06.05.2018 14:39:46 Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+06.05.2018 14:39:46 Executing ChallengeResult with authentication schemes ().
+06.05.2018 14:39:46 Successfully validated the token.
+06.05.2018 14:39:46 AuthenticationScheme: Bearer was challenged.
+06.05.2018 14:39:46 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) in 72.707ms
+06.05.2018 14:39:46 Request finished in 120.8279ms 401 
+06.05.2018 14:40:28 Request starting HTTP/1.1 GET http://localhost:56032/GetRandomGreeting/1  
+06.05.2018 14:40:28 Request finished in 14.7679ms 404 
+06.05.2018 14:40:35 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetRandomGreeting/1  
+06.05.2018 14:40:35 Authorization failed for user: (null).
+06.05.2018 14:40:35 Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+06.05.2018 14:40:35 Executing ChallengeResult with authentication schemes ().
+06.05.2018 14:40:36 Successfully validated the token.
+06.05.2018 14:40:36 AuthenticationScheme: Bearer was challenged.
+06.05.2018 14:40:36 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) in 165.4203ms
+06.05.2018 14:40:36 Request finished in 223.1819ms 401 
+06.05.2018 14:40:52 Request starting HTTP/1.1 GET http://localhost:56032/  
+06.05.2018 14:40:52 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+06.05.2018 14:40:52 Request finished in 114.0836ms 200 
+06.05.2018 14:40:52 Request finished in 218.6166ms 404 
+06.05.2018 14:40:55 Request starting HTTP/1.1 POST http://localhost:56032/api/auth/login application/json 47
+06.05.2018 14:40:55 Executing action method ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.UserForLoginDTO) - ModelState is Valid
+06.05.2018 14:40:56 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+06.05.2018 14:40:56 Executed DbCommand (46ms) [Parameters=[@__login_0='?' (Size = 8000)], CommandType='Text', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`AppAdmin`, `x`.`PasswordHash`, `x`.`PasswordSalt`, `x`.`UserName`
+FROM `Users` AS `x`
+WHERE `x`.`UserName` = @__login_0
+LIMIT 1
+06.05.2018 14:40:56 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+06.05.2018 14:40:56 Executed action ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) in 953.232ms
+06.05.2018 14:40:56 Request finished in 1064.5207ms 200 application/json; charset=utf-8
+06.05.2018 14:41:08 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetRandomGreeting/1  
+06.05.2018 14:41:15 Executing action method ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) with arguments (1) - ModelState is Valid
+06.05.2018 14:41:15 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+06.05.2018 14:41:15 Executed DbCommand (5ms) [Parameters=[@__projectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__projectId_0
+LIMIT 1
+06.05.2018 14:41:15 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+06.05.2018 14:41:15 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) in 7091.9731ms
+06.05.2018 14:41:15 Request finished in 7154.9114ms 404 application/json; charset=utf-8
