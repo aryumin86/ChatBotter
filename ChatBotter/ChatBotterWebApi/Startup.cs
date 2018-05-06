@@ -74,6 +74,7 @@ namespace ChatBotterWebApi
 
             seeder.SeedUSers();
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+            app.UseAuthentication();
             app.UseMvc();
         }
     }
