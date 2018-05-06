@@ -19,11 +19,13 @@ namespace ChatBotterWebApi.Controllers
     {
         private ChatBotContext _dbContext;
         private readonly ILogger _logger;
+        private readonly IPatternsRepository _patternRepo;
 
-        public TheProjectsController(ChatBotContext ctx, ILogger logger)
+        public TheProjectsController(ChatBotContext ctx, ILogger logger, IPatternsRepository patternRepo)
         {
             _dbContext = ctx;
             _logger = logger;
+            _patternRepo = patternRepo;
         }
 
         [HttpGet]
@@ -99,6 +101,7 @@ namespace ChatBotterWebApi.Controllers
             {
                 _dbContext.TheProjects.Remove(prj);
                 await _dbContext.SaveChangesAsync();
+                _patternRepo.OnProjectDeleted();
                 return Ok();
             }
             catch(Exception ex)
@@ -116,6 +119,7 @@ namespace ChatBotterWebApi.Controllers
             {
                 _dbContext.TheProjects.Add(prj);
                 await _dbContext.SaveChangesAsync();
+                _patternRepo.OnProjectDeleted();
                 return Ok();
             }
             catch (Exception ex)
@@ -128,7 +132,13 @@ namespace ChatBotterWebApi.Controllers
         public bool HasAccess(int userId)
         {
             int currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            return userId == currentUserId;
+            if (userId == currentUserId)
+                return true;
+
+            if (_dbContext.Users.Find(currentUserId).AppAdmin)
+                return true;
+
+            return false;
         }
     }
 }

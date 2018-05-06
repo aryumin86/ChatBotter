@@ -43,6 +43,16 @@ namespace CBLib
 
         Task AddManyContextsAsync(List<ContextWrapper> contexts);
 
+        Task<IEnumerable<BotResponse>> GetAllProjectBotResponsesAsync(int projectId);
+
+        Task<BotResponse> GetBotResponseAsync(int id);
+
+        Task RemoveBotResponseAsync(int id);
+
+        void OnProjectAdded();
+
+        void OnProjectDeleted();
+
         /// <summary>
         /// Get response of bot for user message.
         /// </summary>

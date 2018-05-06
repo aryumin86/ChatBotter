@@ -260,5 +260,39 @@ namespace CBLib
             var res = await _chatBotContext.Contexts.Where(c => c.ProjectId == projectId).ToListAsync();
             return res;
         }
+
+        public async Task<IEnumerable<BotResponse>> GetAllProjectBotResponsesAsync(int projectId)
+        {
+            var res = await _chatBotContext.BotResponses.Where(r => r.TheProjectId == projectId).ToListAsync();
+            return res;
+        }
+
+        public async Task<BotResponse> GetBotResponseAsync(int id)
+        {
+            var res = await _chatBotContext.BotResponses.FindAsync(id);
+            return res;
+        }
+
+        public async Task RemoveBotResponseAsync(int id)
+        {
+            var resp = await _chatBotContext.BotResponses.FirstOrDefaultAsync(r => r.Id == id);
+            if(resp != null)
+            {
+                _chatBotContext.BotResponses.Remove(resp);
+                var respToRemove = _contextsResponses[resp.PatternId].FirstOrDefault(r => r.Id == id);
+                if (respToRemove != null)
+                    _contextsResponses[resp.PatternId].Remove(respToRemove);
+            }                
+        }
+
+        public void OnProjectAdded()
+        {
+            Init();
+        }
+
+        public void OnProjectDeleted()
+        {
+            Init();
+        }
     }
 }

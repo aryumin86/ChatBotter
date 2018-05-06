@@ -6,20 +6,14 @@ using System.Threading.Tasks;
 
 namespace ChatBotterWebApi.DTO
 {
-    public class BotResponseDto
+    public class GreetingDto
     {
         public int Id { get; set; }
 
         [Required]
-        public int Priority { get; set; }
+        public int ProjectId { get; set; }
 
         [Required]
-        public string ResponseText { get; set; }
-
-        [Required]
-        public int TheProjectId { get; set; }
-
-        [Required]
-        public int PatternId { get; set; }
+        public string MainGreeting { get; set; }
     }
 }

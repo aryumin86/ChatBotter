@@ -25,7 +25,7 @@ namespace ChatBotterWebApiTests.Controllers
 
             mockGreetingRepo.Setup(repo => repo.GetAllAppGreetingsAsync())
                 .Returns(Task.FromResult(GetFakeGreetings()));
-            var controller = new GreetingsController(null, logger, mockGreetingRepo.Object);
+            var controller = new GreetingsController(null, logger, mockGreetingRepo.Object, null);
 
             //Act
             var res = await controller.GetAllAppGreetings();

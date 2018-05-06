@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using CBLib;
 using CBLib.Entities;
 using ChatBotterWebApi.Data;
 using ChatBotterWebApi.DTO;
@@ -18,11 +19,13 @@ namespace ChatBotterWebApi.Controllers
     {
         private IAuthRepository _repo;
         private IConfiguration _config { get; }
+        private ChatBotContext _dbContext;
 
-        public AuthController(IAuthRepository repo, IConfiguration config)
+        public AuthController(IAuthRepository repo, IConfiguration config, ChatBotContext ctx)
         {
             _config = config;
             _repo = repo;
+            _dbContext = ctx;
         }
 
         [HttpPost("register")] 
@@ -79,7 +82,13 @@ namespace ChatBotterWebApi.Controllers
         public bool HasAccess(int userId)
         {
             int currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            return userId == currentUserId;
+            if (userId == currentUserId)
+                return true;
+
+            if (_dbContext.Users.Find(currentUserId).AppAdmin)
+                return true;
+
+            return false;
         }
     }
 }

@@ -12,6 +12,8 @@ namespace ChatBotterWebApi.Helpers
         {
             CreateMap<User, UserForDetailedDto>();
             CreateMap<UserForUpdateDto, User>();
+            CreateMap<ContextDto, ContextWrapper>();
+            CreateMap<BotResponseDto, BotResponse>();
         }
 
     }

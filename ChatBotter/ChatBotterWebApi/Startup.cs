@@ -41,6 +41,9 @@ namespace ChatBotterWebApi
             services.AddCors();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IGreetingsRepository, GreetingsRepository>();
+            services.AddScoped<IPatternsRepository, ConcretePatternsRepository>();
+            services.AddScoped<IValidationHelperRepository, ValidationHelperRepository>();
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {
                     options.TokenValidationParameters = new TokenValidationParameters

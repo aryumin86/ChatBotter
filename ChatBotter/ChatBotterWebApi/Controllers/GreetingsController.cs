@@ -1,11 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
 using CBLib;
 using CBLib.Entities;
 using ChatBotterWebApi.Data;
+using ChatBotterWebApi.DTO;
+using ChatBotterWebApi.Helpers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,17 +21,20 @@ namespace ChatBotterWebApi.Controllers
     [Authorize]
     [Produces("application/json")]
     [Route("api/Greetings")]
-    public class GreetingsController : Controller
+    public class GreetingsController : Controller, IAccessVerifier
     {
         private ChatBotContext _dbContext;
         private readonly ILogger _logger;
         private readonly IGreetingsRepository _greetingsRepo;
+        private readonly IMapper _mapper;
 
-        public GreetingsController(ChatBotContext dbContext, ILogger<GreetingsController> logger, IGreetingsRepository greetingsRepo)
+        public GreetingsController(ChatBotContext dbContext, ILogger<GreetingsController> logger, 
+            IGreetingsRepository greetingsRepo, IMapper mapper)
         {
             _dbContext = dbContext;
             _logger = logger;
             _greetingsRepo = greetingsRepo;
+            _mapper = mapper;
         }
 
         [Route("GetAllProjectGreetings/{projectId}")]
@@ -38,7 +45,7 @@ namespace ChatBotterWebApi.Controllers
             if (prj == null)
                 return NotFound("There is no such project in db");
 
-            if (!VerifyUser(prj.OwnerId))
+            if (!HasAccess(prj.OwnerId))
                 return StatusCode(403);
 
             //var res = await _dbContext.Greetings.Where(g => g.ProjectId == projectId).ToListAsync();  
@@ -63,7 +70,7 @@ namespace ChatBotterWebApi.Controllers
             if (prj == null)
                 return NotFound("There is no such project in db");
 
-            if (!VerifyUser(prj.OwnerId))
+            if (!HasAccess(prj.OwnerId))
                 return StatusCode(403);
 
             var res = await _dbContext.Greetings.FirstOrDefaultAsync(g => g.Id == id);
@@ -82,7 +89,7 @@ namespace ChatBotterWebApi.Controllers
             if (prj == null)
                 return NotFound("There is no such project in db");
 
-            if (!VerifyUser(prj.OwnerId))
+            if (!HasAccess(prj.OwnerId))
                 return StatusCode(403);
 
             Random rand = new Random();
@@ -96,23 +103,29 @@ namespace ChatBotterWebApi.Controllers
 
         [HttpPost]
         [Route("AddGreeting")]
-        public async Task<IActionResult> AddGreeting(Greeting greeting, int projectId){
-            _logger.LogInformation("AddGreeting({greeting},{projectId}). Adding greeting", greeting, projectId);
+        public async Task<IActionResult> AddGreeting(GreetingDto greeting){
+            var validationContext = new System.ComponentModel.DataAnnotations.ValidationContext(greeting, null, null);
+            var validationResults = new List<ValidationResult>();
+            Validator.TryValidateObject(greeting, validationContext, validationResults, true);
 
-            var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == projectId);
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == greeting.ProjectId);
             if (prj == null)
                 return NotFound("There is no such project in db");
 
-            if (!VerifyUser(prj.OwnerId))
+            if (!HasAccess(prj.OwnerId))
                 return StatusCode(403);
 
             try {
-                _dbContext.Greetings.Add(greeting);
+                var greetingObj = _mapper.Map<Greeting>(greeting);
+                _dbContext.Greetings.Add(greetingObj);
                 await _dbContext.SaveChangesAsync();
                 return Ok();
             }
             catch(Exception ex){
-                _logger.LogError(ex, "Cant't add greeting to project ({projectId})", projectId);
+                _logger.LogError(ex, "Cant't add greeting to project ({projectId})", greeting.ProjectId);
                 return BadRequest();
             }
         }
@@ -127,7 +140,7 @@ namespace ChatBotterWebApi.Controllers
                 return NotFound();
 
             var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == gr.ProjectId);
-            if (!VerifyUser(prj.OwnerId))
+            if (!HasAccess(prj.OwnerId))
                 return StatusCode(403);
             try
             {
@@ -149,12 +162,19 @@ namespace ChatBotterWebApi.Controllers
         {
             _logger.LogInformation("UpdateGreeting({greeting.Id}). Updating greeting", greeting.Id);
 
+            var validationContext = new System.ComponentModel.DataAnnotations.ValidationContext(greeting, null, null);
+            var validationResults = new List<ValidationResult>();
+            Validator.TryValidateObject(greeting, validationContext, validationResults, true);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
             var gr = await _dbContext.Greetings.Where(g => g.Id == greeting.Id).FirstOrDefaultAsync();
             if (gr == null)
                 return NotFound();
 
             var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == gr.ProjectId);
-            if (!VerifyUser(prj.OwnerId))
+            if (!HasAccess(prj.OwnerId))
                 return StatusCode(403);
 
             try
@@ -176,10 +196,16 @@ namespace ChatBotterWebApi.Controllers
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        private bool VerifyUser(int userId)
+        public bool HasAccess(int userId)
         {
             int currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            return userId == currentUserId;
+            if (userId == currentUserId)
+                return true;
+
+            if (_dbContext.Users.Find(currentUserId).AppAdmin)
+                return true;
+
+            return false;
         }
     }
 }

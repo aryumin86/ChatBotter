@@ -4,8 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using AutoMapper;
 using CBLib;
 using CBLib.Entities;
+using ChatBotterWebApi.Data;
 using ChatBotterWebApi.DTO;
 using ChatBotterWebApi.Helpers;
 using Microsoft.AspNetCore.Authorization;
@@ -23,19 +25,24 @@ namespace ChatBotterWebApi.Controllers
         private ChatBotContext _dbContext;
         private readonly ILogger _logger;
         private IPatternsRepository _patternRepo;
+        private readonly IMapper _mapper;
+        private readonly IValidationHelperRepository _validationRepo;
 
-        public BotResponsesController(ChatBotContext ctx, ILogger logger, IPatternsRepository patternRepo)
+        public BotResponsesController(ChatBotContext ctx, ILogger logger, 
+            IPatternsRepository patternRepo, IMapper mapper, IValidationHelperRepository validationRepo)
         {
             _dbContext = ctx;
             _logger = logger;
             _patternRepo = patternRepo;
+            _mapper = mapper;
+            _validationRepo = validationRepo;
         }
 
         [HttpGet]
         [Route("GetBotResponse")]
         public async Task<IActionResult> GetBotResponse(int respId)
         {
-            var resp = await _dbContext.BotResponses.FirstOrDefaultAsync(r => r.Id == respId);
+            var resp = await _patternRepo.GetBotResponseAsync(respId);
 
             if (resp == null)
                 return NotFound("no such response in database");
@@ -55,7 +62,7 @@ namespace ChatBotterWebApi.Controllers
         [Route("GetAllProjectBotResponses/{prjId}")]
         public async Task<IActionResult> GetAllProjectBotResponses(int prjId)
         {
-            var res = _dbContext.BotResponses.Where(r => r.TheProjectId == prjId);
+            var res = await _patternRepo.GetAllProjectBotResponsesAsync(prjId);
 
             if (res == null)
                 return NotFound();
@@ -73,16 +80,21 @@ namespace ChatBotterWebApi.Controllers
             if (resp == null)
                 return BadRequest();
 
-            var validationContext = new ValidationContext(resp, null, null);
+            if (!HasAccess(_validationRepo.GetContextOwnerId(resp.PatternId)))
+                return StatusCode(403);
+
+            var validationContext = new System.ComponentModel.DataAnnotations.ValidationContext(resp, null, null);
             var validationResults = new List<ValidationResult>();
             Validator.TryValidateObject(resp, validationContext, validationResults, true);
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            BotResponse respObj = _mapper.Map<BotResponse>(resp);
+
             try
             {
-                _dbContext.BotResponses.Add(resp);
+                _dbContext.BotResponses.Add(respObj);
                 await _dbContext.SaveChangesAsync();
                 return Ok();
             }
@@ -97,17 +109,29 @@ namespace ChatBotterWebApi.Controllers
         [Route("UpdateBotResponse")]
         public async Task<IActionResult> UpdateBotResponse([FromBody] BotResponseDto resp)
         {
-            var respFromDb = await _dbContext.BotResponses.FirstOrDefaultAsync(r => r.Id == resp.Id);
+            if (resp == null)
+                return BadRequest();
+
+            if (!HasAccess(_validationRepo.GetContextOwnerId(resp.PatternId)))
+                return StatusCode(403);
+
+            var validationContext = new System.ComponentModel.DataAnnotations.ValidationContext(resp, null, null);
+            var validationResults = new List<ValidationResult>();
+            Validator.TryValidateObject(resp, validationContext, validationResults, true);
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var respFromDb = await _patternRepo.GetBotResponseAsync(resp.Id);
 
             if (respFromDb == null)
                 return NotFound("Response wasn't found in database");
 
-            if(!HasAccess(_dbContext.Users.Where(u => u.Id == respFromDb.TheProject.Id).First().Id))
-                return StatusCode(403);
+            BotResponse respObj = _mapper.Map<BotResponse>(resp);
 
             try
             {
-                _dbContext.Entry(respFromDb).CurrentValues.SetValues(resp);
+                _dbContext.Entry(respFromDb).CurrentValues.SetValues(respObj);
                 await _dbContext.SaveChangesAsync();
                 return Ok();
             }
@@ -122,39 +146,41 @@ namespace ChatBotterWebApi.Controllers
         [Route("RemoveBotResponse/{respId}")]
         public async Task<IActionResult> RemoveBotResponse(int respId)
         {
+            if (!HasAccess(_validationRepo.GetResponseOwnerId(respId)))
+                return StatusCode(403);
+
             var resp = await _dbContext.BotResponses.FirstOrDefaultAsync(r => r.Id == respId);
 
             if (resp == null)
                 return NotFound("Response wasn't found in database");
 
-            if (!HasAccess(_dbContext.Users.Where(u => u.Id == resp.TheProject.Id).First().Id))
-                return StatusCode(403);
-
-            try
-            {
-                _dbContext.BotResponses.Remove(resp);
-                await _dbContext.SaveChangesAsync();
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Cant't remove response with ID ({prjId})", respId);
-                return BadRequest();
-            }
+            await _patternRepo.DeleteBotResponseToPatternAsync(resp);
+            return Ok();
         }
 
         [HttpPost]
         [Route("GetResponseToUserMessage")]
-        public async Task<string> GetResponseToUserMessage([FromBody]UserMessage message)
+        public IActionResult GetResponseToUserMessage([FromBody]UserMessage message)
         {
-            return await _patternRepo.GetReponseToUserMessage(message);
+            var resp = _patternRepo.GetReponseToUserMessageAsync(message);
+
+            if (resp == null)
+                return BadRequest();
+
+            return Ok(resp.ResponseText);
         }
 
 
         public bool HasAccess(int userId)
         {
             int currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            return userId == currentUserId;
+            if (userId == currentUserId)
+                return true;
+
+            if (_dbContext.Users.Find(currentUserId).AppAdmin)
+                return true;
+
+            return false;
         }
     }
 }

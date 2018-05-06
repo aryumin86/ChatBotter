@@ -39,11 +39,7 @@ namespace ChatBotterWebApi.Controllers
             return Ok(userToReturn);
         }
 
-        public bool HasAccess(int userId)
-        {
-            int currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
-            return userId == currentUserId;
-        }
+        
 
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser(int id, [FromBody] UserForUpdateDto userForUpdateDto)
@@ -79,6 +75,18 @@ namespace ChatBotterWebApi.Controllers
             var res = await _context.SaveChangesAsync();
 
             return Ok("User was removed");            
+        }
+
+        public bool HasAccess(int userId)
+        {
+            int currentUserId = int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+            if (userId == currentUserId)
+                return true;
+
+            if (_context.Users.Find(currentUserId).AppAdmin)
+                return true;
+
+            return false;
         }
     }
 }
