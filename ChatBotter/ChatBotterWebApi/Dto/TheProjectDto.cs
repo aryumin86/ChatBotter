@@ -18,8 +18,5 @@ namespace ChatBotterWebApi.DTO
 
         [Required]
         public int OwnerId { get; set; }
-
-        [Required]
-        public DateTime CreatedAt { get; set; }
     }
 }

@@ -123,7 +123,7 @@ namespace ChatBotterWebApi.Controllers
                 var greetingObj = _mapper.Map<Greeting>(greeting);
                 _dbContext.Greetings.Add(greetingObj);
                 await _dbContext.SaveChangesAsync();
-                return Ok();
+                return StatusCode(201);
             }
             catch(Exception ex){
                 _logger.LogError(ex, "Cant't add greeting to project ({projectId})", greeting.ProjectId);

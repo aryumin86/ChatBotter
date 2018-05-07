@@ -26,7 +26,7 @@ namespace ChatBotterWebApi.Controllers
         private readonly IPatternsRepository _patternRepo;
         private readonly IMapper _mapper;
 
-        public TheProjectsController(ChatBotContext ctx, ILogger logger, IPatternsRepository patternRepo, IMapper mapper)
+        public TheProjectsController(ChatBotContext ctx, ILogger<TheProjectsController> logger, IPatternsRepository patternRepo, IMapper mapper)
         {
             _dbContext = ctx;
             _logger = logger;
@@ -139,10 +139,12 @@ namespace ChatBotterWebApi.Controllers
             try
             {
                 var prjObj = _mapper.Map<TheProject>(prj);
+                prjObj.CreatedAt = DateTime.Now;
+
                 _dbContext.TheProjects.Add(prjObj);
                 await _dbContext.SaveChangesAsync();
                 _patternRepo.OnProjectDeleted();
-                return Ok();
+                return StatusCode(201);
             }
             catch (Exception ex)
             {

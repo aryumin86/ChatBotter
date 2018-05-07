@@ -1,9 +1,11 @@
 ﻿using CBLib.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using SamplesToTextsMatcher;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,8 +33,28 @@ namespace CBLib
         private Dictionary<int, List<BotResponse>> _contextsResponses;
 
 
-        public ConcretePatternsRepository(ChatBotContext chatBotContext, ILogger logger){
-            _chatBotContext = chatBotContext;
+        private ChatBotContext createDbContext()
+        {
+            var builder = new ConfigurationBuilder();
+            builder.SetBasePath(Directory.GetCurrentDirectory());
+            builder.AddJsonFile("appsettings.json");
+            var config = builder.Build();
+            string connectionString = config.GetConnectionString("chatbotter_mysql_conn");
+
+            var optionsBuilder = new DbContextOptionsBuilder<ChatBotContext>();
+            var options = optionsBuilder
+                .UseMySql(connectionString)
+                .Options;
+
+            ChatBotContext ctx = new ChatBotContext(options);
+            return ctx;
+        }
+
+
+        public ConcretePatternsRepository(/*ChatBotContext chatBotContext, */ ILogger<ConcretePatternsRepository> logger){
+
+
+            _chatBotContext = createDbContext();
             _logger = logger;
             _morfDict = new ConcreteMorfDictionary();
             _parser = new ConcretePatternParser();

@@ -28,7 +28,7 @@ namespace ChatBotterWebApi.Controllers
         private readonly IMapper _mapper;
         private readonly IValidationHelperRepository _validationRepo;
 
-        public ContextWrappersController(ChatBotContext ctx, ILogger logger, 
+        public ContextWrappersController(ChatBotContext ctx, ILogger<ContextWrappersController> logger, 
             IPatternsRepository patternRepo, IMapper mapper, IValidationHelperRepository validationRepo)
         {
             _dbContext = ctx;
@@ -71,7 +71,7 @@ namespace ChatBotterWebApi.Controllers
 
             var contextObj = _mapper.Map<ContextWrapper>(context);
             await _patternRepo.AddContextAsync(contextObj);
-            return Ok();
+            return StatusCode(201);
         }
 
         [HttpPost]

@@ -300,3 +300,237 @@ LIMIT 1
 05/06/2018 20:45:18 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
 05/06/2018 20:45:18 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetAllProjectGreetings (ChatBotterWebApi) in 214.246ms
 05/06/2018 20:45:18 Request finished in 361.212ms 404 application/json; charset=utf-8
+07.05.2018 21:48:27 Request starting HTTP/1.1 GET http://localhost:56032/  
+07.05.2018 21:48:27 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+07.05.2018 21:48:27 Request finished in 118.8489ms 200 
+07.05.2018 21:48:27 Request finished in 346.5617ms 404 
+07.05.2018 21:51:03 Request starting HTTP/1.1 POST http://localhost:56032/api/auth/login application/json 47
+07.05.2018 21:51:03 Executing action method ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.UserForLoginDTO) - ModelState is Valid
+07.05.2018 21:51:04 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+07.05.2018 21:51:04 Executed DbCommand (72ms) [Parameters=[@__login_0='?' (Size = 8000)], CommandType='Text', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`AppAdmin`, `x`.`PasswordHash`, `x`.`PasswordSalt`, `x`.`UserName`
+FROM `Users` AS `x`
+WHERE `x`.`UserName` = @__login_0
+LIMIT 1
+07.05.2018 21:51:04 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+07.05.2018 21:51:04 Executed action ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) in 968.842ms
+07.05.2018 21:51:04 Request finished in 1114.9145ms 200 application/json; charset=utf-8
+07.05.2018 21:51:48 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetRandomGreeting/1  
+07.05.2018 21:51:48 Successfully validated the token.
+07.05.2018 21:51:48 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 21:52:03 Executing action method ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) with arguments (1) - ModelState is Valid
+07.05.2018 21:52:03 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+07.05.2018 21:52:03 Executed DbCommand (6ms) [Parameters=[@__projectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__projectId_0
+LIMIT 1
+07.05.2018 21:52:03 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+07.05.2018 21:52:03 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) in 14369.8792ms
+07.05.2018 21:52:03 Request finished in 14499.8166ms 404 application/json; charset=utf-8
+07.05.2018 21:58:21 Request starting HTTP/1.1 GET http://localhost:56032/  
+07.05.2018 21:58:21 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+07.05.2018 21:58:21 Request finished in 138.1845ms 200 
+07.05.2018 21:58:21 Request finished in 276.3516ms 404 
+07.05.2018 21:58:32 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetRandomGreeting/1  
+07.05.2018 21:58:32 Successfully validated the token.
+07.05.2018 21:58:32 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 21:58:32 Executing action method ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) with arguments (1) - ModelState is Valid
+07.05.2018 21:58:32 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+07.05.2018 21:58:32 Executed DbCommand (38ms) [Parameters=[@__projectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__projectId_0
+LIMIT 1
+07.05.2018 21:58:32 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+07.05.2018 21:58:32 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) in 708.1825ms
+07.05.2018 21:58:32 Request finished in 963.1922ms 404 application/json; charset=utf-8
+07.05.2018 21:59:56 Request starting HTTP/1.1 POST http://localhost:56032/api/TheProjects/AddProject application/json 131
+07.05.2018 21:59:56 Successfully validated the token.
+07.05.2018 21:59:56 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 21:59:57 Authorization was successful for user: admin.
+07.05.2018 21:59:57 Executed action ChatBotterWebApi.Controllers.TheProjectsController.AddProject (ChatBotterWebApi) in 60.0886ms
+07.05.2018 21:59:57 An unhandled exception has occurred while executing the request
+07.05.2018 21:59:57 Request finished in 310.8625ms 500 text/html; charset=utf-8
+07.05.2018 22:00:51 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+07.05.2018 22:00:51 Request starting HTTP/1.1 GET http://localhost:56032/  
+07.05.2018 22:00:51 Request finished in 128.8322ms 200 
+07.05.2018 22:00:51 Request finished in 274.0793ms 404 
+07.05.2018 22:01:30 Request starting HTTP/1.1 POST http://localhost:56032/api/TheProjects/AddProject application/json 131
+07.05.2018 22:01:30 Successfully validated the token.
+07.05.2018 22:01:30 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 22:01:30 Authorization was successful for user: admin.
+07.05.2018 22:01:30 Executed action ChatBotterWebApi.Controllers.TheProjectsController.AddProject (ChatBotterWebApi) in 75.4293ms
+07.05.2018 22:01:30 An unhandled exception has occurred while executing the request
+07.05.2018 22:01:30 Request finished in 447.8041ms 500 text/html; charset=utf-8
+07.05.2018 22:02:03 Request starting HTTP/1.1 POST http://localhost:56032/api/TheProjects/AddProject application/json 131
+07.05.2018 22:02:03 Successfully validated the token.
+07.05.2018 22:02:03 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 22:02:03 Authorization was successful for user: admin.
+07.05.2018 22:02:03 Executed action ChatBotterWebApi.Controllers.TheProjectsController.AddProject (ChatBotterWebApi) in 60.1807ms
+07.05.2018 22:02:03 An unhandled exception has occurred while executing the request
+07.05.2018 22:02:03 Request finished in 257.5069ms 500 text/html; charset=utf-8
+07.05.2018 22:05:50 Request starting HTTP/1.1 GET http://localhost:56032/  
+07.05.2018 22:05:50 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+07.05.2018 22:05:50 Request finished in 140.3087ms 200 
+07.05.2018 22:05:50 Request finished in 271.0402ms 404 
+07.05.2018 22:07:03 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+07.05.2018 22:07:03 Request starting HTTP/1.1 GET http://localhost:56032/  
+07.05.2018 22:07:03 Request finished in 141.9512ms 200 
+07.05.2018 22:07:03 Request finished in 279.245ms 404 
+07.05.2018 22:07:29 Request starting HTTP/1.1 POST http://localhost:56032/api/TheProjects/AddProject application/json 131
+07.05.2018 22:07:29 Successfully validated the token.
+07.05.2018 22:07:29 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 22:07:29 Authorization was successful for user: admin.
+07.05.2018 22:07:29 Executed action ChatBotterWebApi.Controllers.TheProjectsController.AddProject (ChatBotterWebApi) in 22.6873ms
+07.05.2018 22:07:30 An unhandled exception has occurred while executing the request
+07.05.2018 22:07:30 Request finished in 501.8416ms 500 text/html; charset=utf-8
+07.05.2018 22:08:04 Request starting HTTP/1.1 GET http://localhost:56032/  
+07.05.2018 22:08:04 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+07.05.2018 22:08:04 Request finished in 114.242ms 200 
+07.05.2018 22:08:04 Request finished in 230.7847ms 404 
+07.05.2018 22:08:07 Request starting HTTP/1.1 POST http://localhost:56032/api/TheProjects/AddProject application/json 131
+07.05.2018 22:08:07 Successfully validated the token.
+07.05.2018 22:08:07 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 22:08:07 Authorization was successful for user: admin.
+07.05.2018 22:08:07 Executed action ChatBotterWebApi.Controllers.TheProjectsController.AddProject (ChatBotterWebApi) in 65.0931ms
+07.05.2018 22:08:07 An unhandled exception has occurred while executing the request
+07.05.2018 22:08:07 Request finished in 425.4981ms 500 text/html; charset=utf-8
+07.05.2018 22:27:16 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+07.05.2018 22:27:16 Request starting HTTP/1.1 GET http://localhost:56032/  
+07.05.2018 22:27:16 Request finished in 109.1322ms 200 
+07.05.2018 22:27:16 Request finished in 220.9299ms 404 
+07.05.2018 22:27:18 Request starting HTTP/1.1 POST http://localhost:56032/api/TheProjects/AddProject application/json 131
+07.05.2018 22:27:18 Successfully validated the token.
+07.05.2018 22:27:18 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 22:27:18 Authorization was successful for user: admin.
+07.05.2018 22:28:11 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+07.05.2018 22:28:11 Request starting HTTP/1.1 GET http://localhost:56032/  
+07.05.2018 22:28:11 Request finished in 109.5721ms 200 
+07.05.2018 22:28:11 Request finished in 239.849ms 404 
+07.05.2018 22:28:13 Request starting HTTP/1.1 POST http://localhost:56032/api/TheProjects/AddProject application/json 131
+07.05.2018 22:28:14 Successfully validated the token.
+07.05.2018 22:28:14 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 22:28:14 Authorization was successful for user: admin.
+07.05.2018 22:32:59 Request starting HTTP/1.1 GET http://localhost:56032/  
+07.05.2018 22:32:59 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+07.05.2018 22:32:59 Request finished in 120.1093ms 200 
+07.05.2018 22:32:59 Request finished in 265.7442ms 404 
+07.05.2018 22:33:02 Request starting HTTP/1.1 POST http://localhost:56032/api/TheProjects/AddProject application/json 131
+07.05.2018 22:33:02 Successfully validated the token.
+07.05.2018 22:33:02 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 22:33:02 Authorization was successful for user: admin.
+07.05.2018 22:33:02 Executing action method ChatBotterWebApi.Controllers.TheProjectsController.AddProject (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.TheProjectDto) - ModelState is Valid
+07.05.2018 22:44:26 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+07.05.2018 22:44:26 Request starting HTTP/1.1 GET http://localhost:56032/  
+07.05.2018 22:44:26 Request finished in 157.7458ms 200 
+07.05.2018 22:44:27 Request finished in 290.3965ms 404 
+07.05.2018 22:44:42 Request starting HTTP/1.1 POST http://localhost:56032/api/TheProjects/AddProject application/json 131
+07.05.2018 22:44:42 Successfully validated the token.
+07.05.2018 22:44:42 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 22:44:42 Authorization was successful for user: admin.
+07.05.2018 22:44:42 Executing action method ChatBotterWebApi.Controllers.TheProjectsController.AddProject (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.TheProjectDto) - ModelState is Valid
+07.05.2018 22:45:04 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+07.05.2018 22:45:04 Executed DbCommand (36ms) [Parameters=[@p0='?', @p1='?', @p2='?' (Size = 8000), @p3='?' (Size = 8000)], CommandType='Text', CommandTimeout='30']
+INSERT INTO `Projects` (`CreatedAt`, `OwnerId`, `ProjectDescription`, `ProjectTitle`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `Projects`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+07.05.2018 22:45:04 Executing HttpStatusCodeResult, setting HTTP status code 200
+07.05.2018 22:45:04 Executed action ChatBotterWebApi.Controllers.TheProjectsController.AddProject (ChatBotterWebApi) in 22212.5004ms
+07.05.2018 22:45:04 Request finished in 22401.5643ms 200 
+07.05.2018 22:48:08 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+07.05.2018 22:48:08 Request starting HTTP/1.1 GET http://localhost:56032/  
+07.05.2018 22:48:08 Request finished in 133.7747ms 200 
+07.05.2018 22:48:08 Request finished in 296.7459ms 404 
+07.05.2018 22:48:53 Request starting HTTP/1.1 POST http://localhost:56032/api/TheProjects/AddProject application/json 135
+07.05.2018 22:48:53 Successfully validated the token.
+07.05.2018 22:48:53 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 22:48:53 Authorization was successful for user: admin.
+07.05.2018 22:48:54 Executing action method ChatBotterWebApi.Controllers.TheProjectsController.AddProject (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.TheProjectDto) - ModelState is Valid
+07.05.2018 22:48:58 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+07.05.2018 22:48:58 Executed DbCommand (13ms) [Parameters=[@p0='?', @p1='?', @p2='?' (Size = 8000), @p3='?' (Size = 8000)], CommandType='Text', CommandTimeout='30']
+INSERT INTO `Projects` (`CreatedAt`, `OwnerId`, `ProjectDescription`, `ProjectTitle`)
+VALUES (@p0, @p1, @p2, @p3);
+SELECT `Id`
+FROM `Projects`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+07.05.2018 22:48:58 Executing HttpStatusCodeResult, setting HTTP status code 201
+07.05.2018 22:48:58 Executed action ChatBotterWebApi.Controllers.TheProjectsController.AddProject (ChatBotterWebApi) in 4343.6996ms
+07.05.2018 22:48:58 Request finished in 4639.7063ms 201 
+07.05.2018 22:49:10 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetRandomGreeting/1  
+07.05.2018 22:49:10 Successfully validated the token.
+07.05.2018 22:49:10 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 22:49:16 Executing action method ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) with arguments (1) - ModelState is Valid
+07.05.2018 22:49:16 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+07.05.2018 22:49:16 Executed DbCommand (0ms) [Parameters=[@__projectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__projectId_0
+LIMIT 1
+07.05.2018 22:49:16 Executed DbCommand (6ms) [Parameters=[@__projectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`MainGreeting`, `g`.`ProjectId`
+FROM `Greetings` AS `g`
+WHERE `g`.`ProjectId` = @__projectId_0
+07.05.2018 22:49:16 Executing HttpStatusCodeResult, setting HTTP status code 404
+07.05.2018 22:49:16 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) in 5921.5571ms
+07.05.2018 22:49:16 Request finished in 6012.6255ms 404 
+07.05.2018 22:49:34 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetRandomGreeting/1  
+07.05.2018 22:49:34 Successfully validated the token.
+07.05.2018 22:49:34 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 22:49:34 Executing action method ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) with arguments (1) - ModelState is Valid
+07.05.2018 22:49:34 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+07.05.2018 22:49:34 Executed DbCommand (0ms) [Parameters=[@__projectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__projectId_0
+LIMIT 1
+07.05.2018 22:49:34 Executed DbCommand (1ms) [Parameters=[@__projectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`MainGreeting`, `g`.`ProjectId`
+FROM `Greetings` AS `g`
+WHERE `g`.`ProjectId` = @__projectId_0
+07.05.2018 22:49:34 Executing HttpStatusCodeResult, setting HTTP status code 404
+07.05.2018 22:49:34 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) in 74.5103ms
+07.05.2018 22:49:34 Request finished in 167.1778ms 404 
+07.05.2018 22:50:00 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetRandomGreeting/1  
+07.05.2018 22:50:00 Successfully validated the token.
+07.05.2018 22:50:00 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 22:50:00 Executing action method ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) with arguments (1) - ModelState is Valid
+07.05.2018 22:50:00 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+07.05.2018 22:50:00 Executed DbCommand (0ms) [Parameters=[@__projectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__projectId_0
+LIMIT 1
+07.05.2018 22:50:01 Executed DbCommand (1ms) [Parameters=[@__projectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`MainGreeting`, `g`.`ProjectId`
+FROM `Greetings` AS `g`
+WHERE `g`.`ProjectId` = @__projectId_0
+07.05.2018 22:50:07 Executing HttpStatusCodeResult, setting HTTP status code 404
+07.05.2018 22:50:07 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) in 6530.4139ms
+07.05.2018 22:50:07 Request finished in 6625.6629ms 404 
+07.05.2018 22:52:59 Request starting HTTP/1.1 POST http://localhost:56032/api/Greetings/AddGreeting application/json 85
+07.05.2018 22:52:59 Successfully validated the token.
+07.05.2018 22:52:59 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 22:52:59 Authorization was successful for user: admin.
+07.05.2018 22:52:59 Executing action method ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.GreetingDto) - ModelState is Invalid
+07.05.2018 22:52:59 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+07.05.2018 22:52:59 Executed action ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) in 73.461ms
+07.05.2018 22:52:59 Request finished in 187.7941ms 400 application/json; charset=utf-8
+07.05.2018 22:53:52 Request starting HTTP/1.1 POST http://localhost:56032/api/Greetings/AddGreeting application/json 85
+07.05.2018 22:53:52 Successfully validated the token.
+07.05.2018 22:53:52 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 22:53:52 Authorization was successful for user: admin.
+07.05.2018 22:53:52 Executing action method ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.GreetingDto) - ModelState is Invalid
+07.05.2018 22:53:53 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+07.05.2018 22:53:53 Executed action ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) in 61.8228ms
+07.05.2018 22:53:53 Request finished in 174.7332ms 400 application/json; charset=utf-8
+07.05.2018 22:54:32 Request starting HTTP/1.1 POST http://localhost:56032/api/Greetings/AddGreeting application/json 85
+07.05.2018 22:54:32 Successfully validated the token.
+07.05.2018 22:54:32 AuthenticationScheme: Bearer was successfully authenticated.
+07.05.2018 22:54:32 Authorization was successful for user: admin.
+07.05.2018 22:54:32 Executing action method ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.GreetingDto) - ModelState is Invalid
+07.05.2018 22:58:22 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+07.05.2018 22:58:23 Executed action ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) in 230293.848ms
+07.05.2018 22:58:23 Request finished in 230409.0272ms 400 application/json; charset=utf-8

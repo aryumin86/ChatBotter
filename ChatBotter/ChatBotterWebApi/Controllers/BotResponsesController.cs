@@ -28,7 +28,7 @@ namespace ChatBotterWebApi.Controllers
         private readonly IMapper _mapper;
         private readonly IValidationHelperRepository _validationRepo;
 
-        public BotResponsesController(ChatBotContext ctx, ILogger logger, 
+        public BotResponsesController(ChatBotContext ctx, ILogger<BotResponsesController> logger, 
             IPatternsRepository patternRepo, IMapper mapper, IValidationHelperRepository validationRepo)
         {
             _dbContext = ctx;
@@ -96,7 +96,7 @@ namespace ChatBotterWebApi.Controllers
             {
                 _dbContext.BotResponses.Add(respObj);
                 await _dbContext.SaveChangesAsync();
-                return Ok();
+                return StatusCode(201);
             }
             catch (Exception ex)
             {

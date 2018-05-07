@@ -38,12 +38,5 @@ namespace CBLib.Entities
 
         [Column("PatternId")]
         public int PatternId { get; set; }
-
-        public BotResponse(int theProjectId, string responseText, int priority = 1)
-        {
-            TheProjectId = theProjectId;
-            Priority = priority;
-            ResponseText = responseText;
-        }
     }
 }
