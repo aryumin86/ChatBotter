@@ -104,7 +104,7 @@ namespace ChatBotterWebApi.Controllers
 
         [HttpPost]
         [Route("AddGreeting")]
-        public async Task<IActionResult> AddGreeting(GreetingDto greeting){
+        public async Task<IActionResult> AddGreeting([FromBody]GreetingDto greeting){
             var validationContext = new System.ComponentModel.DataAnnotations.ValidationContext(greeting, null, null);
             var validationResults = new List<ValidationResult>();
             Validator.TryValidateObject(greeting, validationContext, validationResults, true);
@@ -159,7 +159,7 @@ namespace ChatBotterWebApi.Controllers
 
         [HttpPost]
         [Route("UpdateGreeting")]
-        public async Task<IActionResult> UpdateGreeting(GreetingDto greeting)
+        public async Task<IActionResult> UpdateGreeting([FromBody]GreetingDto greeting)
         {
             _logger.LogInformation("UpdateGreeting({greeting.Id}). Updating greeting", greeting.Id);
 
