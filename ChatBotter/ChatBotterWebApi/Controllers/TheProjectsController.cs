@@ -34,8 +34,8 @@ namespace ChatBotterWebApi.Controllers
             _mapper = mapper;
         }
 
-        [HttpGet]
-        [Route("GetProject/")]
+        [HttpGet(Name="prjId")]
+        [Route("GetProject")]
         public async Task<IActionResult> GetProject(int prjId)
         {
             var res = await _dbContext.TheProjects.FirstOrDefaultAsync(p => p.Id == prjId);

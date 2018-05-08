@@ -27,4 +27,7 @@
     <Compile Remove="Controllers\RegController.cs" />
     <Compile Remove="Data\UserSeedData.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Remove="webapi_logs.txt" />
+  </ItemGroup>
 </Project>

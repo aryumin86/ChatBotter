@@ -534,3 +534,163 @@ WHERE `g`.`ProjectId` = @__projectId_0
 07.05.2018 22:58:22 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
 07.05.2018 22:58:23 Executed action ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) in 230293.848ms
 07.05.2018 22:58:23 Request finished in 230409.0272ms 400 application/json; charset=utf-8
+08.05.2018 9:31:38 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+08.05.2018 9:31:38 Request starting HTTP/1.1 GET http://localhost:56032/  
+08.05.2018 9:31:38 Request finished in 165.2008ms 200 
+08.05.2018 9:31:38 Request finished in 304.2809ms 404 
+08.05.2018 9:31:43 Request starting HTTP/1.1 POST http://localhost:56032/api/Greetings/AddGreeting application/json 85
+08.05.2018 9:31:43 Successfully validated the token.
+08.05.2018 9:31:44 AuthenticationScheme: Bearer was successfully authenticated.
+08.05.2018 9:31:44 Authorization was successful for user: admin.
+08.05.2018 9:31:44 Executing action method ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.GreetingDto) - ModelState is Valid
+08.05.2018 9:31:49 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+08.05.2018 9:31:49 Executed DbCommand (46ms) [Parameters=[@__greeting_ProjectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__greeting_ProjectId_0
+LIMIT 1
+08.05.2018 9:31:50 Cant't add greeting to project (1)
+08.05.2018 9:31:50 Executing HttpStatusCodeResult, setting HTTP status code 400
+08.05.2018 9:31:50 Executed action ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) in 6110.8034ms
+08.05.2018 9:31:50 Request finished in 6346.2132ms 400 
+08.05.2018 9:32:07 Request starting HTTP/1.1 POST http://localhost:56032/api/Greetings/AddGreeting application/json 85
+08.05.2018 9:32:07 Successfully validated the token.
+08.05.2018 9:32:07 AuthenticationScheme: Bearer was successfully authenticated.
+08.05.2018 9:32:07 Authorization was successful for user: admin.
+08.05.2018 9:32:07 Executing action method ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.GreetingDto) - ModelState is Valid
+08.05.2018 9:32:23 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+08.05.2018 9:32:23 Executed DbCommand (0ms) [Parameters=[@__greeting_ProjectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__greeting_ProjectId_0
+LIMIT 1
+08.05.2018 9:34:11 Request starting HTTP/1.1 GET http://localhost:56032/  
+08.05.2018 9:34:11 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+08.05.2018 9:34:11 Request finished in 133.3159ms 200 
+08.05.2018 9:34:11 Request finished in 283.1084ms 404 
+08.05.2018 9:34:29 Request starting HTTP/1.1 POST http://localhost:56032/api/Greetings/AddGreeting application/json 85
+08.05.2018 9:34:29 Successfully validated the token.
+08.05.2018 9:34:29 AuthenticationScheme: Bearer was successfully authenticated.
+08.05.2018 9:34:29 Authorization was successful for user: admin.
+08.05.2018 9:34:29 Executing action method ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.GreetingDto) - ModelState is Valid
+08.05.2018 9:34:31 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+08.05.2018 9:34:32 Executed DbCommand (80ms) [Parameters=[@__greeting_ProjectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__greeting_ProjectId_0
+LIMIT 1
+08.05.2018 9:34:32 Executed DbCommand (16ms) [Parameters=[@p0='?' (Size = 8000), @p1='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO `Greetings` (`MainGreeting`, `ProjectId`)
+VALUES (@p0, @p1);
+SELECT `Id`
+FROM `Greetings`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+08.05.2018 9:34:32 Executing HttpStatusCodeResult, setting HTTP status code 201
+08.05.2018 9:34:32 Executed action ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) in 2933.1247ms
+08.05.2018 9:34:32 Request finished in 3139.2798ms 201 
+08.05.2018 9:34:45 Request starting HTTP/1.1 POST http://localhost:56032/api/Greetings/AddGreeting application/json 92
+08.05.2018 9:34:45 Successfully validated the token.
+08.05.2018 9:34:45 AuthenticationScheme: Bearer was successfully authenticated.
+08.05.2018 9:34:45 Authorization was successful for user: admin.
+08.05.2018 9:34:45 Executing action method ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.GreetingDto) - ModelState is Valid
+08.05.2018 9:34:47 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+08.05.2018 9:34:47 Executed DbCommand (0ms) [Parameters=[@__greeting_ProjectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__greeting_ProjectId_0
+LIMIT 1
+08.05.2018 9:34:47 Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 8000), @p1='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO `Greetings` (`MainGreeting`, `ProjectId`)
+VALUES (@p0, @p1);
+SELECT `Id`
+FROM `Greetings`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+08.05.2018 9:34:47 Executing HttpStatusCodeResult, setting HTTP status code 201
+08.05.2018 9:34:47 Executed action ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) in 2538.1778ms
+08.05.2018 9:34:47 Request finished in 2585.9674ms 201 
+08.05.2018 9:34:56 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetRandomGreeting/1  
+08.05.2018 9:34:56 Successfully validated the token.
+08.05.2018 9:34:56 AuthenticationScheme: Bearer was successfully authenticated.
+08.05.2018 9:34:56 Executing action method ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) with arguments (1) - ModelState is Valid
+08.05.2018 9:34:56 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+08.05.2018 9:34:56 Executed DbCommand (0ms) [Parameters=[@__projectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__projectId_0
+LIMIT 1
+08.05.2018 9:34:56 Executed DbCommand (1ms) [Parameters=[@__projectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`MainGreeting`, `g`.`ProjectId`
+FROM `Greetings` AS `g`
+WHERE `g`.`ProjectId` = @__projectId_0
+08.05.2018 9:34:56 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+08.05.2018 9:34:56 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) in 222.6679ms
+08.05.2018 9:34:56 Request finished in 304.9066ms 200 application/json; charset=utf-8
+08.05.2018 11:28:07 Request starting HTTP/1.1 GET http://localhost:56032/api/TheProjects/GetProject/1  
+08.05.2018 11:28:07 Successfully validated the token.
+08.05.2018 11:28:07 AuthenticationScheme: Bearer was successfully authenticated.
+08.05.2018 11:28:07 Request finished in 175.7968ms 404 
+08.05.2018 11:28:17 Request starting HTTP/1.1 GET http://localhost:56032/api/TheProjects/GetProject?projectId=1  
+08.05.2018 11:28:17 Successfully validated the token.
+08.05.2018 11:28:17 AuthenticationScheme: Bearer was successfully authenticated.
+08.05.2018 11:28:17 Authorization was successful for user: admin.
+08.05.2018 11:28:17 Executing action method ChatBotterWebApi.Controllers.TheProjectsController.GetProject (ChatBotterWebApi) with arguments (0) - ModelState is Valid
+08.05.2018 11:28:17 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+08.05.2018 11:28:17 Executed DbCommand (3ms) [Parameters=[@__prjId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__prjId_0
+LIMIT 1
+08.05.2018 11:28:17 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+08.05.2018 11:28:17 Executed action ChatBotterWebApi.Controllers.TheProjectsController.GetProject (ChatBotterWebApi) in 304.1552ms
+08.05.2018 11:28:17 Request finished in 421.2005ms 404 application/json; charset=utf-8
+08.05.2018 11:28:28 Request starting HTTP/1.1 GET http://localhost:56032/api/TheProjects/GetProject/?projectId=1  
+08.05.2018 11:28:28 Successfully validated the token.
+08.05.2018 11:28:28 AuthenticationScheme: Bearer was successfully authenticated.
+08.05.2018 11:28:28 Authorization was successful for user: admin.
+08.05.2018 11:28:28 Executing action method ChatBotterWebApi.Controllers.TheProjectsController.GetProject (ChatBotterWebApi) with arguments (0) - ModelState is Valid
+08.05.2018 11:28:28 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+08.05.2018 11:28:28 Executed DbCommand (0ms) [Parameters=[@__prjId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__prjId_0
+LIMIT 1
+08.05.2018 11:28:28 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+08.05.2018 11:28:28 Executed action ChatBotterWebApi.Controllers.TheProjectsController.GetProject (ChatBotterWebApi) in 100.5506ms
+08.05.2018 11:28:28 Request finished in 163.8853ms 404 application/json; charset=utf-8
+08.05.2018 11:28:44 Request starting HTTP/1.1 GET http://localhost:56032/api/TheProjects/GetProject/?projectId=1  
+08.05.2018 11:28:44 Successfully validated the token.
+08.05.2018 11:28:44 AuthenticationScheme: Bearer was successfully authenticated.
+08.05.2018 11:28:44 Authorization was successful for user: admin.
+08.05.2018 11:28:44 Executing action method ChatBotterWebApi.Controllers.TheProjectsController.GetProject (ChatBotterWebApi) with arguments (0) - ModelState is Valid
+08.05.2018 11:29:50 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+08.05.2018 11:29:50 Request starting HTTP/1.1 GET http://localhost:56032/  
+08.05.2018 11:29:51 Request finished in 147.3537ms 200 
+08.05.2018 11:29:51 Request finished in 384.9874ms 404 
+08.05.2018 11:29:55 Request starting HTTP/1.1 GET http://localhost:56032/api/TheProjects/GetProject/?projectId=1  
+08.05.2018 11:29:55 Successfully validated the token.
+08.05.2018 11:29:55 AuthenticationScheme: Bearer was successfully authenticated.
+08.05.2018 11:29:55 Authorization was successful for user: admin.
+08.05.2018 11:29:55 Executing action method ChatBotterWebApi.Controllers.TheProjectsController.GetProject (ChatBotterWebApi) with arguments (0) - ModelState is Valid
+08.05.2018 11:29:58 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+08.05.2018 11:29:58 Executed DbCommand (13ms) [Parameters=[@__prjId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__prjId_0
+LIMIT 1
+08.05.2018 11:29:58 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+08.05.2018 11:29:58 Executed action ChatBotterWebApi.Controllers.TheProjectsController.GetProject (ChatBotterWebApi) in 3544.7001ms
+08.05.2018 11:29:58 Request finished in 3736.895ms 404 application/json; charset=utf-8
+08.05.2018 11:30:15 Request starting HTTP/1.1 GET http://localhost:56032/api/TheProjects/GetProject?prjId=1  
+08.05.2018 11:30:15 Successfully validated the token.
+08.05.2018 11:30:15 AuthenticationScheme: Bearer was successfully authenticated.
+08.05.2018 11:30:15 Authorization was successful for user: admin.
+08.05.2018 11:30:15 Executing action method ChatBotterWebApi.Controllers.TheProjectsController.GetProject (ChatBotterWebApi) with arguments (1) - ModelState is Valid
+08.05.2018 11:30:21 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+08.05.2018 11:30:21 Executed DbCommand (13ms) [Parameters=[@__prjId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__prjId_0
+LIMIT 1
+08.05.2018 11:30:21 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+08.05.2018 11:30:21 Executed action ChatBotterWebApi.Controllers.TheProjectsController.GetProject (ChatBotterWebApi) in 5825.8278ms
+08.05.2018 11:30:21 Request finished in 5913.4576ms 200 application/json; charset=utf-8

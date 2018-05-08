@@ -16,6 +16,7 @@ namespace ChatBotterWebApi.Helpers
             CreateMap<BotResponseDto, BotResponse>();
             CreateMap<TheProjectDto, TheProject>();
             CreateMap<FarewellDto, Farewell>();
+            CreateMap<GreetingDto, Greeting>();
         }
 
     }
