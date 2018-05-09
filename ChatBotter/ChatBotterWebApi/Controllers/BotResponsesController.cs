@@ -151,7 +151,13 @@ namespace ChatBotterWebApi.Controllers
             var resp = _patternRepo.GetReponseToUserMessageAsync(message);
 
             if (resp == null)
-                return BadRequest();
+            {
+                var defaultResponses = _dbContext.DefaultBotResponses.Where(r => r.TheProjectId == message.ProjectId).ToArray();
+                if (defaultResponses.Length == 0)
+                    return null;
+                Random random = new Random();
+                return Ok(defaultResponses[random.Next(defaultResponses.Length - 1)]);
+            }
 
             return Ok(resp.ResponseText);
         }

@@ -11,9 +11,10 @@ using System;
 namespace CBLib.Migrations
 {
     [DbContext(typeof(ChatBotContext))]
-    partial class ChatBotContextModelSnapshot : ModelSnapshot
+    [Migration("20180509183811_addedDefaultProjectResponseTab")]
+    partial class addedDefaultProjectResponseTab
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

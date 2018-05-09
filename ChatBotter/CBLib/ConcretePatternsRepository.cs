@@ -264,6 +264,7 @@ namespace CBLib
                 if (pa.Ctx.MatchPatternToString(clearedTextAsTokens))
                     return _contextsResponses[pa.Id].OrderBy(r => r.Priority).First();
             }
+
             return null;
         }
 

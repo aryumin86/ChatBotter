@@ -10,7 +10,7 @@ namespace ChatBotterWebApi.Data
     {
         Task<DefaultBotResponse> GetDefaultBotResponseAsync(int id);
         Task<IEnumerable<DefaultBotResponse>> GetAllProjectBotResponsesAsync(int prjId);
-        Task<IEnumerable<DefaultBotResponse>> GetAllAppBotResponsesAsync(int prjId);
+        Task<IEnumerable<DefaultBotResponse>> GetAllAppBotResponsesAsync();
         Task<bool> AddDefaultBotResponseAsync(DefaultBotResponse resp);
         Task<bool> UpdateDefaultBotResponseAsync(DefaultBotResponse resp);
         Task<bool> DeleteDefaultBotResponseAsync(int id);

@@ -12,5 +12,6 @@ namespace ChatBotterWebApi.Data
         int GetGreetingOwnerId(int greetingId);
         int GetProjectOwnerId(int projectId);
         int GetFarewellOwnerId(int farewellId);
+        int GetDefaultResponseOwnerId(int responseId);
     }
 }

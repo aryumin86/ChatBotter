@@ -53,7 +53,7 @@ namespace ChatBotterWebApi.Data
             }
         }
 
-        public async Task<IEnumerable<DefaultBotResponse>> GetAllAppBotResponsesAsync(int prjId)
+        public async Task<IEnumerable<DefaultBotResponse>> GetAllAppBotResponsesAsync()
         {
             return await _dbContext.DefaultBotResponses.ToListAsync();
         }

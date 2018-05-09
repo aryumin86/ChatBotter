@@ -22,6 +22,15 @@ namespace ChatBotterWebApi.Data
             return prj.OwnerId;
         }
 
+        public int GetDefaultResponseOwnerId(int responseId)
+        {
+            var defResp = _chatBotContext.DefaultBotResponses.Find(responseId);
+            if (defResp == null)
+                return -1;
+            var prj = defResp.TheProjectId;
+            return _chatBotContext.TheProjects.Find(prj).OwnerId;
+        }
+
         public int GetFarewellOwnerId(int farewellId)
         {
             var farewell = _chatBotContext.Farewells.Find(farewellId);
