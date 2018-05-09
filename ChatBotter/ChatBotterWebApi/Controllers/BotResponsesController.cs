@@ -91,18 +91,10 @@ namespace ChatBotterWebApi.Controllers
                 return BadRequest(ModelState);
 
             BotResponse respObj = _mapper.Map<BotResponse>(resp);
-
-            try
-            {
-                _dbContext.BotResponses.Add(respObj);
-                await _dbContext.SaveChangesAsync();
-                return StatusCode(201);
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Cant't add bot response to project");
-                return BadRequest();
-            }
+            if (await _patternRepo.AddBotResponseToPatternAsync(respObj))
+                return Ok();
+            else
+                return BadRequest(); ;
         }
 
         [HttpPost]
@@ -128,18 +120,10 @@ namespace ChatBotterWebApi.Controllers
                 return NotFound("Response wasn't found in database");
 
             BotResponse respObj = _mapper.Map<BotResponse>(resp);
-
-            try
-            {
-                _dbContext.Entry(respFromDb).CurrentValues.SetValues(respObj);
-                await _dbContext.SaveChangesAsync();
+            if (await _patternRepo.UpdateBotResponseToPatternAsync(respObj))
                 return Ok();
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Cant't update bot response ({prj.Id})", resp.Id);
+            else
                 return BadRequest();
-            }
         }
 
         [HttpGet]
@@ -149,13 +133,15 @@ namespace ChatBotterWebApi.Controllers
             if (!HasAccess(_validationRepo.GetResponseOwnerId(respId)))
                 return StatusCode(403);
 
-            var resp = await _dbContext.BotResponses.FirstOrDefaultAsync(r => r.Id == respId);
+            var resp = await _dbContext.BotResponses.FirstOrDefaultAsync(r => r.Id == respId);            
 
             if (resp == null)
                 return NotFound("Response wasn't found in database");
 
-            await _patternRepo.DeleteBotResponseToPatternAsync(resp);
-            return Ok();
+            if(await _patternRepo.DeleteBotResponseToPatternAsync(resp))
+                return Ok();
+            else
+                return BadRequest();
         }
 
         [HttpPost]

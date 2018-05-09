@@ -123,6 +123,7 @@ namespace ChatBotterWebApi.Controllers
                 var greetingObj = _mapper.Map<Greeting>(greeting);
                 _dbContext.Greetings.Add(greetingObj);
                 await _dbContext.SaveChangesAsync();
+                _logger.LogInformation("Greeting ({greetingObj.Id}) created", greetingObj.Id);
                 return StatusCode(201);
             }
             catch(Exception ex){
@@ -147,6 +148,7 @@ namespace ChatBotterWebApi.Controllers
             {
                 _dbContext.Greetings.Remove(gr);
                 await _dbContext.SaveChangesAsync();
+                _logger.LogInformation("Greeting ({gr.Id}) removed", gr.Id);
                 return Ok();
             }
             catch(Exception ex)
@@ -183,6 +185,7 @@ namespace ChatBotterWebApi.Controllers
                 var greetObj = _mapper.Map<Greeting>(greeting);
                 _dbContext.Entry(gr).CurrentValues.SetValues(greetObj);
                 await _dbContext.SaveChangesAsync();
+                _logger.LogInformation("Greeting ({gr.Id}) updated", gr.Id);
                 return Ok();
             }
             catch(Exception ex)

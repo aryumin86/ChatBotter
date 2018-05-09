@@ -90,6 +90,7 @@ namespace ChatBotterWebApi.Controllers
                 var prjObj = _mapper.Map<TheProject>(prj);
                 _dbContext.Entry(prjFromDb).CurrentValues.SetValues(prjObj);
                 await _dbContext.SaveChangesAsync();
+                _logger.LogInformation("Project ({prj.Id}) updated", prj.Id);
                 return Ok();
             }
             catch(Exception ex)
@@ -116,6 +117,7 @@ namespace ChatBotterWebApi.Controllers
                 _dbContext.TheProjects.Remove(prj);
                 await _dbContext.SaveChangesAsync();
                 _patternRepo.OnProjectDeleted();
+                _logger.LogInformation("Project ({prj.Id}) removed", prj.Id);
                 return Ok();
             }
             catch(Exception ex)
@@ -144,6 +146,7 @@ namespace ChatBotterWebApi.Controllers
                 _dbContext.TheProjects.Add(prjObj);
                 await _dbContext.SaveChangesAsync();
                 _patternRepo.OnProjectDeleted();
+                _logger.LogInformation("Project ({prj.ProjectTitle}) created", prj.ProjectTitle);
                 return StatusCode(201);
             }
             catch (Exception ex)

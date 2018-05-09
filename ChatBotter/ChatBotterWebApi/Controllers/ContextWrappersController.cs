@@ -70,8 +70,10 @@ namespace ChatBotterWebApi.Controllers
                 return StatusCode(403);
 
             var contextObj = _mapper.Map<ContextWrapper>(context);
-            await _patternRepo.AddContextAsync(contextObj);
-            return StatusCode(201);
+            if(await _patternRepo.AddContextAsync(contextObj))
+                return Ok();
+            else
+                return BadRequest();
         }
 
         [HttpPost]
@@ -89,8 +91,10 @@ namespace ChatBotterWebApi.Controllers
                 return StatusCode(403);
 
             var contextObj = _mapper.Map<ContextWrapper>(context);
-            await _patternRepo.UpdateContextAsync(contextObj);
-            return Ok();
+            if(await _patternRepo.UpdateContextAsync(contextObj))
+                return Ok();
+            else
+                return BadRequest();
         }
 
         [HttpGet]
@@ -101,8 +105,10 @@ namespace ChatBotterWebApi.Controllers
                 return StatusCode(403);
 
             var ctx = await _patternRepo.GetContextAsync(contextId);
-            await _patternRepo.DeleteContextAsync(ctx);
-            return Ok();
+            if (await _patternRepo.DeleteContextAsync(ctx))
+                return Ok();
+            else
+                return BadRequest();
         }
 
         public bool HasAccess(int userId)

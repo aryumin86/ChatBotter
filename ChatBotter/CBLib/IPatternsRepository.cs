@@ -23,31 +23,31 @@ namespace CBLib
 
         Task<IEnumerable<ContextWrapper>> GetAllProjectContextsAsync(int projectId);
 
-        Task AddContextAsync(ContextWrapper context);
+        Task<bool> AddContextAsync(ContextWrapper context);
 
-        Task DeleteContextAsync(ContextWrapper context);
+        Task<bool> DeleteContextAsync(ContextWrapper context);
 
-        Task UpdateContextAsync(ContextWrapper context);
+        Task<bool> UpdateContextAsync(ContextWrapper context);
 
         Task<IEnumerable<Context>> GetActualContextsAsync(int prjId, string[] terms);
 
-        Task AddBotResponseToPatternAsync(BotResponse botResponse);
+        Task<bool> AddBotResponseToPatternAsync(BotResponse botResponse);
 
-        Task DeleteBotResponseToPatternAsync(BotResponse botResponse);
+        Task<bool> DeleteBotResponseToPatternAsync(BotResponse botResponse);
 
-        Task UpdateBotResponseToPatternAsync(BotResponse botResponse);
+        Task<bool> UpdateBotResponseToPatternAsync(BotResponse botResponse);
 
         IEnumerable<BotResponse> GetBotResponsesToPatternAsync(int contextId);
 
-        Task CreateContextWithResponsesAsync(ContextWrapper context, IEnumerable<BotResponse> responses);
+        Task<bool> CreateContextWithResponsesAsync(ContextWrapper context, IEnumerable<BotResponse> responses);
 
-        Task AddManyContextsAsync(List<ContextWrapper> contexts);
+        Task<bool> AddManyContextsAsync(List<ContextWrapper> contexts);
 
         Task<IEnumerable<BotResponse>> GetAllProjectBotResponsesAsync(int projectId);
 
         Task<BotResponse> GetBotResponseAsync(int id);
 
-        Task RemoveBotResponseAsync(int id);
+        Task<bool> RemoveBotResponseAsync(int id);
 
         void OnProjectAdded();
 

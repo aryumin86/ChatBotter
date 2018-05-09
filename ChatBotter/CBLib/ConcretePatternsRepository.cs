@@ -102,21 +102,24 @@ namespace CBLib
                 .ToList());
         }
 
-        public async Task AddBotResponseToPatternAsync(BotResponse botResponse)
+        public async Task<bool> AddBotResponseToPatternAsync(BotResponse botResponse)
         {
             try
             {
                 _chatBotContext.BotResponses.Add(botResponse);
                 var res = await _chatBotContext.SaveChangesAsync();
                 _contextsResponses[botResponse.PatternId].Add(botResponse);
+                _logger.LogInformation("Bot response added ({botResponse.Id})", botResponse.Id);
+                return true;
             }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "can't add response to pattern");
+                return false;
             }
         }
 
-        public async Task AddContextAsync(ContextWrapper context)
+        public async Task<bool> AddContextAsync(ContextWrapper context)
         {
             try
             {
@@ -126,14 +129,17 @@ namespace CBLib
                 _chatBotContext.Contexts.Add(context);
                 await _chatBotContext.SaveChangesAsync();
                 _projectsContexts[context.ProjectId].Add(context);
+                _logger.LogInformation("Pattern added ({context.Id})", context.Id);
+                return true;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "can't add context");
+                return false;
             }
         }
 
-        public async Task AddManyContextsAsync(List<ContextWrapper> contexts)
+        public async Task<bool> AddManyContextsAsync(List<ContextWrapper> contexts)
         {
             try
             {
@@ -154,14 +160,18 @@ namespace CBLib
             {
                 await _chatBotContext.SaveChangesAsync();
                 Init();
+                _logger.LogInformation("Patterns added");
+                return true;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "can't add contexts to db");
             }
+
+            return false;
         }
 
-        public async Task CreateContextWithResponsesAsync(ContextWrapper context, IEnumerable<BotResponse> responses)
+        public async Task<bool> CreateContextWithResponsesAsync(ContextWrapper context, IEnumerable<BotResponse> responses)
         {
             try
             {
@@ -180,14 +190,17 @@ namespace CBLib
                 }
 
                 await _chatBotContext.SaveChangesAsync();
+                _logger.LogInformation("Contexts with responses added ({context.Id})", context.Id);
+                return true;
             }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "can't add context with responses");
+                return false;
             }
         }
 
-        public async Task DeleteBotResponseToPatternAsync(BotResponse botResponse)
+        public async Task<bool> DeleteBotResponseToPatternAsync(BotResponse botResponse)
         {
             try
             {
@@ -196,14 +209,17 @@ namespace CBLib
                 var respToRemove = _contextsResponses[botResponse.PatternId]
                     .Where(r => r.Id == botResponse.Id).First();
                 _contextsResponses[botResponse.PatternId].Remove(respToRemove);
+                _logger.LogInformation("Bot response deleted ({botResponse.Id})", botResponse.Id);
+                return true;
             }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "can't remove response");
+                return false;
             }
         }
 
-        public async Task DeleteContextAsync(ContextWrapper context)
+        public async Task<bool> DeleteContextAsync(ContextWrapper context)
         {
             try
             {
@@ -212,10 +228,13 @@ namespace CBLib
                 var contextToRemove = _projectsContexts[context.ProjectId]
                     .Where(ctx => ctx.Id == context.Id).First();
                 _projectsContexts[context.ProjectId].Remove(contextToRemove);
+                _logger.LogInformation("Pattern deleted ({context.Id})", context.Id);
+                return true;
             }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "can't remove context");
+                return false;
             }
         }
 
@@ -248,7 +267,7 @@ namespace CBLib
             return null;
         }
 
-        public async Task UpdateBotResponseToPatternAsync(BotResponse botResponse)
+        public async Task<bool> UpdateBotResponseToPatternAsync(BotResponse botResponse)
         {
             try
             {
@@ -258,14 +277,17 @@ namespace CBLib
                 var ctxResps = _contextsResponses[botResponse.PatternId];
                 var ind = ctxResps.FindIndex(r => r.Id == botResponse.Id);
                 ctxResps[ind] = botResponse;
+                _logger.LogInformation("Resonse updated ({botResponse.Id})", botResponse.Id);
+                return true;
             }
             catch(Exception ex)
             {
                 _logger.LogError(ex, "can't update response");
+                return false;
             }
         }
 
-        public async Task UpdateContextAsync(ContextWrapper context)
+        public async Task<bool> UpdateContextAsync(ContextWrapper context)
         {
             try
             {
@@ -276,10 +298,13 @@ namespace CBLib
                 var projectContexts = _projectsContexts[context.ProjectId];
                 var indexOfContext = projectContexts.FindIndex(c => c.Id == context.Id);
                 projectContexts[indexOfContext] = context;
+                _logger.LogInformation("Pattern updated ({context.Id})", context.Id);
+                return true;
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "can't update context");
+                return false;
             }
         }
 
@@ -307,16 +332,27 @@ namespace CBLib
             return res;
         }
 
-        public async Task RemoveBotResponseAsync(int id)
+        public async Task<bool> RemoveBotResponseAsync(int id)
         {
-            var resp = await _chatBotContext.BotResponses.FirstOrDefaultAsync(r => r.Id == id);
-            if(resp != null)
+            try
             {
-                _chatBotContext.BotResponses.Remove(resp);
-                var respToRemove = _contextsResponses[resp.PatternId].FirstOrDefault(r => r.Id == id);
-                if (respToRemove != null)
-                    _contextsResponses[resp.PatternId].Remove(respToRemove);
-            }                
+                var resp = await _chatBotContext.BotResponses.FirstOrDefaultAsync(r => r.Id == id);
+                if (resp != null)
+                {
+                    _chatBotContext.BotResponses.Remove(resp);
+                    var respToRemove = _contextsResponses[resp.PatternId].FirstOrDefault(r => r.Id == id);
+                    if (respToRemove != null)
+                        _contextsResponses[resp.PatternId].Remove(respToRemove);
+                    _logger.LogInformation("Response deleted ({id})", id);
+                    return true;
+                }                
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "can't remove bot response");
+            }
+
+            return false;
         }
 
         public void OnProjectAdded()
