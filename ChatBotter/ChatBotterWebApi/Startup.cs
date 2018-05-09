@@ -43,6 +43,7 @@ namespace ChatBotterWebApi
             services.AddScoped<IGreetingsRepository, GreetingsRepository>();
             services.AddSingleton<IPatternsRepository, ConcretePatternsRepository>();
             services.AddScoped<IValidationHelperRepository, ValidationHelperRepository>();
+            services.AddScoped<IDefaultBotResponsesRepository, DefaultBotResponsesRepository>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options => {

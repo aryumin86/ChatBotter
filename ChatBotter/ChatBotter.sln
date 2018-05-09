@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CBLib", "CBLib\CBLib.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBotterWebApi", "ChatBotterWebApi\ChatBotterWebApi.csproj", "{FB5CB15A-166B-4DB9-9589-707E33C43C06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatBotterWebApiTests", "ChatBotterWebApiTests\ChatBotterWebApiTests.csproj", "{E060B8B9-1BCC-46AF-9A5D-CBE89A0D689F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatBotterWebApiTests", "ChatBotterWebApiTests\ChatBotterWebApiTests.csproj", "{E060B8B9-1BCC-46AF-9A5D-CBE89A0D689F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -21,5 +21,6 @@ namespace CBLib
         public DbSet<Greeting> Greetings { get; set; }
         public DbSet<Farewell> Farewells { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<DefaultBotResponse> DefaultBotResponses { get; set; }
     }
 }
