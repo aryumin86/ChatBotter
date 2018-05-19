@@ -47,7 +47,7 @@ namespace ChatBotterWebApi.Controllers
             return Ok(resp);
         }
 
-        [HttpGet(Name = "prjId")]
+        [HttpGet("{prjId}")]
         [Route("GetAllProjectBotResponses")]
         public async Task<IActionResult> GetAllProjectBotResponses(int prjId)
         {

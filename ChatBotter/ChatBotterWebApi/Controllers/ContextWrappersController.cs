@@ -39,19 +39,22 @@ namespace ChatBotterWebApi.Controllers
         }
 
 
-        [HttpGet]
-        [Route("GetContextWrapper/{contextId}")]
+        [HttpGet(Name = "contextId")]
+        [Route("GetContextWrapper")]
         public async Task<IActionResult> GetContextWrapper(int contextId)
         {
             var res = await _patternRepo.GetContextAsync(contextId);
+            res.Ctx = null;
             return Ok(res);
         }
 
-        [HttpGet]
+        [HttpGet("projectId")]
         [Route("GetAllProjectContextWrappers")]
         public async Task<IActionResult> GetAllProjectContextWrappers(int projectId)
         {
             var res = await _patternRepo.GetAllProjectContextsAsync(projectId);
+            foreach (var r in res)
+                r.Ctx = null;
             return Ok(res);
         }
 
@@ -71,7 +74,7 @@ namespace ChatBotterWebApi.Controllers
 
             var contextObj = _mapper.Map<ContextWrapper>(context);
             if(await _patternRepo.AddContextAsync(contextObj))
-                return Ok();
+                return StatusCode(201);
             else
                 return BadRequest();
         }

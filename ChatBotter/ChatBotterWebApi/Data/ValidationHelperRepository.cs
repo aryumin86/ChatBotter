@@ -18,7 +18,7 @@ namespace ChatBotterWebApi.Data
         public int GetContextOwnerId(int contextId)
         {
             var ctx = _chatBotContext.Contexts.Find(contextId);
-            var prj = _chatBotContext.TheProjects.Find(ctx.Ctx.ProjectId);
+            var prj = _chatBotContext.TheProjects.Find(ctx.ProjectId);
             return prj.OwnerId;
         }
 

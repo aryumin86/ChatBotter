@@ -128,7 +128,14 @@ namespace CBLib
 
                 _chatBotContext.Contexts.Add(context);
                 await _chatBotContext.SaveChangesAsync();
-                _projectsContexts[context.ProjectId].Add(context);
+
+                if (!_projectsContexts.ContainsKey(context.ProjectId))
+                    _projectsContexts.Add(context.ProjectId, new List<ContextWrapper>()
+                    {
+                        context
+                    });
+                else
+                    _projectsContexts[context.ProjectId].Add(context);
                 _logger.LogInformation("Pattern added ({context.Id})", context.Id);
                 return true;
             }
@@ -148,7 +155,14 @@ namespace CBLib
                     context.InitNewContext(context.ExpressionRawStr, _parser, _dict,
                         shouldWorkWithTermsForms: true, tokenFormsMaxNumberForAsterix: 30);
                     _chatBotContext.Contexts.Add(context);
-                    _projectsContexts[context.ProjectId].Add(context);
+
+                    if (!_projectsContexts.ContainsKey(context.ProjectId))
+                        _projectsContexts.Add(context.ProjectId, new List<ContextWrapper>()
+                    {
+                        context
+                    });
+                    else
+                        _projectsContexts[context.ProjectId].Add(context);
                 }
             }
             catch(Exception ex)
@@ -289,9 +303,12 @@ namespace CBLib
         }
 
         public async Task<bool> UpdateContextAsync(ContextWrapper context)
-        {
+        {            
             try
             {
+                if (string.IsNullOrEmpty(context.ExpressionResStr))
+                    throw new Exception("context.ExpressionResStr can't be empty or null");
+
                 var ctxFromDb = _chatBotContext.Contexts.First(r => r.Id == context.Id);
                 _chatBotContext.Entry(ctxFromDb).CurrentValues.SetValues(context);
                 await _chatBotContext.SaveChangesAsync();

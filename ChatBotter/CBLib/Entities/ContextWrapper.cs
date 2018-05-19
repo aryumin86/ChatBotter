@@ -48,7 +48,7 @@ namespace CBLib.Entities
         public string ExpressionResStr { get; set; }
 
         [NotMapped]
-        public Context Ctx { get; private set; }
+        public Context Ctx { get; set; }
 
         /// <summary>
         /// It is used to create real Context object using ExpressionStr.
@@ -67,6 +67,7 @@ namespace CBLib.Entities
         {
             this.ExpressionRawStr = pattern;
             this.Ctx = new Context(pattern, parser, dict, shouldWorkWithTermsForms, tokenFormsMaxNumberForAsterix, extras);
+            this.ExpressionResStr = this.Ctx.Root.ResStringExpression;
         }
     }
 }

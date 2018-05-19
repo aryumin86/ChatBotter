@@ -1,0 +1,775 @@
+19.05.2018 9:35:43 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 9:35:43 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 9:35:43 Request finished in 230.5015ms 200 
+19.05.2018 9:35:43 An unhandled exception has occurred while executing the request
+19.05.2018 9:35:43 Request finished in 663.6277ms 500 text/html; charset=utf-8
+19.05.2018 9:35:44 Request starting HTTP/1.1 GET http://localhost:56032/favicon.ico  
+19.05.2018 9:35:44 An unhandled exception has occurred while executing the request
+19.05.2018 9:35:44 Request finished in 118.8878ms 500 text/html; charset=utf-8
+19.05.2018 9:38:23 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 9:38:23 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 9:38:23 Request finished in 120.002ms 200 
+19.05.2018 9:38:23 Request finished in 273.4219ms 404 
+19.05.2018 9:38:37 Request starting HTTP/1.1 GET http://localhost:56032/api/TheProjects/GetProject?prjId=1  
+19.05.2018 9:38:37 Failed to validate the token eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJuYW1laWQiOiIxIiwidW5pcXVlX25hbWUiOiJhZG1pbiIsIm5iZiI6MTUyNTcxOTA2NCwiZXhwIjoxNTI1ODA1NDY0LCJpYXQiOjE1MjU3MTkwNjR9.sUVJecZjXjZJqFBDG0zpwmXFt1Q2TBLXssb6Tnu11Hy_48BWA-jZED1MBImiZTs9hZ4k_UpvrulwnO76xJYFFw.
+19.05.2018 9:38:37 Bearer was not authenticated. Failure message: IDX10223: Lifetime validation failed. The token is expired.
+ValidTo: '05/08/2018 18:51:04'
+Current time: '05/19/2018 06:38:37'.
+19.05.2018 9:38:37 Authorization failed for user: (null).
+19.05.2018 9:38:37 Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+19.05.2018 9:38:37 Executing ChallengeResult with authentication schemes ().
+19.05.2018 9:38:37 AuthenticationScheme: Bearer was challenged.
+19.05.2018 9:38:37 Executed action ChatBotterWebApi.Controllers.TheProjectsController.GetProject (ChatBotterWebApi) in 89.4591ms
+19.05.2018 9:38:37 Request finished in 431.0268ms 401 
+19.05.2018 9:38:44 Request starting HTTP/1.1 POST http://localhost:56032/api/auth/login application/json 47
+19.05.2018 9:38:44 Executing action method ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.UserForLoginDTO) - ModelState is Valid
+19.05.2018 9:38:45 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 9:38:45 Executed DbCommand (55ms) [Parameters=[@__login_0='?' (Size = 8000)], CommandType='Text', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`AppAdmin`, `x`.`PasswordHash`, `x`.`PasswordSalt`, `x`.`UserName`
+FROM `Users` AS `x`
+WHERE `x`.`UserName` = @__login_0
+LIMIT 1
+19.05.2018 9:38:45 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 9:38:45 Executed action ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) in 983.1481ms
+19.05.2018 9:38:45 Request finished in 1033.1844ms 200 application/json; charset=utf-8
+19.05.2018 9:39:07 Request starting HTTP/1.1 GET http://localhost:56032/api/TheProjects/GetProject?prjId=1  
+19.05.2018 9:39:07 Successfully validated the token.
+19.05.2018 9:39:07 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 9:39:07 Authorization was successful for user: admin.
+19.05.2018 9:39:07 Executing action method ChatBotterWebApi.Controllers.TheProjectsController.GetProject (ChatBotterWebApi) with arguments (1) - ModelState is Valid
+19.05.2018 9:39:11 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 9:39:11 Executed DbCommand (45ms) [Parameters=[@__prjId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__prjId_0
+LIMIT 1
+19.05.2018 9:39:11 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 9:39:11 Executed action ChatBotterWebApi.Controllers.TheProjectsController.GetProject (ChatBotterWebApi) in 4108.2585ms
+19.05.2018 9:39:11 Request finished in 4225.8818ms 200 application/json; charset=utf-8
+19.05.2018 9:39:22 Request starting HTTP/1.1 POST http://localhost:56032/api/Greetings/AddGreeting application/json 92
+19.05.2018 9:39:22 Successfully validated the token.
+19.05.2018 9:39:22 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 9:39:22 Authorization was successful for user: admin.
+19.05.2018 9:39:22 Executing action method ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.GreetingDto) - ModelState is Valid
+19.05.2018 9:39:22 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 9:39:22 Executed DbCommand (0ms) [Parameters=[@__greeting_ProjectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__greeting_ProjectId_0
+LIMIT 1
+19.05.2018 9:39:22 Executed DbCommand (10ms) [Parameters=[@p0='?' (Size = 8000), @p1='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO `Greetings` (`MainGreeting`, `ProjectId`)
+VALUES (@p0, @p1);
+SELECT `Id`
+FROM `Greetings`
+WHERE ROW_COUNT() = 1 AND `Id` = LAST_INSERT_ID();
+19.05.2018 9:39:22 Greeting (3) created
+19.05.2018 9:39:22 Executing HttpStatusCodeResult, setting HTTP status code 201
+19.05.2018 9:39:22 Executed action ChatBotterWebApi.Controllers.GreetingsController.AddGreeting (ChatBotterWebApi) in 368.5885ms
+19.05.2018 9:39:22 Request finished in 434.0683ms 201 
+19.05.2018 9:39:42 Request starting HTTP/1.1 GET http://localhost:56032/api/Greetings/GetRandomGreeting/1  
+19.05.2018 9:39:42 Successfully validated the token.
+19.05.2018 9:39:42 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 9:39:42 Executing action method ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) with arguments (1) - ModelState is Valid
+19.05.2018 9:39:42 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 9:39:42 Executed DbCommand (0ms) [Parameters=[@__projectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__projectId_0
+LIMIT 1
+19.05.2018 9:39:42 Executed DbCommand (2ms) [Parameters=[@__projectId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `g`.`Id`, `g`.`MainGreeting`, `g`.`ProjectId`
+FROM `Greetings` AS `g`
+WHERE `g`.`ProjectId` = @__projectId_0
+19.05.2018 9:39:42 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 9:39:42 Executed action ChatBotterWebApi.Controllers.GreetingsController.GetRandomGreeting (ChatBotterWebApi) in 153.39ms
+19.05.2018 9:39:43 Request finished in 267.7918ms 200 application/json; charset=utf-8
+19.05.2018 9:44:21 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 123
+19.05.2018 9:44:21 Successfully validated the token.
+19.05.2018 9:44:21 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 9:44:21 Authorization was successful for user: admin.
+19.05.2018 9:44:21 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 9:44:30 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 9:44:30 Executed DbCommand (1ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 9:49:19 can't add context
+19.05.2018 9:49:19 Executing HttpStatusCodeResult, setting HTTP status code 400
+19.05.2018 9:49:19 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) in 297782.7353ms
+19.05.2018 9:49:19 Request finished in 297852.2997ms 400 
+19.05.2018 9:49:23 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 123
+19.05.2018 9:49:23 Successfully validated the token.
+19.05.2018 9:49:23 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 9:49:23 Authorization was successful for user: admin.
+19.05.2018 9:49:23 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 9:49:25 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 9:49:25 Executed DbCommand (1ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 10:07:37 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 10:07:37 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 10:07:37 Request finished in 127.2236ms 200 
+19.05.2018 10:07:37 Request finished in 327.5481ms 404 
+19.05.2018 10:07:41 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 123
+19.05.2018 10:07:41 Successfully validated the token.
+19.05.2018 10:07:41 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 10:07:41 Authorization was successful for user: admin.
+19.05.2018 10:07:42 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 10:07:44 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 10:07:44 Executed DbCommand (143ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 10:07:46 can't add context
+19.05.2018 10:07:46 Executing HttpStatusCodeResult, setting HTTP status code 400
+19.05.2018 10:07:46 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) in 4990.4426ms
+19.05.2018 10:07:46 Request finished in 5201.9737ms 400 
+19.05.2018 10:07:58 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 123
+19.05.2018 10:07:58 Successfully validated the token.
+19.05.2018 10:07:58 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 10:07:58 Authorization was successful for user: admin.
+19.05.2018 10:07:59 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 10:08:00 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 10:08:00 Executed DbCommand (0ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 10:10:33 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 10:10:33 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 10:10:33 Request finished in 148.2243ms 200 
+19.05.2018 10:10:33 Request finished in 324.0902ms 404 
+19.05.2018 10:10:45 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 123
+19.05.2018 10:10:45 Successfully validated the token.
+19.05.2018 10:10:45 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 10:10:45 Authorization was successful for user: admin.
+19.05.2018 10:10:46 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 10:10:47 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 10:10:47 Executed DbCommand (12ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 10:11:13 can't add context
+19.05.2018 10:11:13 Executing HttpStatusCodeResult, setting HTTP status code 400
+19.05.2018 10:11:13 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) in 27599.9075ms
+19.05.2018 10:11:13 Request finished in 27851.8489ms 400 
+19.05.2018 10:11:15 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 123
+19.05.2018 10:11:15 Successfully validated the token.
+19.05.2018 10:11:15 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 10:11:15 Authorization was successful for user: admin.
+19.05.2018 10:11:15 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 10:11:19 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 10:11:19 Executed DbCommand (0ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 10:12:25 can't add context
+19.05.2018 10:12:25 Executing HttpStatusCodeResult, setting HTTP status code 400
+19.05.2018 10:12:25 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) in 69476.1161ms
+19.05.2018 10:12:25 Request finished in 69638.0745ms 400 
+19.05.2018 10:12:27 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 123
+19.05.2018 10:12:27 Successfully validated the token.
+19.05.2018 10:12:27 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 10:12:27 Authorization was successful for user: admin.
+19.05.2018 10:12:27 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 10:12:27 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 10:12:28 Executed DbCommand (0ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 10:12:39 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 10:12:39 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 10:12:39 Request finished in 128.5115ms 200 
+19.05.2018 10:12:39 Request finished in 272.143ms 404 
+19.05.2018 10:12:44 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 123
+19.05.2018 10:12:44 Successfully validated the token.
+19.05.2018 10:12:44 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 10:12:44 Authorization was successful for user: admin.
+19.05.2018 10:17:13 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 10:17:13 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 10:17:13 Request finished in 126.8936ms 200 
+19.05.2018 10:17:13 Request finished in 310.5826ms 404 
+19.05.2018 10:17:41 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 123
+19.05.2018 10:17:41 Successfully validated the token.
+19.05.2018 10:17:41 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 10:17:41 Authorization was successful for user: admin.
+19.05.2018 10:18:11 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 10:18:12 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 10:18:12 Executed DbCommand (8ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 10:22:29 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 10:22:29 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 10:22:29 Request finished in 129.1806ms 200 
+19.05.2018 10:22:29 Request finished in 287.5917ms 404 
+19.05.2018 10:22:38 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 123
+19.05.2018 10:22:38 Successfully validated the token.
+19.05.2018 10:22:38 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 10:22:38 Authorization was successful for user: admin.
+19.05.2018 10:22:40 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 10:22:40 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 10:22:41 Executed DbCommand (7ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 10:23:53 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 10:23:53 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 10:23:53 Request finished in 155.6241ms 200 
+19.05.2018 10:23:53 Request finished in 300.2811ms 404 
+19.05.2018 10:24:03 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 123
+19.05.2018 10:24:03 Successfully validated the token.
+19.05.2018 10:24:03 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 10:24:03 Authorization was successful for user: admin.
+19.05.2018 10:24:21 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 10:24:21 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 10:24:21 Executed DbCommand (7ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 10:28:59 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 10:28:59 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 10:28:59 Request finished in 139.5894ms 200 
+19.05.2018 10:29:00 Request finished in 307.0417ms 404 
+19.05.2018 10:34:51 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 123
+19.05.2018 10:34:51 Successfully validated the token.
+19.05.2018 10:34:51 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 10:34:51 Authorization was successful for user: admin.
+19.05.2018 10:34:53 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 10:34:53 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 10:34:54 Executed DbCommand (7ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 10:34:55 Pattern added (5)
+19.05.2018 10:34:55 Executing HttpStatusCodeResult, setting HTTP status code 200
+19.05.2018 10:34:55 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) in 4075.5188ms
+19.05.2018 10:34:55 Request finished in 4302.9291ms 200 
+19.05.2018 10:37:21 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 10:37:21 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 10:37:21 Request finished in 161.2086ms 200 
+19.05.2018 10:37:21 Request finished in 316.7731ms 404 
+19.05.2018 10:37:32 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 125
+19.05.2018 10:37:32 Successfully validated the token.
+19.05.2018 10:37:32 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 10:37:32 Authorization was successful for user: admin.
+19.05.2018 10:37:44 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 10:37:44 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 10:37:44 Executed DbCommand (7ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 10:37:48 Pattern added (6)
+19.05.2018 10:37:48 Executing HttpStatusCodeResult, setting HTTP status code 201
+19.05.2018 10:37:48 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) in 16079.0779ms
+19.05.2018 10:37:48 Request finished in 16322.5452ms 201 
+19.05.2018 10:48:45 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 124
+19.05.2018 10:48:45 Successfully validated the token.
+19.05.2018 10:48:46 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 10:48:46 Authorization was successful for user: admin.
+19.05.2018 10:48:46 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 10:48:46 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 10:48:46 Executed DbCommand (1ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 10:48:46 Pattern added (7)
+19.05.2018 10:48:46 Executing HttpStatusCodeResult, setting HTTP status code 201
+19.05.2018 10:48:46 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) in 219.2462ms
+19.05.2018 10:48:46 Request finished in 327.072ms 201 
+19.05.2018 10:51:26 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/UpdateContextWrapepr application/json 127
+19.05.2018 10:51:26 Successfully validated the token.
+19.05.2018 10:51:26 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 10:51:26 Authorization was successful for user: admin.
+19.05.2018 10:51:26 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.UpdateContextWrapepr (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 10:51:26 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 10:51:26 Executed DbCommand (0ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`ExpressionRawStr`, `e`.`ExpressionResStr`, `e`.`IsActive`, `e`.`Priority`, `e`.`ProjectId`, `e`.`Title`
+FROM `Contexts` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 10:51:26 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.UpdateContextWrapepr (ChatBotterWebApi) in 224.7668ms
+19.05.2018 10:51:26 An unhandled exception has occurred while executing the request
+19.05.2018 10:51:26 Request finished in 529.3822ms 500 text/html; charset=utf-8
+19.05.2018 10:59:50 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/UpdateContextWrapepr application/json 127
+19.05.2018 10:59:50 Successfully validated the token.
+19.05.2018 10:59:50 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 10:59:50 Authorization was successful for user: admin.
+19.05.2018 10:59:50 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.UpdateContextWrapepr (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 11:00:03 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 11:00:03 Executed DbCommand (1ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`ExpressionRawStr`, `e`.`ExpressionResStr`, `e`.`IsActive`, `e`.`Priority`, `e`.`ProjectId`, `e`.`Title`
+FROM `Contexts` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 11:00:12 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.UpdateContextWrapepr (ChatBotterWebApi) in 19729.1301ms
+19.05.2018 11:00:12 An unhandled exception has occurred while executing the request
+19.05.2018 11:00:12 Request finished in 22367.051ms 500 text/html; charset=utf-8
+19.05.2018 11:00:29 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/UpdateContextWrapepr application/json 127
+19.05.2018 11:00:29 Successfully validated the token.
+19.05.2018 11:00:29 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:00:29 Authorization was successful for user: admin.
+19.05.2018 11:00:29 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.UpdateContextWrapepr (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 11:00:42 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 11:00:42 Executed DbCommand (0ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`ExpressionRawStr`, `e`.`ExpressionResStr`, `e`.`IsActive`, `e`.`Priority`, `e`.`ProjectId`, `e`.`Title`
+FROM `Contexts` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 11:01:23 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 11:01:23 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 11:01:23 Request finished in 132.0563ms 200 
+19.05.2018 11:01:23 Request finished in 239.1828ms 404 
+19.05.2018 11:01:35 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/UpdateContextWrapepr application/json 127
+19.05.2018 11:01:35 Successfully validated the token.
+19.05.2018 11:01:35 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:01:35 Authorization was successful for user: admin.
+19.05.2018 11:01:39 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.UpdateContextWrapepr (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 11:01:39 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 11:01:39 Executed DbCommand (8ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`ExpressionRawStr`, `e`.`ExpressionResStr`, `e`.`IsActive`, `e`.`Priority`, `e`.`ProjectId`, `e`.`Title`
+FROM `Contexts` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 11:01:39 Executed DbCommand (0ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 11:01:40 Pattern updated (6)
+19.05.2018 11:01:40 Executing HttpStatusCodeResult, setting HTTP status code 200
+19.05.2018 11:01:40 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.UpdateContextWrapepr (ChatBotterWebApi) in 4760.5562ms
+19.05.2018 11:01:40 Request finished in 4937.5129ms 200 
+19.05.2018 11:02:58 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper/6  
+19.05.2018 11:02:58 Successfully validated the token.
+19.05.2018 11:02:58 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:02:58 Authorization was successful for user: admin.
+19.05.2018 11:02:58 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (6) - ModelState is Valid
+19.05.2018 11:02:58 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:02:58 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 128.4655ms
+19.05.2018 11:02:58 Request finished in 281.9752ms 200 application/json; charset=utf-8
+19.05.2018 11:04:15 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper/6  
+19.05.2018 11:04:15 Successfully validated the token.
+19.05.2018 11:04:15 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:04:15 Authorization was successful for user: admin.
+19.05.2018 11:04:15 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (6) - ModelState is Valid
+19.05.2018 11:12:05 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 11:12:05 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 11:12:05 Request finished in 171.0332ms 200 
+19.05.2018 11:12:05 Request finished in 294.5347ms 404 
+19.05.2018 11:12:20 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/RemoveContextWrapepr?contextId=6  
+19.05.2018 11:12:20 Authorization failed for user: (null).
+19.05.2018 11:12:20 Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+19.05.2018 11:12:20 Executing ChallengeResult with authentication schemes ().
+19.05.2018 11:12:21 AuthenticationScheme: Bearer was challenged.
+19.05.2018 11:12:21 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.RemoveContextWrapper (ChatBotterWebApi) in 131.8667ms
+19.05.2018 11:12:21 Request finished in 262.2715ms 401 
+19.05.2018 11:12:40 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/RemoveContextWrapepr?contextId=6  
+19.05.2018 11:12:40 Successfully validated the token.
+19.05.2018 11:12:40 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:12:40 Authorization was successful for user: admin.
+19.05.2018 11:13:15 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.RemoveContextWrapper (ChatBotterWebApi) in 34816.6934ms
+19.05.2018 11:13:15 An unhandled exception has occurred while executing the request
+19.05.2018 11:13:15 Request finished in 35142.9117ms 500 text/html; charset=utf-8
+19.05.2018 11:13:18 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/RemoveContextWrapepr?contextId=6  
+19.05.2018 11:13:18 Successfully validated the token.
+19.05.2018 11:13:18 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:13:18 Authorization was successful for user: admin.
+19.05.2018 11:13:31 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 11:13:31 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 11:13:31 Request finished in 186.5084ms 200 
+19.05.2018 11:13:31 Request finished in 376.4815ms 404 
+19.05.2018 11:13:46 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/RemoveContextWrapepr?contextId=6  
+19.05.2018 11:13:46 Successfully validated the token.
+19.05.2018 11:13:46 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:13:46 Authorization was successful for user: admin.
+19.05.2018 11:17:00 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 11:17:00 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 11:17:00 Request finished in 159.6053ms 200 
+19.05.2018 11:17:00 Request finished in 299.4429ms 404 
+19.05.2018 11:17:33 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper/6  
+19.05.2018 11:17:33 Successfully validated the token.
+19.05.2018 11:17:33 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:17:33 Authorization was successful for user: admin.
+19.05.2018 11:17:34 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (6) - ModelState is Valid
+19.05.2018 11:17:37 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:17:37 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 4311.2094ms
+19.05.2018 11:17:37 Request finished in 4557.3583ms 204 
+19.05.2018 11:17:46 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/RemoveContextWrapepr?contextId=6  
+19.05.2018 11:17:46 Successfully validated the token.
+19.05.2018 11:17:46 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:17:46 Authorization was successful for user: admin.
+19.05.2018 11:17:46 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.RemoveContextWrapper (ChatBotterWebApi) with arguments (6) - ModelState is Valid
+19.05.2018 11:17:46 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 11:17:46 Executed DbCommand (0ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`ExpressionRawStr`, `e`.`ExpressionResStr`, `e`.`IsActive`, `e`.`Priority`, `e`.`ProjectId`, `e`.`Title`
+FROM `Contexts` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 11:17:46 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.RemoveContextWrapper (ChatBotterWebApi) in 114.7887ms
+19.05.2018 11:17:46 An unhandled exception has occurred while executing the request
+19.05.2018 11:17:46 Request finished in 412.9309ms 500 text/html; charset=utf-8
+19.05.2018 11:18:13 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 124
+19.05.2018 11:18:13 Successfully validated the token.
+19.05.2018 11:18:13 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:18:13 Authorization was successful for user: admin.
+19.05.2018 11:18:13 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 11:18:13 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 11:18:13 Executed DbCommand (0ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 11:18:14 Pattern added (8)
+19.05.2018 11:18:14 Executing HttpStatusCodeResult, setting HTTP status code 201
+19.05.2018 11:18:14 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) in 674.638ms
+19.05.2018 11:18:14 Request finished in 844.6261ms 201 
+19.05.2018 11:18:30 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper/8  
+19.05.2018 11:18:30 Successfully validated the token.
+19.05.2018 11:18:30 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:18:30 Authorization was successful for user: admin.
+19.05.2018 11:18:30 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:18:30 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:18:30 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 142.5292ms
+19.05.2018 11:18:30 An unhandled exception has occurred while executing the request
+19.05.2018 11:18:30 The response has already started, the error page middleware will not be executed.
+19.05.2018 11:18:30 Connection id "0HLDTC3IICSR3", Request id "0HLDTC3IICSR3:00000003": An unhandled exception was thrown by the application.
+19.05.2018 11:18:30 Request finished in 471.0176ms 200 application/json; charset=utf-8
+19.05.2018 11:19:02 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper/8  
+19.05.2018 11:19:02 Successfully validated the token.
+19.05.2018 11:19:02 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:19:02 Authorization was successful for user: admin.
+19.05.2018 11:19:02 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:19:02 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:19:02 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 130.3017ms
+19.05.2018 11:19:02 An unhandled exception has occurred while executing the request
+19.05.2018 11:19:02 The response has already started, the error page middleware will not be executed.
+19.05.2018 11:19:02 Connection id "0HLDTC3IICSR2", Request id "0HLDTC3IICSR2:00000004": An unhandled exception was thrown by the application.
+19.05.2018 11:19:02 Request finished in 454.9209ms 200 application/json; charset=utf-8
+19.05.2018 11:19:39 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper/8  
+19.05.2018 11:19:39 Successfully validated the token.
+19.05.2018 11:19:39 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:19:39 Authorization was successful for user: admin.
+19.05.2018 11:19:39 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:19:50 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:19:50 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 11435.6201ms
+19.05.2018 11:19:50 An unhandled exception has occurred while executing the request
+19.05.2018 11:19:50 The response has already started, the error page middleware will not be executed.
+19.05.2018 11:19:51 Connection id "0HLDTC3IICSR4", Request id "0HLDTC3IICSR4:00000001": An unhandled exception was thrown by the application.
+19.05.2018 11:19:51 Request finished in 11758.3216ms 200 application/json; charset=utf-8
+19.05.2018 11:19:59 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper/8  
+19.05.2018 11:19:59 Successfully validated the token.
+19.05.2018 11:19:59 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:19:59 Authorization was successful for user: admin.
+19.05.2018 11:19:59 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:20:57 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:20:59 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 59789.4294ms
+19.05.2018 11:20:59 An unhandled exception has occurred while executing the request
+19.05.2018 11:20:59 The response has already started, the error page middleware will not be executed.
+19.05.2018 11:20:59 Connection id "0HLDTC3IICSR5", Request id "0HLDTC3IICSR5:00000001": An unhandled exception was thrown by the application.
+19.05.2018 11:20:59 Request finished in 60087.9533ms 200 application/json; charset=utf-8
+19.05.2018 11:21:29 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 11:21:29 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 11:21:29 Request finished in 114.518ms 200 
+19.05.2018 11:21:29 Request finished in 278.4361ms 404 
+19.05.2018 11:21:35 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper/8  
+19.05.2018 11:21:35 Successfully validated the token.
+19.05.2018 11:21:35 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:21:35 Authorization was successful for user: admin.
+19.05.2018 11:21:36 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:21:39 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:21:39 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 4569.8925ms
+19.05.2018 11:21:40 An unhandled exception has occurred while executing the request
+19.05.2018 11:21:40 The response has already started, the error page middleware will not be executed.
+19.05.2018 11:21:40 Connection id "0HLDTC62QCU9I", Request id "0HLDTC62QCU9I:00000002": An unhandled exception was thrown by the application.
+19.05.2018 11:21:40 Request finished in 5065.064ms 200 application/json; charset=utf-8
+19.05.2018 11:22:29 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper/8  
+19.05.2018 11:22:29 Successfully validated the token.
+19.05.2018 11:22:29 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:22:29 Authorization was successful for user: admin.
+19.05.2018 11:22:29 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:22:29 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:22:29 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 90.9218ms
+19.05.2018 11:22:29 An unhandled exception has occurred while executing the request
+19.05.2018 11:22:29 The response has already started, the error page middleware will not be executed.
+19.05.2018 11:22:29 Connection id "0HLDTC62QCU9J", Request id "0HLDTC62QCU9J:00000002": An unhandled exception was thrown by the application.
+19.05.2018 11:22:29 Request finished in 349.5415ms 200 application/json; charset=utf-8
+19.05.2018 11:22:48 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper/7  
+19.05.2018 11:22:48 Successfully validated the token.
+19.05.2018 11:22:48 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:22:48 Authorization was successful for user: admin.
+19.05.2018 11:22:48 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (7) - ModelState is Valid
+19.05.2018 11:22:48 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:22:48 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 122.7531ms
+19.05.2018 11:22:48 An unhandled exception has occurred while executing the request
+19.05.2018 11:22:48 The response has already started, the error page middleware will not be executed.
+19.05.2018 11:22:48 Connection id "0HLDTC62QCU9K", Request id "0HLDTC62QCU9K:00000001": An unhandled exception was thrown by the application.
+19.05.2018 11:22:48 Request finished in 417.0008ms 200 application/json; charset=utf-8
+19.05.2018 11:22:52 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper/5  
+19.05.2018 11:22:52 Successfully validated the token.
+19.05.2018 11:22:52 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:22:52 Authorization was successful for user: admin.
+19.05.2018 11:22:52 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (5) - ModelState is Valid
+19.05.2018 11:22:52 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:22:52 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 106.4144ms
+19.05.2018 11:22:52 An unhandled exception has occurred while executing the request
+19.05.2018 11:22:52 The response has already started, the error page middleware will not be executed.
+19.05.2018 11:22:53 Connection id "0HLDTC62QCU9L", Request id "0HLDTC62QCU9L:00000001": An unhandled exception was thrown by the application.
+19.05.2018 11:22:53 Request finished in 354.1068ms 200 application/json; charset=utf-8
+19.05.2018 11:23:52 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper/8  
+19.05.2018 11:23:52 Authorization failed for user: (null).
+19.05.2018 11:23:53 Authorization failed for the request at filter 'Microsoft.AspNetCore.Mvc.Authorization.AuthorizeFilter'.
+19.05.2018 11:23:53 Executing ChallengeResult with authentication schemes ().
+19.05.2018 11:23:53 AuthenticationScheme: Bearer was challenged.
+19.05.2018 11:23:53 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 138.7655ms
+19.05.2018 11:23:53 Request finished in 220.718ms 401 
+19.05.2018 11:24:39 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper/8  
+19.05.2018 11:24:39 Successfully validated the token.
+19.05.2018 11:24:39 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:24:39 Authorization was successful for user: admin.
+19.05.2018 11:24:39 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:24:39 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:24:39 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 68.8383ms
+19.05.2018 11:24:39 An unhandled exception has occurred while executing the request
+19.05.2018 11:24:39 The response has already started, the error page middleware will not be executed.
+19.05.2018 11:24:39 Connection id "0HLDTC62QCU9M", Request id "0HLDTC62QCU9M:00000002": An unhandled exception was thrown by the application.
+19.05.2018 11:24:39 Request finished in 395.2163ms 200 application/json; charset=utf-8
+19.05.2018 11:24:39 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper/8  
+19.05.2018 11:24:39 Successfully validated the token.
+19.05.2018 11:24:39 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:24:39 Authorization was successful for user: admin.
+19.05.2018 11:24:39 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:24:39 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:24:39 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 108.3744ms
+19.05.2018 11:24:40 An unhandled exception has occurred while executing the request
+19.05.2018 11:24:40 The response has already started, the error page middleware will not be executed.
+19.05.2018 11:24:40 Connection id "0HLDTC62QCU9N", Request id "0HLDTC62QCU9N:00000001": An unhandled exception was thrown by the application.
+19.05.2018 11:24:40 Request finished in 418.7755ms 200 application/json; charset=utf-8
+19.05.2018 11:26:48 Request starting HTTP/1.1 GET http://localhost:56032/api/TheProjects/GetProject?prjId=1  
+19.05.2018 11:26:48 Successfully validated the token.
+19.05.2018 11:26:48 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:26:48 Authorization was successful for user: admin.
+19.05.2018 11:26:48 Executing action method ChatBotterWebApi.Controllers.TheProjectsController.GetProject (ChatBotterWebApi) with arguments (1) - ModelState is Valid
+19.05.2018 11:26:48 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 11:26:48 Executed DbCommand (13ms) [Parameters=[@__prjId_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `p`.`Id`, `p`.`CreatedAt`, `p`.`OwnerId`, `p`.`ProjectDescription`, `p`.`ProjectTitle`
+FROM `Projects` AS `p`
+WHERE `p`.`Id` = @__prjId_0
+LIMIT 1
+19.05.2018 11:26:48 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:26:48 Executed action ChatBotterWebApi.Controllers.TheProjectsController.GetProject (ChatBotterWebApi) in 352.3329ms
+19.05.2018 11:26:48 Request finished in 499.1625ms 200 application/json; charset=utf-8
+19.05.2018 11:28:20 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 11:28:20 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 11:28:20 Request finished in 137.6188ms 200 
+19.05.2018 11:28:20 Request finished in 307.5854ms 404 
+19.05.2018 11:28:33 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper/8  
+19.05.2018 11:28:33 Successfully validated the token.
+19.05.2018 11:28:33 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:28:33 Request finished in 74.5084ms 404 
+19.05.2018 11:28:51 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper?contextId=8  
+19.05.2018 11:28:51 Successfully validated the token.
+19.05.2018 11:28:51 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:28:51 Authorization was successful for user: admin.
+19.05.2018 11:28:52 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:28:52 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:28:52 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 680.8322ms
+19.05.2018 11:28:52 An unhandled exception has occurred while executing the request
+19.05.2018 11:28:52 The response has already started, the error page middleware will not be executed.
+19.05.2018 11:28:52 Connection id "0HLDTC9T7V934", Request id "0HLDTC9T7V934:00000002": An unhandled exception was thrown by the application.
+19.05.2018 11:28:52 Request finished in 1051.2313ms 200 application/json; charset=utf-8
+19.05.2018 11:28:52 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper?contextId=8  
+19.05.2018 11:28:52 Successfully validated the token.
+19.05.2018 11:28:52 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:28:52 Authorization was successful for user: admin.
+19.05.2018 11:28:52 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:28:52 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:28:52 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 74.4959ms
+19.05.2018 11:28:53 An unhandled exception has occurred while executing the request
+19.05.2018 11:28:53 The response has already started, the error page middleware will not be executed.
+19.05.2018 11:28:53 Connection id "0HLDTC9T7V935", Request id "0HLDTC9T7V935:00000003": An unhandled exception was thrown by the application.
+19.05.2018 11:28:53 Request finished in 349.1578ms 200 application/json; charset=utf-8
+19.05.2018 11:29:17 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/RemoveContextWrapepr?contextId=8  
+19.05.2018 11:29:17 Successfully validated the token.
+19.05.2018 11:29:17 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:29:17 Authorization was successful for user: admin.
+19.05.2018 11:29:17 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.RemoveContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:29:17 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 11:29:17 Executed DbCommand (9ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`ExpressionRawStr`, `e`.`ExpressionResStr`, `e`.`IsActive`, `e`.`Priority`, `e`.`ProjectId`, `e`.`Title`
+FROM `Contexts` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 11:29:17 Executed DbCommand (0ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 11:30:07 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 11:30:07 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 11:30:07 Request finished in 122.9883ms 200 
+19.05.2018 11:30:08 Request finished in 315.103ms 404 
+19.05.2018 11:30:18 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper?contextId=8  
+19.05.2018 11:30:18 Successfully validated the token.
+19.05.2018 11:30:18 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:30:18 Authorization was successful for user: admin.
+19.05.2018 11:30:19 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:30:19 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:30:19 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 732.3773ms
+19.05.2018 11:30:19 An unhandled exception has occurred while executing the request
+19.05.2018 11:30:19 The response has already started, the error page middleware will not be executed.
+19.05.2018 11:30:19 Connection id "0HLDTCAT8RFGB", Request id "0HLDTCAT8RFGB:00000002": An unhandled exception was thrown by the application.
+19.05.2018 11:30:19 Request finished in 1174.2687ms 200 application/json; charset=utf-8
+19.05.2018 11:30:19 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper?contextId=8  
+19.05.2018 11:30:19 Successfully validated the token.
+19.05.2018 11:30:19 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:30:19 Authorization was successful for user: admin.
+19.05.2018 11:30:19 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:30:19 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:30:19 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 114.8458ms
+19.05.2018 11:30:20 An unhandled exception has occurred while executing the request
+19.05.2018 11:30:20 The response has already started, the error page middleware will not be executed.
+19.05.2018 11:30:20 Connection id "0HLDTCAT8RFGA", Request id "0HLDTCAT8RFGA:00000002": An unhandled exception was thrown by the application.
+19.05.2018 11:30:20 Request finished in 478.107ms 200 application/json; charset=utf-8
+19.05.2018 11:44:14 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 11:44:14 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 11:44:14 Request finished in 157.0076ms 200 
+19.05.2018 11:44:15 Request finished in 378.8999ms 404 
+19.05.2018 11:45:07 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetAllProjectContextWrappers?projectId=1  
+19.05.2018 11:45:07 Successfully validated the token.
+19.05.2018 11:45:07 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:45:07 Authorization was successful for user: admin.
+19.05.2018 11:45:07 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetAllProjectContextWrappers (ChatBotterWebApi) with arguments (1) - ModelState is Valid
+19.05.2018 11:45:08 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:45:08 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetAllProjectContextWrappers (ChatBotterWebApi) in 812.429ms
+19.05.2018 11:45:08 An unhandled exception has occurred while executing the request
+19.05.2018 11:45:08 The response has already started, the error page middleware will not be executed.
+19.05.2018 11:45:08 Connection id "0HLDTCIPKMRB9", Request id "0HLDTCIPKMRB9:00000002": An unhandled exception was thrown by the application.
+19.05.2018 11:45:08 Request finished in 1294.381ms 200 application/json; charset=utf-8
+19.05.2018 11:45:36 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/RemoveContextWrapepr?contextId=8  
+19.05.2018 11:45:36 Successfully validated the token.
+19.05.2018 11:45:36 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:45:37 Authorization was successful for user: admin.
+19.05.2018 11:45:37 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.RemoveContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:45:37 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 11:45:37 Executed DbCommand (0ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`ExpressionRawStr`, `e`.`ExpressionResStr`, `e`.`IsActive`, `e`.`Priority`, `e`.`ProjectId`, `e`.`Title`
+FROM `Contexts` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 11:45:37 Executed DbCommand (1ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 11:45:49 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 11:45:49 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 11:45:49 Request finished in 128.6592ms 200 
+19.05.2018 11:45:49 Request finished in 254.3ms 404 
+19.05.2018 11:45:51 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper?contextId=8  
+19.05.2018 11:45:51 Successfully validated the token.
+19.05.2018 11:45:51 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:45:51 Authorization was successful for user: admin.
+19.05.2018 11:45:52 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:46:54 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 11:46:54 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 11:46:54 Request finished in 145.8859ms 200 
+19.05.2018 11:46:54 Request finished in 275.7651ms 404 
+19.05.2018 11:47:01 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper?contextId=8  
+19.05.2018 11:47:02 Successfully validated the token.
+19.05.2018 11:47:02 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:47:02 Authorization was successful for user: admin.
+19.05.2018 11:47:02 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:47:42 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 11:47:42 Request finished in 77.7983ms 404 
+19.05.2018 11:47:57 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 11:47:57 Request finished in 64.3443ms 200 
+19.05.2018 11:48:06 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetContextWrapper?contextId=8  
+19.05.2018 11:48:06 Successfully validated the token.
+19.05.2018 11:48:06 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:48:06 Authorization was successful for user: admin.
+19.05.2018 11:48:07 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) with arguments (8) - ModelState is Valid
+19.05.2018 11:48:09 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:48:09 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetContextWrapper (ChatBotterWebApi) in 3173.8209ms
+19.05.2018 11:48:09 Request finished in 3491.9295ms 200 application/json; charset=utf-8
+19.05.2018 11:49:09 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 11:49:09 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 11:49:09 Request finished in 78.7985ms 200 
+19.05.2018 11:49:09 Request finished in 202.5975ms 404 
+19.05.2018 11:49:18 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetAllProjectContextWrappers?projectId=1  
+19.05.2018 11:49:18 Successfully validated the token.
+19.05.2018 11:49:18 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:49:18 Authorization was successful for user: admin.
+19.05.2018 11:49:19 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetAllProjectContextWrappers (ChatBotterWebApi) with arguments (1) - ModelState is Valid
+19.05.2018 11:49:19 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:49:19 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetAllProjectContextWrappers (ChatBotterWebApi) in 811.0675ms
+19.05.2018 11:49:19 Request finished in 986.66ms 200 application/json; charset=utf-8
+19.05.2018 11:50:14 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+19.05.2018 11:50:14 Request starting HTTP/1.1 GET http://localhost:56032/  
+19.05.2018 11:50:14 Request finished in 128.3567ms 200 
+19.05.2018 11:50:14 Request finished in 272.4428ms 404 
+19.05.2018 11:50:38 Request starting HTTP/1.1 POST http://localhost:56032/api/ContextWrappers/AddContextWrapper application/json 126
+19.05.2018 11:50:38 Successfully validated the token.
+19.05.2018 11:50:38 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:50:38 Authorization was successful for user: admin.
+19.05.2018 11:50:39 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.ContextDto) - ModelState is Valid
+19.05.2018 11:50:39 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 11:50:39 Executed DbCommand (7ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 11:50:40 Pattern added (9)
+19.05.2018 11:50:40 Executing HttpStatusCodeResult, setting HTTP status code 201
+19.05.2018 11:50:40 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) in 1353.9973ms
+19.05.2018 11:50:40 Request finished in 1584.9183ms 201 
+19.05.2018 11:50:47 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetAllProjectContextWrappers?projectId=1  
+19.05.2018 11:50:47 Successfully validated the token.
+19.05.2018 11:50:47 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:50:47 Authorization was successful for user: admin.
+19.05.2018 11:50:47 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetAllProjectContextWrappers (ChatBotterWebApi) with arguments (1) - ModelState is Valid
+19.05.2018 11:50:47 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:50:47 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetAllProjectContextWrappers (ChatBotterWebApi) in 100.3761ms
+19.05.2018 11:50:47 Request finished in 195.9135ms 200 application/json; charset=utf-8
+19.05.2018 11:51:12 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/RemoveContextWrapepr?contextId=9  
+19.05.2018 11:51:12 Successfully validated the token.
+19.05.2018 11:51:12 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:51:12 Authorization was successful for user: admin.
+19.05.2018 11:51:12 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.RemoveContextWrapper (ChatBotterWebApi) with arguments (9) - ModelState is Valid
+19.05.2018 11:51:12 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+19.05.2018 11:51:12 Executed DbCommand (0ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`ExpressionRawStr`, `e`.`ExpressionResStr`, `e`.`IsActive`, `e`.`Priority`, `e`.`ProjectId`, `e`.`Title`
+FROM `Contexts` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 11:51:12 Executed DbCommand (0ms) [Parameters=[@__get_Item_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT `e`.`Id`, `e`.`CreatedAt`, `e`.`OwnerId`, `e`.`ProjectDescription`, `e`.`ProjectTitle`
+FROM `Projects` AS `e`
+WHERE `e`.`Id` = @__get_Item_0
+LIMIT 1
+19.05.2018 11:51:12 Pattern deleted (9)
+19.05.2018 11:51:12 Executing HttpStatusCodeResult, setting HTTP status code 200
+19.05.2018 11:51:12 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.RemoveContextWrapper (ChatBotterWebApi) in 290.0226ms
+19.05.2018 11:51:12 Request finished in 349.7548ms 200 
+19.05.2018 11:51:17 Request starting HTTP/1.1 GET http://localhost:56032/api/ContextWrappers/GetAllProjectContextWrappers?projectId=1  
+19.05.2018 11:51:17 Successfully validated the token.
+19.05.2018 11:51:17 AuthenticationScheme: Bearer was successfully authenticated.
+19.05.2018 11:51:17 Authorization was successful for user: admin.
+19.05.2018 11:51:17 Executing action method ChatBotterWebApi.Controllers.ContextWrappersController.GetAllProjectContextWrappers (ChatBotterWebApi) with arguments (1) - ModelState is Valid
+19.05.2018 11:51:17 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+19.05.2018 11:51:17 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.GetAllProjectContextWrappers (ChatBotterWebApi) in 112.5504ms
+19.05.2018 11:51:17 Request finished in 248.7953ms 200 application/json; charset=utf-8
