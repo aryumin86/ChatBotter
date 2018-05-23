@@ -37,8 +37,8 @@ namespace ChatBotterWebApi.Controllers
             _mapper = mapper;
         }
 
-        [Route("GetAllProjectGreetings/{projectId}")]
-        [HttpGet]
+        [Route("GetAllProjectGreetings")]
+        [HttpGet("projectId")]
         public async Task<IActionResult> GetAllProjectGreetings(int projectId)
         {
             var prj = _dbContext.TheProjects.FirstOrDefault(p => p.Id == projectId);
@@ -51,6 +51,8 @@ namespace ChatBotterWebApi.Controllers
             //var res = await _dbContext.Greetings.Where(g => g.ProjectId == projectId).ToListAsync();  
 
             var res = await _greetingsRepo.GetAllProjectGreetingsAsync(projectId);
+            foreach (var r in res)
+                r.TheProject = null;
             return Ok(res);
         }
 
@@ -76,7 +78,11 @@ namespace ChatBotterWebApi.Controllers
             var res = await _dbContext.Greetings.FirstOrDefaultAsync(g => g.Id == id);
 
             if (res != null)
+            {
+                res.TheProject = null;
                 return Ok(res);
+            }
+                
             else
                 return NotFound();
         }
@@ -132,8 +138,8 @@ namespace ChatBotterWebApi.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("RemoveGreeting/{greetingId}")]
+        [HttpGet("greetingId")]
+        [Route("RemoveGreeting")]
         public async Task<IActionResult> RemoveGreeting(int greetingId){
             _logger.LogInformation("RemoveGreeting({greetingId}). Removing greeting", greetingId);
 

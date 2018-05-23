@@ -38,7 +38,7 @@ namespace ChatBotterWebApi.Controllers
             _validationRepo = validationRepo;
         }
 
-        [HttpGet]
+        [HttpGet("respId")]
         [Route("GetBotResponse")]
         public async Task<IActionResult> GetBotResponse(int respId)
         {
@@ -55,6 +55,8 @@ namespace ChatBotterWebApi.Controllers
             if (!HasAccess(prj.OwnerId))
                 return StatusCode(403);
 
+            resp.Pattern = null;
+            resp.TheProject = null;
             return Ok(resp);
         }
 
@@ -92,7 +94,7 @@ namespace ChatBotterWebApi.Controllers
 
             BotResponse respObj = _mapper.Map<BotResponse>(resp);
             if (await _patternRepo.AddBotResponseToPatternAsync(respObj))
-                return Ok();
+                return StatusCode(201);
             else
                 return BadRequest(); ;
         }
@@ -126,8 +128,8 @@ namespace ChatBotterWebApi.Controllers
                 return BadRequest();
         }
 
-        [HttpGet]
-        [Route("RemoveBotResponse/{respId}")]
+        [HttpGet("respId")]
+        [Route("RemoveBotResponse")]
         public async Task<IActionResult> RemoveBotResponse(int respId)
         {
             if (!HasAccess(_validationRepo.GetResponseOwnerId(respId)))

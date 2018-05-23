@@ -87,7 +87,7 @@ namespace ChatBotterWebApi.Controllers
                 return BadRequest(ModelState);
 
             if (await _defRespRepo.AddDefaultBotResponseAsync(resp))
-                return Ok();
+                return StatusCode(201);
             else
                 return BadRequest();
         }

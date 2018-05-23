@@ -108,7 +108,18 @@ namespace CBLib
             {
                 _chatBotContext.BotResponses.Add(botResponse);
                 var res = await _chatBotContext.SaveChangesAsync();
-                _contextsResponses[botResponse.PatternId].Add(botResponse);
+                if (!_contextsResponses.ContainsKey(botResponse.PatternId))
+                {
+                    _contextsResponses.Add(botResponse.PatternId, new List<BotResponse>()
+                    {
+                        botResponse
+                    });
+                }
+                else
+                {
+                    _contextsResponses[botResponse.PatternId].Add(botResponse);
+                }
+
                 _logger.LogInformation("Bot response added ({botResponse.Id})", botResponse.Id);
                 return true;
             }
@@ -218,7 +229,8 @@ namespace CBLib
         {
             try
             {
-                _chatBotContext.BotResponses.Remove(botResponse);
+                var resp = _chatBotContext.BotResponses.Find(botResponse.Id);
+                _chatBotContext.BotResponses.Remove(resp);
                 await _chatBotContext.SaveChangesAsync();
                 var respToRemove = _contextsResponses[botResponse.PatternId]
                     .Where(r => r.Id == botResponse.Id).First();

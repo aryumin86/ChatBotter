@@ -16,7 +16,7 @@ namespace CBLib
         public Func<string, string[]> SimpleUserMessagePrepocessing = (raw) =>
         {
             return 
-                Regex.Replace(raw, "\\s+", "\\s")
+                Regex.Replace(raw, "\\s+", " ")
                 .ToLower()
                 .Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)
                 .Select(x => x.Trim('?', '!', '%', '.', ',', ':', ')', '(', ';', '$', '*', '[', ']'))
