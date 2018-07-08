@@ -1732,3 +1732,88 @@ LIMIT 1
 23.05.2018 11:59:31 Executing HttpStatusCodeResult, setting HTTP status code 201
 23.05.2018 11:59:31 Executed action ChatBotterWebApi.Controllers.ContextWrappersController.AddContextWrapper (ChatBotterWebApi) in 218.5873ms
 23.05.2018 11:59:31 Request finished in 298.7976ms 201 
+01.06.2018 19:34:48 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+01.06.2018 19:34:48 Request starting HTTP/1.1 GET http://localhost:56032/  
+01.06.2018 19:34:48 Request finished in 125.5389ms 200 
+01.06.2018 19:34:48 Request finished in 286.5919ms 404 
+01.06.2018 19:39:41 Request starting HTTP/1.1 GET http://localhost:56032/  
+01.06.2018 19:39:41 Request finished in 51.7059ms 404 
+01.06.2018 19:43:48 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+01.06.2018 19:43:48 Request starting HTTP/1.1 GET http://localhost:56032/  
+01.06.2018 19:43:48 Request finished in 113.249ms 200 
+01.06.2018 19:43:48 Request finished in 237.9882ms 404 
+01.06.2018 19:45:57 Request starting HTTP/1.1 DEBUG http://localhost:56032/  0
+01.06.2018 19:45:57 Request starting HTTP/1.1 GET http://localhost:56032/  
+01.06.2018 19:45:57 Request finished in 146.4376ms 200 
+01.06.2018 19:45:57 Request finished in 285.3825ms 404 
+01.06.2018 19:46:35 Request starting HTTP/1.1 OPTIONS http://localhost:56032/api/auth/login  
+01.06.2018 19:46:35 Policy execution successful.
+01.06.2018 19:46:35 Request finished in 92.9766ms 204 
+01.06.2018 19:46:35 Request starting HTTP/1.1 POST http://localhost:56032/api/auth/login application-json 51
+01.06.2018 19:46:35 Policy execution successful.
+01.06.2018 19:46:36 Executing HttpStatusCodeResult, setting HTTP status code 415
+01.06.2018 19:46:36 Executed action ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) in 97.0613ms
+01.06.2018 19:46:36 Request finished in 288.1955ms 415 
+01.06.2018 19:46:37 Request starting HTTP/1.1 POST http://localhost:56032/api/auth/login application-json 51
+01.06.2018 19:46:37 Policy execution successful.
+01.06.2018 19:46:37 Executing HttpStatusCodeResult, setting HTTP status code 415
+01.06.2018 19:46:37 Executed action ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) in 12.2985ms
+01.06.2018 19:46:37 Request finished in 127.3157ms 415 
+01.06.2018 19:46:51 Request starting HTTP/1.1 OPTIONS http://localhost:56032/api/auth/login  
+01.06.2018 19:46:51 Policy execution successful.
+01.06.2018 19:46:51 Request finished in 107.9575ms 204 
+01.06.2018 19:46:51 Request starting HTTP/1.1 POST http://localhost:56032/api/auth/login application-json 51
+01.06.2018 19:46:51 Policy execution successful.
+01.06.2018 19:46:51 Executing HttpStatusCodeResult, setting HTTP status code 415
+01.06.2018 19:46:51 Executed action ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) in 73.1884ms
+01.06.2018 19:46:51 Request finished in 243.7659ms 415 
+01.06.2018 19:46:55 Request starting HTTP/1.1 POST http://localhost:56032/api/auth/login application-json 51
+01.06.2018 19:46:55 Policy execution successful.
+01.06.2018 19:46:55 Executing HttpStatusCodeResult, setting HTTP status code 415
+01.06.2018 19:46:55 Executed action ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) in 14.021ms
+01.06.2018 19:46:55 Request finished in 92.9925ms 415 
+01.06.2018 19:47:53 Request starting HTTP/1.1 OPTIONS http://localhost:56032/api/auth/login  
+01.06.2018 19:47:54 Policy execution successful.
+01.06.2018 19:47:54 Request finished in 74.2947ms 204 
+01.06.2018 19:47:54 Request starting HTTP/1.1 POST http://localhost:56032/api/auth/login application/json 51
+01.06.2018 19:47:54 Policy execution successful.
+01.06.2018 19:47:54 Executing action method ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.UserForLoginDTO) - ModelState is Valid
+01.06.2018 19:47:54 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+01.06.2018 19:47:55 Executed DbCommand (47ms) [Parameters=[@__login_0='?' (Size = 8000)], CommandType='Text', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`AppAdmin`, `x`.`PasswordHash`, `x`.`PasswordSalt`, `x`.`UserName`
+FROM `Users` AS `x`
+WHERE `x`.`UserName` = @__login_0
+LIMIT 1
+01.06.2018 19:47:55 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+01.06.2018 19:47:55 Executed action ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) in 1047.2916ms
+01.06.2018 19:47:55 Request finished in 1122.3351ms 200 application/json; charset=utf-8
+01.06.2018 19:49:40 Request starting HTTP/1.1 OPTIONS http://localhost:56032/api/auth/login  
+01.06.2018 19:49:40 Policy execution successful.
+01.06.2018 19:49:40 Request finished in 56.0836ms 204 
+01.06.2018 19:49:40 Request starting HTTP/1.1 POST http://localhost:56032/api/auth/login application/json 52
+01.06.2018 19:49:40 Policy execution successful.
+01.06.2018 19:49:40 Executing action method ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.UserForLoginDTO) - ModelState is Valid
+01.06.2018 19:49:40 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+01.06.2018 19:49:40 Executed DbCommand (1ms) [Parameters=[@__login_0='?' (Size = 8000)], CommandType='Text', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`AppAdmin`, `x`.`PasswordHash`, `x`.`PasswordSalt`, `x`.`UserName`
+FROM `Users` AS `x`
+WHERE `x`.`UserName` = @__login_0
+LIMIT 1
+01.06.2018 19:49:41 Executing HttpStatusCodeResult, setting HTTP status code 401
+01.06.2018 19:49:41 Executed action ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) in 142.2917ms
+01.06.2018 19:49:41 Request finished in 234.8535ms 401 
+01.06.2018 20:11:01 Request starting HTTP/1.1 OPTIONS http://localhost:56032/api/auth/login  
+01.06.2018 20:11:01 Policy execution successful.
+01.06.2018 20:11:01 Request finished in 129.8542ms 204 
+01.06.2018 20:11:01 Request starting HTTP/1.1 POST http://localhost:56032/api/auth/login application/json 51
+01.06.2018 20:11:01 Policy execution successful.
+01.06.2018 20:11:01 Executing action method ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) with arguments (ChatBotterWebApi.DTO.UserForLoginDTO) - ModelState is Valid
+01.06.2018 20:11:01 Entity Framework Core 2.0.1-rtm-125 initialized 'ChatBotContext' using provider 'Pomelo.EntityFrameworkCore.MySql' with options: None
+01.06.2018 20:11:01 Executed DbCommand (13ms) [Parameters=[@__login_0='?' (Size = 8000)], CommandType='Text', CommandTimeout='30']
+SELECT `x`.`Id`, `x`.`AppAdmin`, `x`.`PasswordHash`, `x`.`PasswordSalt`, `x`.`UserName`
+FROM `Users` AS `x`
+WHERE `x`.`UserName` = @__login_0
+LIMIT 1
+01.06.2018 20:11:01 Executing ObjectResult, writing value Microsoft.AspNetCore.Mvc.ControllerContext.
+01.06.2018 20:11:01 Executed action ChatBotterWebApi.Controllers.AuthController.Login (ChatBotterWebApi) in 232.204ms
+01.06.2018 20:11:01 Request finished in 353.1832ms 200 application/json; charset=utf-8
